@@ -1,0 +1,218 @@
+/*
+ * Editor and reading surfaces
+ * ---------------------------
+ * Quiet working pages with serif display structure and highly legible
+ * sans-serif prose, metadata, and controls.
+ */
+
+body {
+	font-variant-numeric: proportional-nums;
+}
+
+/* Functional numbers should align and remain easy to scan at small sizes. */
+.metadata-container,
+.status-bar,
+.workspace-tab-header-container,
+.nav-files-container,
+.suggestion-container,
+.menu,
+.modal,
+.calendar-container,
+.view-header {
+	font-variant-numeric: tabular-nums;
+	font-feature-settings: "tnum" 1, "kern" 1;
+}
+
+.inline-title,
+.markdown-rendered h1,
+.markdown-rendered h2,
+.markdown-rendered h3,
+.markdown-rendered h4,
+.markdown-rendered h5,
+.markdown-rendered h6,
+.HyperMD-header-1,
+.HyperMD-header-2,
+.HyperMD-header-3,
+.HyperMD-header-4,
+.HyperMD-header-5,
+.HyperMD-header-6 {
+	font-family: var(--wayfinder-font-display);
+	line-height: 1.2;
+	text-wrap: balance;
+}
+
+.markdown-rendered h1,
+.HyperMD-header-1 {
+	letter-spacing: 0.025em;
+}
+
+.markdown-rendered h2,
+.HyperMD-header-2 {
+	letter-spacing: 0.02em;
+}
+
+.markdown-rendered h3,
+.HyperMD-header-3 {
+	color: var(--atlas-ink);
+	letter-spacing: 0.012em;
+}
+
+.markdown-rendered h4,
+.HyperMD-header-4 {
+	color: #c5beaf;
+	letter-spacing: 0.018em;
+}
+
+.markdown-rendered h5,
+.HyperMD-header-5 {
+	color: var(--atlas-ink-muted);
+	letter-spacing: 0.065em;
+}
+
+.markdown-rendered h6,
+.HyperMD-header-6 {
+	color: var(--atlas-ink-muted);
+	letter-spacing: 0.1em;
+}
+
+.inline-title {
+	margin-bottom: 1.35rem;
+	padding-top: var(--size-4-5);
+	letter-spacing: 0.025em;
+}
+
+.markdown-rendered h1,
+.markdown-rendered h2,
+.markdown-rendered h3,
+.markdown-rendered h4,
+.markdown-rendered h5,
+.markdown-rendered h6 {
+	scroll-margin-top: calc(var(--header-height) + var(--size-4-4));
+}
+
+.markdown-source-view.mod-cm6 .cm-content,
+.markdown-reading-view .markdown-preview-view {
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizeLegibility;
+}
+
+/* Properties read as a catalog inscription, not a separate application. */
+.theme-dark .metadata-container {
+	margin-block: 0.25rem 1.5rem;
+	padding: var(--size-4-2) 0 var(--size-4-3);
+	border-top: 1px solid rgba(111, 77, 31, 0.32);
+	border-bottom: 1px solid rgba(111, 77, 31, 0.24);
+	background:
+		linear-gradient(90deg, rgba(184, 134, 51, 0.025), transparent 55%);
+}
+
+.theme-dark .metadata-properties-heading {
+	color: var(--atlas-parchment-aged);
+	font-family: var(--wayfinder-font-display);
+	font-size: var(--font-ui-small);
+	font-weight: 600;
+	letter-spacing: 0.055em;
+}
+
+.theme-dark .metadata-property {
+	border-radius: var(--wayfinder-radius-small);
+}
+
+.theme-dark .metadata-property:hover,
+.theme-dark .metadata-property:focus-within {
+	background-color: rgba(184, 134, 51, 0.045);
+}
+
+.theme-dark .metadata-property-key {
+	color: var(--atlas-ink-muted);
+}
+
+.theme-dark .metadata-property-value {
+	color: var(--atlas-ink);
+}
+
+.theme-dark .metadata-property-icon {
+	color: var(--atlas-brass-aged);
+}
+
+.theme-dark .metadata-add-button {
+	color: var(--atlas-ink-faded);
+}
+
+.theme-dark .metadata-add-button:hover {
+	color: var(--atlas-brass-bright);
+	background-color: rgba(184, 134, 51, 0.06);
+}
+
+/* Classification glyphs */
+.theme-dark body:not(.wayfinder-unstyled-tags),
+.theme-dark:not(.wayfinder-unstyled-tags) {
+	--tag-background: rgba(184, 134, 51, 0.035);
+	--tag-background-hover: rgba(184, 134, 51, 0.09);
+	--tag-color: var(--atlas-parchment-aged);
+	--tag-color-hover: var(--atlas-brass-bright);
+	--tag-border-color: rgba(111, 77, 31, 0.55);
+	--tag-border-color-hover: var(--atlas-brass-aged);
+}
+
+.theme-dark .tag,
+.theme-dark .multi-select-pill {
+	font-family: var(--wayfinder-font-interface);
+	letter-spacing: 0.01em;
+}
+
+/* Links behave like marked paths: visible, but quieter than headings. */
+.theme-dark .markdown-rendered a,
+.theme-dark .cm-hmd-internal-link,
+.theme-dark .cm-link {
+	text-decoration-color: rgba(212, 170, 85, 0.36);
+	text-decoration-thickness: 1px;
+	text-underline-offset: 0.16em;
+}
+
+.theme-dark .markdown-rendered a:hover,
+.theme-dark .cm-hmd-internal-link:hover,
+.theme-dark .cm-link:hover {
+	color: var(--atlas-brass-bright);
+	text-decoration-color: var(--atlas-brass);
+}
+
+/* Field annotations */
+.theme-dark .markdown-rendered blockquote,
+.theme-dark .HyperMD-quote {
+	color: var(--atlas-ink-muted);
+	border-color: var(--atlas-brass-aged);
+	background:
+		linear-gradient(90deg, rgba(184, 134, 51, 0.055), transparent 65%);
+}
+
+.theme-dark .markdown-rendered blockquote {
+	margin-inline: 0;
+	padding-block: var(--size-4-2);
+	padding-inline-end: var(--size-4-3);
+}
+
+/* Lists remain airy enough to scan without becoming dashboard furniture. */
+.markdown-source-view.mod-cm6 .HyperMD-list-line,
+.markdown-rendered li {
+	line-height: 1.52;
+}
+
+.theme-dark .markdown-rendered li::marker {
+	color: var(--atlas-brass-aged);
+}
+
+.theme-dark .task-list-item.is-checked,
+.theme-dark .HyperMD-task-line[data-task="x"] {
+	--text-normal: var(--atlas-ink-faded);
+}
+
+@media (max-width: 600px) {
+	.inline-title {
+		padding-top: var(--size-4-3);
+	}
+
+	.theme-dark .metadata-container {
+		margin-bottom: 1rem;
+	}
+}

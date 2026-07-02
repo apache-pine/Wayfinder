@@ -1,0 +1,396 @@
+/*
+ * Content artifacts
+ * -----------------
+ * Notes, warnings, records, indexes, and embedded pages share one crafted
+ * material language. Their semantic color is restrained to titles, icons,
+ * seals, and active edges.
+ */
+
+.theme-dark {
+	--wayfinder-artifact-bg: rgba(32, 24, 15, 0.72);
+	--wayfinder-artifact-bg-raised: rgba(39, 29, 18, 0.82);
+	--wayfinder-artifact-border: rgba(111, 77, 31, 0.68);
+	--wayfinder-artifact-rule: rgba(111, 77, 31, 0.42);
+}
+
+/* Callouts: field annotations, seals, warnings, and discoveries. */
+.theme-dark .callout {
+	--callout-border-width: 1px;
+	--callout-border-opacity: 0.62;
+	--callout-radius: var(--wayfinder-radius-medium);
+	--callout-padding: var(--size-4-3);
+	--callout-title-size: 0.92em;
+	overflow: hidden;
+	background:
+		linear-gradient(135deg, rgba(var(--callout-color), 0.075), transparent 45%),
+		var(--wayfinder-artifact-bg);
+	border: 1px solid rgba(var(--callout-color), 0.42);
+	border-inline-start: 3px solid rgba(var(--callout-color), 0.82);
+	box-shadow:
+		inset 0 1px rgba(255, 239, 190, 0.025),
+		0 2px 8px rgba(0, 0, 0, 0.18);
+}
+
+.theme-dark .callout-title {
+	margin: calc(var(--callout-padding) * -1);
+	margin-bottom: var(--size-4-2);
+	padding: var(--size-4-2) var(--size-4-3);
+	color: rgb(var(--callout-color));
+	background:
+		linear-gradient(90deg, rgba(var(--callout-color), 0.13), transparent 72%);
+	border-bottom: 1px solid rgba(var(--callout-color), 0.22);
+	font-family: var(--wayfinder-font-display);
+	font-variant: small-caps;
+	font-weight: 600;
+	letter-spacing: 0.055em;
+}
+
+.theme-dark .callout-icon {
+	filter: drop-shadow(0 0 4px rgba(var(--callout-color), 0.3));
+}
+
+.theme-dark .callout-content {
+	color: var(--atlas-ink);
+}
+
+.theme-dark .callout-fold {
+	color: rgba(var(--callout-color), 0.72);
+	border-radius: var(--wayfinder-radius-small);
+	transition:
+		color var(--wayfinder-motion-quick) ease,
+		background-color var(--wayfinder-motion-quick) ease,
+		box-shadow var(--wayfinder-motion-calm) ease;
+}
+
+.theme-dark .callout-fold:hover {
+	color: var(--atlas-rune-bright);
+	background: var(--wayfinder-rune-wake-bg);
+	box-shadow: var(--wayfinder-rune-wake-glow);
+}
+
+.theme-dark .callout[data-callout="note"],
+.theme-dark .callout[data-callout="info"],
+.theme-dark .callout[data-callout="todo"] {
+	--callout-color: 88, 169, 196;
+}
+
+.theme-dark .callout[data-callout="abstract"],
+.theme-dark .callout[data-callout="summary"],
+.theme-dark .callout[data-callout="tldr"],
+.theme-dark .callout[data-callout="example"] {
+	--callout-color: 119, 113, 185;
+}
+
+.theme-dark .callout[data-callout="tip"],
+.theme-dark .callout[data-callout="hint"],
+.theme-dark .callout[data-callout="important"],
+.theme-dark .callout[data-callout="success"],
+.theme-dark .callout[data-callout="check"],
+.theme-dark .callout[data-callout="done"] {
+	--callout-color: 102, 129, 88;
+}
+
+.theme-dark .callout[data-callout="question"],
+.theme-dark .callout[data-callout="help"],
+.theme-dark .callout[data-callout="faq"],
+.theme-dark .callout[data-callout="warning"],
+.theme-dark .callout[data-callout="caution"],
+.theme-dark .callout[data-callout="attention"] {
+	--callout-color: 196, 154, 75;
+}
+
+.theme-dark .callout[data-callout="failure"],
+.theme-dark .callout[data-callout="fail"],
+.theme-dark .callout[data-callout="missing"],
+.theme-dark .callout[data-callout="danger"],
+.theme-dark .callout[data-callout="error"],
+.theme-dark .callout[data-callout="bug"] {
+	--callout-color: 169, 73, 61;
+}
+
+.theme-dark .callout[data-callout="quote"],
+.theme-dark .callout[data-callout="cite"] {
+	--callout-color: 169, 149, 109;
+}
+
+/* Code: dark slate inset into the page like a technical plate. */
+.theme-dark {
+	--code-background: #0d0f0f;
+	--code-normal: #d7d8d2;
+	--code-comment: #777e74;
+	--code-function: #d4aa55;
+	--code-important: #d7825b;
+	--code-keyword: #83cee2;
+	--code-operator: #9e98d2;
+	--code-property: #cdbd98;
+	--code-punctuation: #8f938c;
+	--code-string: #91ad7d;
+	--code-tag: #d47c70;
+	--code-value: #c8a7d6;
+}
+
+.theme-dark .markdown-rendered pre,
+.theme-dark .HyperMD-codeblock-bg {
+	background:
+		linear-gradient(135deg, rgba(var(--atlas-rune-rgb), 0.025), transparent 38%),
+		var(--code-background);
+	border: 1px solid #34413f;
+	border-inline-start: 3px solid var(--atlas-sea);
+	border-radius: var(--wayfinder-radius-medium);
+	box-shadow:
+		inset 0 1px 4px rgba(0, 0, 0, 0.5),
+		0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.theme-dark .markdown-rendered pre {
+	padding: var(--size-4-4);
+}
+
+.theme-dark :not(pre) > code,
+.theme-dark .cm-inline-code {
+	color: #dfc684;
+	background: rgba(184, 134, 51, 0.08);
+	border: 1px solid rgba(111, 77, 31, 0.45);
+	border-radius: 3px;
+	padding: 0.08em 0.3em;
+}
+
+.theme-dark .markdown-rendered pre:hover,
+.theme-dark .cm-codeblock:hover {
+	border-color: rgba(var(--atlas-rune-rgb), 0.45);
+	box-shadow:
+		inset 0 1px 4px rgba(0, 0, 0, 0.5),
+		var(--wayfinder-rune-wake-glow);
+}
+
+.theme-dark .copy-code-button,
+.theme-dark .edit-block-button {
+	color: var(--atlas-ink-faded);
+	background: var(--atlas-wood);
+	border: 1px solid var(--wayfinder-artifact-border);
+}
+
+.theme-dark .copy-code-button:hover,
+.theme-dark .edit-block-button:hover {
+	color: var(--atlas-rune-bright);
+	border-color: var(--wayfinder-rune-wake-border);
+	box-shadow: var(--wayfinder-rune-wake-glow);
+}
+
+/* Semantic checkboxes supplied by the integrated Checkboxes.css fragment. */
+.theme-dark input.task-list-item-checkbox,
+.theme-dark .task-list-item-checkbox {
+	border-color: var(--atlas-brass-aged);
+	box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.22);
+	transition:
+		color var(--wayfinder-motion-quick) ease,
+		background-color var(--wayfinder-motion-quick) ease,
+		border-color var(--wayfinder-motion-quick) ease,
+		box-shadow var(--wayfinder-motion-calm) ease,
+		transform var(--wayfinder-motion-quick) ease;
+}
+
+.theme-dark input.task-list-item-checkbox:hover,
+.theme-dark .task-list-item-checkbox:hover {
+	border-color: var(--atlas-rune);
+	box-shadow: var(--wayfinder-rune-active-glow);
+	transform: scale(1.08);
+}
+
+.theme-dark input.task-list-item-checkbox:active,
+.theme-dark .task-list-item-checkbox:active {
+	filter: brightness(1.2);
+	transform: scale(0.96);
+}
+
+/* Progress: an enchanted measuring instrument mounted in brass. */
+.theme-dark progress {
+	overflow: hidden;
+	height: 10px;
+	border: 1px solid var(--atlas-brass-aged);
+	border-radius: 2px;
+	background: #0d0b08;
+	box-shadow:
+		inset 0 1px 3px rgba(0, 0, 0, 0.65),
+		0 0 0 1px rgba(0, 0, 0, 0.25);
+}
+
+.theme-dark progress::-webkit-progress-bar {
+	background:
+		repeating-linear-gradient(
+			90deg,
+			transparent 0,
+			transparent calc(10% - 1px),
+			rgba(205, 189, 152, 0.1) calc(10% - 1px),
+			rgba(205, 189, 152, 0.1) 10%
+		),
+		#0d0b08;
+}
+
+.theme-dark progress::-webkit-progress-value {
+	background:
+		linear-gradient(90deg, rgba(255, 239, 190, 0.12), transparent 35%),
+		var(--progress-complete);
+	box-shadow:
+		inset 0 1px rgba(255, 255, 255, 0.12),
+		0 0 8px rgba(var(--atlas-rune-rgb), 0.16);
+	transition: filter var(--wayfinder-motion-quick) ease, box-shadow var(--wayfinder-motion-calm) ease;
+}
+
+.theme-dark progress:hover {
+	border-color: var(--atlas-rune);
+	box-shadow:
+		inset 0 1px 3px rgba(0, 0, 0, 0.65),
+		var(--wayfinder-rune-wake-glow);
+}
+
+.theme-dark progress:hover::-webkit-progress-value {
+	filter: brightness(1.12);
+	box-shadow: var(--wayfinder-rune-active-glow);
+}
+
+/* Embeds: mounted pages and windows into another part of the Atlas. */
+.theme-dark .internal-embed:not(.image-embed),
+.theme-dark .markdown-embed,
+.theme-dark .file-embed {
+	background:
+		linear-gradient(135deg, rgba(205, 189, 152, 0.025), transparent 42%),
+		var(--wayfinder-artifact-bg);
+	border: 1px solid var(--wayfinder-artifact-border);
+	border-inline-start: 3px solid var(--atlas-brass-aged);
+	border-radius: var(--wayfinder-radius-medium);
+	box-shadow:
+		inset 0 1px rgba(255, 239, 190, 0.025),
+		0 2px 8px rgba(0, 0, 0, 0.18);
+}
+
+.theme-dark .markdown-embed-title {
+	color: var(--atlas-parchment);
+	font-family: var(--wayfinder-font-display);
+	font-variant: small-caps;
+	font-weight: 600;
+	letter-spacing: 0.05em;
+	border-bottom: 1px solid var(--wayfinder-artifact-rule);
+}
+
+.theme-dark .image-embed img,
+.theme-dark .markdown-rendered img {
+	border: 1px solid var(--wayfinder-artifact-border);
+	border-radius: var(--wayfinder-radius-small);
+	box-shadow: var(--wayfinder-shadow-raised);
+}
+
+.theme-dark .markdown-embed-link:hover,
+.theme-dark .file-embed-link:hover {
+	color: var(--atlas-rune-bright);
+	filter: drop-shadow(0 0 5px rgba(var(--atlas-rune-rgb), 0.5));
+}
+
+/* Tags: compact classification seals. */
+.theme-dark:not(.wayfinder-unstyled-tags) {
+	--tag-size: 0.78em;
+	--tag-padding-x: 0.58em;
+	--tag-padding-y: 0.22em;
+	--tag-radius: 3px;
+	--tag-background: rgba(111, 77, 31, 0.12);
+	--tag-background-hover: rgba(var(--atlas-rune-rgb), 0.1);
+	--tag-color: var(--atlas-parchment-aged);
+	--tag-color-hover: var(--atlas-rune-bright);
+	--tag-border-width: 1px;
+	--tag-border-color: rgba(111, 77, 31, 0.7);
+	--tag-border-color-hover: rgba(var(--atlas-rune-rgb), 0.5);
+}
+
+.theme-dark .tag,
+.theme-dark .multi-select-pill {
+	box-shadow: inset 0 1px rgba(255, 239, 190, 0.025);
+	transition:
+		color var(--wayfinder-motion-quick) ease,
+		background-color var(--wayfinder-motion-quick) ease,
+		border-color var(--wayfinder-motion-quick) ease,
+		box-shadow var(--wayfinder-motion-calm) ease;
+}
+
+.theme-dark .tag:hover,
+.theme-dark .multi-select-pill:hover {
+	box-shadow: var(--wayfinder-rune-wake-glow);
+}
+
+/* Dataview: the enchanted index. */
+.theme-dark .block-language-dataview {
+	--table-row-background-hover: rgba(var(--atlas-rune-rgb), 0.055);
+}
+
+.theme-dark .dataview.list-view-ul,
+.theme-dark .dataview.result-group,
+.theme-dark .dataview.task-list-basic-item,
+.theme-dark .dataview.task-list-item {
+	border-color: var(--wayfinder-artifact-rule);
+}
+
+.theme-dark .dataview.list-view-ul {
+	padding: var(--size-4-3) var(--size-4-5);
+	background:
+		linear-gradient(135deg, rgba(119, 113, 185, 0.035), transparent 45%),
+		var(--wayfinder-artifact-bg);
+	border: 1px solid var(--wayfinder-artifact-border);
+	border-radius: var(--wayfinder-radius-medium);
+}
+
+.theme-dark .dataview.list-view-ul > li::marker {
+	color: var(--atlas-aether);
+}
+
+.theme-dark .dataview.task-list-item,
+.theme-dark .dataview.task-list-basic-item {
+	padding-block: var(--size-4-1);
+	border-bottom: 1px solid var(--wayfinder-artifact-rule);
+}
+
+.theme-dark .dataview.task-list-item:hover,
+.theme-dark .dataview.task-list-basic-item:hover,
+.theme-dark .table-view-table > tbody > tr:hover {
+	background-color: rgba(var(--atlas-rune-rgb), 0.055) !important;
+	box-shadow: inset 2px 0 rgba(var(--atlas-rune-rgb), 0.5) !important;
+}
+
+.theme-dark .dataview.inline-field-key {
+	color: var(--atlas-parchment-aged);
+	font-variant: small-caps;
+	font-weight: 600;
+	letter-spacing: 0.035em;
+}
+
+.theme-dark .dataview.inline-field-key::after {
+	content: " · ";
+	color: var(--atlas-brass-aged);
+}
+
+.theme-dark .dataview.inline-field-value,
+.theme-dark .dataview .inline-field-standalone-value {
+	color: var(--atlas-ink-muted);
+}
+
+.theme-dark .dataview-error,
+.theme-dark .dataview-error-box {
+	color: #d9b2aa;
+	background: rgba(143, 51, 39, 0.08);
+	border: 1px solid rgba(169, 73, 61, 0.4);
+	border-inline-start: 3px solid var(--atlas-wax);
+	padding: var(--size-4-3);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.theme-dark .callout-fold,
+	.theme-dark .task-list-item-checkbox,
+	.theme-dark progress::-webkit-progress-value,
+	.theme-dark .tag,
+	.theme-dark .multi-select-pill {
+		transition: none;
+	}
+}
+
+.theme-dark.is-phone {
+	--callout-padding: var(--size-4-2);
+	--tag-padding-x: 0.48em;
+}

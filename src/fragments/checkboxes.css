@@ -1,0 +1,139 @@
+/*
+Wayfinder semantic checkboxes
+
+Temporary emoji symbols for the Atlas task vocabulary. Keep all semantic
+mappings in this file so they can be replaced with cohesive custom SVG icons
+without changing note syntax or component styling.
+*/
+
+/* Semantic map */
+[data-task="X"] { --wayfinder-task-icon: "✅"; }
+[data-task="-"] { --wayfinder-task-icon: "❌"; }
+[data-task=">"] { --wayfinder-task-icon: "➡️"; }
+[data-task="<"] { --wayfinder-task-icon: "⬅️"; }
+[data-task="D"] { --wayfinder-task-icon: "📅"; }
+[data-task="?"] { --wayfinder-task-icon: "❓"; }
+[data-task="/"] { --wayfinder-task-icon: "⏳"; }
+[data-task="+"] { --wayfinder-task-icon: "➕"; }
+[data-task="R"] { --wayfinder-task-icon: "🔍"; }
+[data-task="!"] { --wayfinder-task-icon: "❗"; }
+[data-task="i"] { --wayfinder-task-icon: "💡"; }
+[data-task="B"] { --wayfinder-task-icon: "🪲"; }
+[data-task="P"] { --wayfinder-task-icon: "💼"; }
+[data-task="C"] { --wayfinder-task-icon: "⚠️"; }
+[data-task="Q"] { --wayfinder-task-icon: "❝"; }
+[data-task="N"] { --wayfinder-task-icon: "📝"; }
+[data-task="b"] { --wayfinder-task-icon: "🔖"; }
+[data-task="I"] { --wayfinder-task-icon: "ℹ️"; }
+[data-task="p"] { --wayfinder-task-icon: "🐍"; }
+[data-task="L"] { --wayfinder-task-icon: "📍"; }
+[data-task="E"] { --wayfinder-task-icon: "🧩"; }
+[data-task="A"] { --wayfinder-task-icon: "💬"; }
+[data-task="r"] { --wayfinder-task-icon: "📚"; }
+[data-task="c"] { --wayfinder-task-icon: "⚖️"; }
+[data-task="d"] { --wayfinder-task-icon: "📊"; }
+[data-task="T"] { --wayfinder-task-icon: "🕒"; }
+[data-task="@"] { --wayfinder-task-icon: "👤"; }
+[data-task="t"] { --wayfinder-task-icon: "🗣️"; }
+[data-task="O"] { --wayfinder-task-icon: "🎯"; }
+[data-task="~"] { --wayfinder-task-icon: "🚧"; }
+[data-task="W"] { --wayfinder-task-icon: "📋"; }
+[data-task="f"] { --wayfinder-task-icon: "🔁"; }
+[data-task="F"] { --wayfinder-task-icon: "📂"; }
+[data-task="H"] { --wayfinder-task-icon: "🏠"; }
+[data-task="&"] { --wayfinder-task-icon: "🔗"; }
+[data-task="s"] { --wayfinder-task-icon: "🔒"; }
+[data-task="q"] { --wayfinder-task-icon: "🗃️"; }
+[data-task="v"] { --wayfinder-task-icon: "✔️"; }
+[data-task="m"] { --wayfinder-task-icon: "📐"; }
+[data-task="g"] { --wayfinder-task-icon: "📈"; }
+[data-task="G"] { --wayfinder-task-icon: "💵"; }
+[data-task="w"] { --wayfinder-task-icon: "⌛"; }
+[data-task="S"] { --wayfinder-task-icon: "🧠"; }
+
+/*
+Custom states are semantic markers rather than completed tasks. Remove
+Obsidian's generic checked appearance and draw the mapped symbol instead.
+*/
+body:not(.alt-chkbx-off) .task-list-item-checkbox[data-task]:not([data-task="x"]):checked,
+body:not(.alt-chkbx-off) .markdown-source-view.mod-cm6 .HyperMD-task-line[data-task]:not([data-task="x"]) > input[type="checkbox"]:checked,
+body:not(.alt-chkbx-off) .markdown-source-view.mod-cm6 .HyperMD-task-line[data-task]:not([data-task="x"]) :is(.task-list-label, p) > input[type="checkbox"]:checked,
+body:not(.alt-chkbx-off) li.task-list-item[data-task]:not([data-task="x"]) > input[type="checkbox"]:checked,
+body:not(.alt-chkbx-off) li.task-list-item[data-task]:not([data-task="x"]) > p > input[type="checkbox"]:checked {
+	--checkbox-marker-color: transparent;
+	-webkit-appearance: none !important;
+	appearance: none !important;
+	display: inline-grid;
+	position: relative;
+	overflow: visible;
+	width: var(--checkbox-size);
+	height: var(--checkbox-size);
+	margin: var(--checkbox-margin);
+	padding: 0;
+	place-items: center;
+	border: 0 !important;
+	background: transparent !important;
+	background-color: transparent !important;
+	background-image: none !important;
+	-webkit-mask: none !important;
+	mask: none !important;
+	box-shadow: none !important;
+}
+
+body:not(.alt-chkbx-off) .task-list-item-checkbox[data-task]:not([data-task="x"]):checked::after,
+body:not(.alt-chkbx-off) .markdown-source-view.mod-cm6 .HyperMD-task-line[data-task]:not([data-task="x"]) > input[type="checkbox"]:checked::after,
+body:not(.alt-chkbx-off) .markdown-source-view.mod-cm6 .HyperMD-task-line[data-task]:not([data-task="x"]) :is(.task-list-label, p) > input[type="checkbox"]:checked::after,
+body:not(.alt-chkbx-off) li.task-list-item[data-task]:not([data-task="x"]) > input[type="checkbox"]:checked::after,
+body:not(.alt-chkbx-off) li.task-list-item[data-task]:not([data-task="x"]) > p > input[type="checkbox"]:checked::after {
+	content: var(--wayfinder-task-icon, "•") !important;
+	display: grid;
+	position: absolute;
+	inset: 50% auto auto 50%;
+	width: 1.35em;
+	height: 1.35em;
+	place-items: center;
+	color: initial;
+	border: 0 !important;
+	background: none !important;
+	-webkit-mask: none !important;
+	mask: none !important;
+	clip-path: none !important;
+	opacity: 1 !important;
+	font-family: "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", sans-serif !important;
+	font-size: 1.02em;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 400;
+	line-height: 1;
+	text-decoration: none;
+	text-shadow: none;
+	transform: translate(-50%, -50%);
+	-webkit-transform: translate(-50%, -50%);
+	z-index: 2;
+}
+
+/* Only genuinely terminal states receive completion treatment. */
+.markdown-source-view.mod-cm6 .HyperMD-task-line[data-task]:not([data-task="x"]):not([data-task="X"]):not([data-task="-"]),
+.markdown-preview-view li.task-list-item.is-checked[data-task]:not([data-task="x"]):not([data-task="X"]):not([data-task="-"]) {
+	color: var(--text-normal);
+	text-decoration: none;
+}
+
+.markdown-source-view.mod-cm6 .HyperMD-task-line[data-task="X"],
+.markdown-preview-view li.task-list-item.is-checked[data-task="X"] {
+	color: var(--text-faint);
+	text-decoration: line-through solid var(--text-faint) 1px;
+}
+
+.markdown-source-view.mod-cm6 .HyperMD-task-line[data-task="-"],
+.markdown-preview-view li.task-list-item.is-checked[data-task="-"] {
+	color: var(--text-faint);
+	text-decoration: line-through solid var(--text-faint) 1px;
+}
+
+/* Style Settings opt-out retained from the original snippet. */
+.alt-chkbx-off .task-list-item-checkbox[data-task]:not([data-task="x"]):checked::after,
+.alt-chkbx-off li.task-list-item[data-task]:not([data-task="x"]) > input[type="checkbox"]:checked::after,
+.alt-chkbx-off li.task-list-item[data-task]:not([data-task="x"]) > p > input[type="checkbox"]:checked::after {
+	content: none;
+}

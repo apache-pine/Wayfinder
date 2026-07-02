@@ -29,16 +29,7 @@ SOFTWARE.
 @charset "UTF-8";
 /* Variables */
 body {
-  /*
-   * Wayfinder pairs an atlas-like serif for structure with a quiet sans serif
-   * for sustained writing. System fonts keep the pairing available on both
-   * Windows and iOS without requiring a bundled font.
-   */
-  --font-wayfinder-text: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, Ubuntu, sans-serif;
-  --font-wayfinder-interface: var(--font-wayfinder-text);
-  --font-interface-theme: var(--font-wayfinder-interface);
-  --font-text-theme: var(--font-wayfinder-text);
-  --font-editor-theme: var(--font-wayfinder-text);
+  --font-editor-theme:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Ubuntu,sans-serif;
   --font-editor:var(--font-editor-override), var(--font-text-override), var(--font-editor-theme);
   /* Bases */
   --bases-table-column-border-width: 0px;
@@ -56,33 +47,24 @@ body {
   --normal-weight: 400;
   /* Headings */
   --inline-title-margin-bottom: 1rem;
-  --inline-title-font: var(--font-interface);
-  --inline-title-size: 2em;
-  --inline-title-weight: 600;
-  --h1-font: var(--font-interface);
-  --h2-font: var(--font-interface);
-  --h3-font: var(--font-interface);
-  --h4-font: var(--font-interface);
-  --h5-font: var(--font-interface);
-  --h6-font: var(--font-interface);
-  --h1-size: 2em;
-  --h2-size: 1.65em;
-  --h3-size: 1.4em;
-  --h4-size: 1.22em;
-  --h5-size: 1.08em;
-  --h6-size: 0.95em;
+  --h1-size: 1.125em;
+  --h2-size: 1.05em;
+  --h3-size: 1em;
+  --h4-size: 0.90em;
+  --h5-size: 0.85em;
+  --h6-size: 0.85em;
   --h1-weight: 600;
   --h2-weight: 600;
-  --h3-weight: 600;
-  --h4-weight: 600;
-  --h5-weight: 600;
-  --h6-weight: 600;
+  --h3-weight: 500;
+  --h4-weight: 500;
+  --h5-weight: 500;
+  --h6-weight: 400;
   --h1-variant: normal;
   --h2-variant: normal;
   --h3-variant: normal;
   --h4-variant: normal;
   --h5-variant: small-caps;
-  --h6-variant: all-small-caps;
+  --h6-variant: small-caps;
   --h1-style: normal;
   --h2-style: normal;
   --h3-style: normal;
@@ -597,8 +579,7 @@ body .excalidraw {
   --background-primary-alt: var(--bg3);
   --background-table-rows: var(--bg3);
   --setting-items-background: black;
-  --setting-items-border-width: 1px;
-  --modal-border: var(--ui2);
+  --setting-items-border-width: 1px	--modal-border: var(--ui2);
   --active-line-bg: rgba(255,255,255,0.085);
   --background-modifier-form-field: var(--bg3);
   --background-modifier-cover:hsla(var(--base-h),var(--base-s),calc(var(--base-d) + 8%),0.7);
@@ -1449,7 +1430,6 @@ body {
   --checkbox-top: 2px;
   --checkbox-left: 0px;
   --checkbox-margin: 0px 6px 0px -2em;
-  --checklist-done-decoration: line-through;
 }
 
 .checkbox-square {
@@ -1460,7 +1440,11 @@ body {
   --checkbox-margin: 0px 8px 0px -2em;
 }
 
-body.wayfinder-no-strike-lists {
+body.wayfinder-strike-lists {
+  --checklist-done-decoration: line-through;
+}
+
+body:not(.wayfinder-strike-lists) {
   --checklist-done-decoration: none;
   --checklist-done-color: var(--text-normal);
 }
@@ -2715,6 +2699,291 @@ body {
     --cards-columns: repeat(8, minmax(0, 1fr));
   }
 }
+/* Checklist icons */
+.cm-formatting.cm-formatting-task.cm-property {
+  font-family: var(--font-monospace);
+}
+
+input[data-task=">"]:checked,
+input[data-task="!"]:checked,
+input[data-task="-"]:checked,
+input[data-task="<"]:checked,
+input[data-task=l]:checked,
+input[data-task="*"]:checked,
+input[data-task=I]:checked,
+input[data-task=p]:checked,
+input[data-task=f]:checked,
+input[data-task=k]:checked,
+input[data-task=u]:checked,
+input[data-task=w]:checked,
+input[data-task=c]:checked,
+input[data-task=d]:checked,
+input[data-task=b]:checked,
+li[data-task=">"] > input:checked,
+li[data-task="!"] > input:checked,
+li[data-task="-"] > input:checked,
+li[data-task="<"] > input:checked,
+li[data-task=l] > input:checked,
+li[data-task="*"] > input:checked,
+li[data-task=I] > input:checked,
+li[data-task=p] > input:checked,
+li[data-task=f] > input:checked,
+li[data-task=k] > input:checked,
+li[data-task=u] > input:checked,
+li[data-task=d] > input:checked,
+li[data-task=w] > input:checked,
+li[data-task=c] > input:checked,
+li[data-task=b] > input:checked,
+li[data-task=">"] > p > input:checked,
+li[data-task="!"] > p > input:checked,
+li[data-task="-"] > p > input:checked,
+li[data-task="<"] > p > input:checked,
+li[data-task=l] > p > input:checked,
+li[data-task="*"] > p > input:checked,
+li[data-task=I] > p > input:checked,
+li[data-task=p] > p > input:checked,
+li[data-task=f] > p > input:checked,
+li[data-task=k] > p > input:checked,
+li[data-task=u] > p > input:checked,
+li[data-task=d] > p > input:checked,
+li[data-task=w] > p > input:checked,
+li[data-task=c] > p > input:checked,
+li[data-task=b] > p > input:checked {
+  --checkbox-marker-color: transparent;
+  border: none;
+  border-radius: 0;
+  background-image: none;
+  background-color: currentColor;
+  -webkit-mask-size: var(--checkbox-icon);
+  -webkit-mask-position: 50% 50%;
+}
+
+/* [>] Forwarded */
+input[data-task=">"]:checked,
+li[data-task=">"] > input:checked,
+li[data-task=">"] > p > input:checked {
+  color: var(--text-faint);
+  transform: rotate(90deg);
+  -webkit-mask-position: 50% 100%;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' class='h-5 w-5' viewBox='0 0 20 20' fill='currentColor'%3E%3Cpath d='M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z' /%3E%3C/svg%3E");
+}
+
+/* [<] Schedule */
+input[data-task="<"]:checked,
+li[data-task="<"] > input:checked,
+li[data-task="<"] > p > input:checked {
+  color: var(--text-faint);
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' class='h-5 w-5' viewBox='0 0 20 20' fill='currentColor'%3E%3Cpath fill-rule='evenodd' d='M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z' clip-rule='evenodd' /%3E%3C/svg%3E");
+}
+
+/* [?] Question */
+input[data-task="?"]:checked,
+li[data-task="?"] > input:checked,
+li[data-task="?"] > p > input:checked {
+  --checkbox-marker-color: transparent;
+  background-color: var(--color-yellow);
+  border-color: var(--color-yellow);
+  background-position: 50% 50%;
+  background-size: 200% 90%;
+  background-image: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="20" height="20" preserveAspectRatio="xMidYMid meet" viewBox="0 0 16 16"%3E%3Cpath fill="white" fill-rule="evenodd" d="M4.475 5.458c-.284 0-.514-.237-.47-.517C4.28 3.24 5.576 2 7.825 2c2.25 0 3.767 1.36 3.767 3.215c0 1.344-.665 2.288-1.79 2.973c-1.1.659-1.414 1.118-1.414 2.01v.03a.5.5 0 0 1-.5.5h-.77a.5.5 0 0 1-.5-.495l-.003-.2c-.043-1.221.477-2.001 1.645-2.712c1.03-.632 1.397-1.135 1.397-2.028c0-.979-.758-1.698-1.926-1.698c-1.009 0-1.71.529-1.938 1.402c-.066.254-.278.461-.54.461h-.777ZM7.496 14c.622 0 1.095-.474 1.095-1.09c0-.618-.473-1.092-1.095-1.092c-.606 0-1.087.474-1.087 1.091S6.89 14 7.496 14Z"%2F%3E%3C%2Fsvg%3E');
+}
+.theme-dark input[data-task="?"]:checked,
+.theme-dark li[data-task="?"] > input:checked,
+.theme-dark li[data-task="?"] > p > input:checked {
+  background-image: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="20" height="20" preserveAspectRatio="xMidYMid meet" viewBox="0 0 16 16"%3E%3Cpath fill="black" fill-opacity="0.8" fill-rule="evenodd" d="M4.475 5.458c-.284 0-.514-.237-.47-.517C4.28 3.24 5.576 2 7.825 2c2.25 0 3.767 1.36 3.767 3.215c0 1.344-.665 2.288-1.79 2.973c-1.1.659-1.414 1.118-1.414 2.01v.03a.5.5 0 0 1-.5.5h-.77a.5.5 0 0 1-.5-.495l-.003-.2c-.043-1.221.477-2.001 1.645-2.712c1.03-.632 1.397-1.135 1.397-2.028c0-.979-.758-1.698-1.926-1.698c-1.009 0-1.71.529-1.938 1.402c-.066.254-.278.461-.54.461h-.777ZM7.496 14c.622 0 1.095-.474 1.095-1.09c0-.618-.473-1.092-1.095-1.092c-.606 0-1.087.474-1.087 1.091S6.89 14 7.496 14Z"%2F%3E%3C%2Fsvg%3E');
+}
+
+/* [/] Incomplete */
+input[data-task="/"]:checked,
+li[data-task="/"] > input:checked,
+li[data-task="/"] > p > input:checked {
+  background-image: none;
+  background-color: transparent;
+  position: relative;
+  overflow: hidden;
+}
+input[data-task="/"]:checked:after,
+li[data-task="/"] > input:checked:after,
+li[data-task="/"] > p > input:checked:after {
+  top: 0;
+  left: 0;
+  content: " ";
+  display: block;
+  position: absolute;
+  background-color: var(--background-modifier-accent);
+  width: calc(50% - 0.5px);
+  height: 100%;
+  -webkit-mask-image: none;
+}
+
+/* [!] Important */
+input[data-task="!"]:checked,
+li[data-task="!"] > input:checked,
+li[data-task="!"] > p > input:checked {
+  color: var(--color-orange);
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' class='h-5 w-5' viewBox='0 0 20 20' fill='currentColor'%3E%3Cpath fill-rule='evenodd' d='M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z' clip-rule='evenodd' /%3E%3C/svg%3E");
+}
+
+/* ["] Quote */
+input[data-task=“]:checked,
+li[data-task=“] > input:checked,
+li[data-task=“] > p > input:checked,
+input[data-task='"']:checked,
+li[data-task='"'] > input:checked,
+li[data-task='"'] > p > input:checked {
+  --checkbox-marker-color: transparent;
+  background-position: 50% 50%;
+  background-color: var(--color-cyan);
+  border-color: var(--color-cyan);
+  background-size: 75%;
+  background-repeat: no-repeat;
+  background-image: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="20" height="20" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"%3E%3Cpath fill="white" d="M6.5 10c-.223 0-.437.034-.65.065c.069-.232.14-.468.254-.68c.114-.308.292-.575.469-.844c.148-.291.409-.488.601-.737c.201-.242.475-.403.692-.604c.213-.21.492-.315.714-.463c.232-.133.434-.28.65-.35l.539-.222l.474-.197l-.485-1.938l-.597.144c-.191.048-.424.104-.689.171c-.271.05-.56.187-.882.312c-.318.142-.686.238-1.028.466c-.344.218-.741.4-1.091.692c-.339.301-.748.562-1.05.945c-.33.358-.656.734-.909 1.162c-.293.408-.492.856-.702 1.299c-.19.443-.343.896-.468 1.336c-.237.882-.343 1.72-.384 2.437c-.034.718-.014 1.315.028 1.747c.015.204.043.402.063.539l.025.168l.026-.006A4.5 4.5 0 1 0 6.5 10zm11 0c-.223 0-.437.034-.65.065c.069-.232.14-.468.254-.68c.114-.308.292-.575.469-.844c.148-.291.409-.488.601-.737c.201-.242.475-.403.692-.604c.213-.21.492-.315.714-.463c.232-.133.434-.28.65-.35l.539-.222l.474-.197l-.485-1.938l-.597.144c-.191.048-.424.104-.689.171c-.271.05-.56.187-.882.312c-.317.143-.686.238-1.028.467c-.344.218-.741.4-1.091.692c-.339.301-.748.562-1.05.944c-.33.358-.656.734-.909 1.162c-.293.408-.492.856-.702 1.299c-.19.443-.343.896-.468 1.336c-.237.882-.343 1.72-.384 2.437c-.034.718-.014 1.315.028 1.747c.015.204.043.402.063.539l.025.168l.026-.006A4.5 4.5 0 1 0 17.5 10z"%2F%3E%3C%2Fsvg%3E');
+}
+.theme-dark input[data-task=“]:checked,
+.theme-dark li[data-task=“] > input:checked,
+.theme-dark li[data-task=“] > p > input:checked,
+.theme-dark input[data-task='"']:checked,
+.theme-dark li[data-task='"'] > input:checked,
+.theme-dark li[data-task='"'] > p > input:checked {
+  background-image: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="20" height="20" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"%3E%3Cpath fill="black" fill-opacity="0.7" d="M6.5 10c-.223 0-.437.034-.65.065c.069-.232.14-.468.254-.68c.114-.308.292-.575.469-.844c.148-.291.409-.488.601-.737c.201-.242.475-.403.692-.604c.213-.21.492-.315.714-.463c.232-.133.434-.28.65-.35l.539-.222l.474-.197l-.485-1.938l-.597.144c-.191.048-.424.104-.689.171c-.271.05-.56.187-.882.312c-.318.142-.686.238-1.028.466c-.344.218-.741.4-1.091.692c-.339.301-.748.562-1.05.945c-.33.358-.656.734-.909 1.162c-.293.408-.492.856-.702 1.299c-.19.443-.343.896-.468 1.336c-.237.882-.343 1.72-.384 2.437c-.034.718-.014 1.315.028 1.747c.015.204.043.402.063.539l.025.168l.026-.006A4.5 4.5 0 1 0 6.5 10zm11 0c-.223 0-.437.034-.65.065c.069-.232.14-.468.254-.68c.114-.308.292-.575.469-.844c.148-.291.409-.488.601-.737c.201-.242.475-.403.692-.604c.213-.21.492-.315.714-.463c.232-.133.434-.28.65-.35l.539-.222l.474-.197l-.485-1.938l-.597.144c-.191.048-.424.104-.689.171c-.271.05-.56.187-.882.312c-.317.143-.686.238-1.028.467c-.344.218-.741.4-1.091.692c-.339.301-.748.562-1.05.944c-.33.358-.656.734-.909 1.162c-.293.408-.492.856-.702 1.299c-.19.443-.343.896-.468 1.336c-.237.882-.343 1.72-.384 2.437c-.034.718-.014 1.315.028 1.747c.015.204.043.402.063.539l.025.168l.026-.006A4.5 4.5 0 1 0 17.5 10z"%2F%3E%3C%2Fsvg%3E');
+}
+
+/* [-] Canceled */
+input[data-task="-"]:checked,
+li[data-task="-"] > input:checked,
+li[data-task="-"] > p > input:checked {
+  color: var(--text-faint);
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' class='h-5 w-5' viewBox='0 0 20 20' fill='currentColor'%3E%3Cpath fill-rule='evenodd' d='M3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z' clip-rule='evenodd' /%3E%3C/svg%3E");
+}
+
+body:not(.tasks) .markdown-source-view.mod-cm6 .HyperMD-task-line[data-task]:is([data-task="-"]),
+body:not(.tasks) .markdown-preview-view ul li[data-task="-"].task-list-item.is-checked,
+body:not(.tasks) li[data-task="-"].task-list-item.is-checked {
+  color: var(--text-faint);
+  text-decoration: line-through solid var(--text-faint) 1px;
+}
+
+/* [*] Star */
+input[data-task="*"]:checked,
+li[data-task="*"] > input:checked,
+li[data-task="*"] > p > input:checked {
+  color: var(--color-yellow);
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' class='h-5 w-5' viewBox='0 0 20 20' fill='currentColor'%3E%3Cpath d='M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z' /%3E%3C/svg%3E");
+}
+
+/* [l] Location */
+input[data-task=l]:checked,
+li[data-task=l] > input:checked,
+li[data-task=l] > p > input:checked {
+  color: var(--color-red);
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' class='h-5 w-5' viewBox='0 0 20 20' fill='currentColor'%3E%3Cpath fill-rule='evenodd' d='M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z' clip-rule='evenodd' /%3E%3C/svg%3E");
+}
+
+/* [i] Info */
+input[data-task=i]:checked,
+li[data-task=i] > input:checked,
+li[data-task=i] > p > input:checked {
+  --checkbox-marker-color: transparent;
+  background-color: var(--color-blue);
+  border-color: var(--color-blue);
+  background-position: 50%;
+  background-size: 100%;
+  background-image: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="20" height="20" preserveAspectRatio="xMidYMid meet" viewBox="0 0 512 512"%3E%3Cpath fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="40" d="M196 220h64v172"%2F%3E%3Cpath fill="none" stroke="white" stroke-linecap="round" stroke-miterlimit="10" stroke-width="40" d="M187 396h138"%2F%3E%3Cpath fill="white" d="M256 160a32 32 0 1 1 32-32a32 32 0 0 1-32 32Z"%2F%3E%3C%2Fsvg%3E');
+}
+.theme-dark input[data-task=i]:checked,
+.theme-dark li[data-task=i] > input:checked,
+.theme-dark li[data-task=i] > p > input:checked {
+  background-image: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="20" height="20" preserveAspectRatio="xMidYMid meet" viewBox="0 0 512 512"%3E%3Cpath fill="none" stroke="black" stroke-opacity="0.8" stroke-linecap="round" stroke-linejoin="round" stroke-width="40" d="M196 220h64v172"%2F%3E%3Cpath fill="none" stroke="black" stroke-opacity="0.8" stroke-linecap="round" stroke-miterlimit="10" stroke-width="40" d="M187 396h138"%2F%3E%3Cpath fill="black" fill-opacity="0.8" d="M256 160a32 32 0 1 1 32-32a32 32 0 0 1-32 32Z"%2F%3E%3C%2Fsvg%3E');
+}
+
+/* [S] Amount/savings/money */
+input[data-task=S]:checked,
+li[data-task=S] > input:checked,
+li[data-task=S] > p > input:checked {
+  --checkbox-marker-color: transparent;
+  border-color: var(--color-green);
+  background-color: var(--color-green);
+  background-size: 100%;
+  background-image: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="20" height="20" preserveAspectRatio="xMidYMid meet" viewBox="0 0 48 48"%3E%3Cpath fill="white" fill-rule="evenodd" d="M26 8a2 2 0 1 0-4 0v2a8 8 0 1 0 0 16v8a4.002 4.002 0 0 1-3.773-2.666a2 2 0 0 0-3.771 1.332A8.003 8.003 0 0 0 22 38v2a2 2 0 1 0 4 0v-2a8 8 0 1 0 0-16v-8a4.002 4.002 0 0 1 3.773 2.666a2 2 0 0 0 3.771-1.332A8.003 8.003 0 0 0 26 10V8Zm-4 6a4 4 0 0 0 0 8v-8Zm4 12v8a4 4 0 0 0 0-8Z" clip-rule="evenodd"%2F%3E%3C%2Fsvg%3E');
+}
+.theme-dark input[data-task=S]:checked,
+.theme-dark li[data-task=S] > input:checked,
+.theme-dark li[data-task=S] > p > input:checked {
+  background-image: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="20" height="20" preserveAspectRatio="xMidYMid meet" viewBox="0 0 48 48"%3E%3Cpath fill-opacity="0.8" fill="black" fill-rule="evenodd" d="M26 8a2 2 0 1 0-4 0v2a8 8 0 1 0 0 16v8a4.002 4.002 0 0 1-3.773-2.666a2 2 0 0 0-3.771 1.332A8.003 8.003 0 0 0 22 38v2a2 2 0 1 0 4 0v-2a8 8 0 1 0 0-16v-8a4.002 4.002 0 0 1 3.773 2.666a2 2 0 0 0 3.771-1.332A8.003 8.003 0 0 0 26 10V8Zm-4 6a4 4 0 0 0 0 8v-8Zm4 12v8a4 4 0 0 0 0-8Z" clip-rule="evenodd"%2F%3E%3C%2Fsvg%3E');
+}
+
+/* [I] Idea/lightbulb */
+input[data-task=I]:checked,
+li[data-task=I] > input:checked,
+li[data-task=I] > p > input:checked {
+  color: var(--color-yellow);
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' class='h-5 w-5' viewBox='0 0 20 20' fill='currentColor'%3E%3Cpath d='M11 3a1 1 0 10-2 0v1a1 1 0 102 0V3zM15.657 5.757a1 1 0 00-1.414-1.414l-.707.707a1 1 0 001.414 1.414l.707-.707zM18 10a1 1 0 01-1 1h-1a1 1 0 110-2h1a1 1 0 011 1zM5.05 6.464A1 1 0 106.464 5.05l-.707-.707a1 1 0 00-1.414 1.414l.707.707zM5 10a1 1 0 01-1 1H3a1 1 0 110-2h1a1 1 0 011 1zM8 16v-1h4v1a2 2 0 11-4 0zM12 14c.015-.34.208-.646.477-.859a4 4 0 10-4.954 0c.27.213.462.519.476.859h4.002z' /%3E%3C/svg%3E");
+}
+
+/* [f] Fire */
+input[data-task=f]:checked,
+li[data-task=f] > input:checked,
+li[data-task=f] > p > input:checked {
+  color: var(--color-red);
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' class='h-5 w-5' viewBox='0 0 20 20' fill='currentColor'%3E%3Cpath fill-rule='evenodd' d='M12.395 2.553a1 1 0 00-1.45-.385c-.345.23-.614.558-.822.88-.214.33-.403.713-.57 1.116-.334.804-.614 1.768-.84 2.734a31.365 31.365 0 00-.613 3.58 2.64 2.64 0 01-.945-1.067c-.328-.68-.398-1.534-.398-2.654A1 1 0 005.05 6.05 6.981 6.981 0 003 11a7 7 0 1011.95-4.95c-.592-.591-.98-.985-1.348-1.467-.363-.476-.724-1.063-1.207-2.03zM12.12 15.12A3 3 0 017 13s.879.5 2.5.5c0-1 .5-4 1.25-4.5.5 1 .786 1.293 1.371 1.879A2.99 2.99 0 0113 13a2.99 2.99 0 01-.879 2.121z' clip-rule='evenodd' /%3E%3C/svg%3E");
+}
+
+/* [k] Key */
+input[data-task=k]:checked,
+li[data-task=k] > input:checked,
+li[data-task=k] > p > input:checked {
+  color: var(--color-yellow);
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' class='h-5 w-5' viewBox='0 0 20 20' fill='currentColor'%3E%3Cpath fill-rule='evenodd' d='M18 8a6 6 0 01-7.743 5.743L10 14l-1 1-1 1H6v2H2v-4l4.257-4.257A6 6 0 1118 8zm-6-4a1 1 0 100 2 2 2 0 012 2 1 1 0 102 0 4 4 0 00-4-4z' clip-rule='evenodd' /%3E%3C/svg%3E");
+}
+
+/* [u] Up */
+input[data-task=u]:checked,
+li[data-task=u] > input:checked,
+li[data-task=u] > p > input:checked {
+  color: var(--color-green);
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' class='h-5 w-5' viewBox='0 0 20 20' fill='currentColor'%3E%3Cpath fill-rule='evenodd' d='M12 7a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0V8.414l-4.293 4.293a1 1 0 01-1.414 0L8 10.414l-4.293 4.293a1 1 0 01-1.414-1.414l5-5a1 1 0 011.414 0L11 10.586 14.586 7H12z' clip-rule='evenodd' /%3E%3C/svg%3E");
+}
+
+/* [d] Down */
+input[data-task=d]:checked,
+li[data-task=d] > input:checked,
+li[data-task=d] > p > input:checked {
+  color: var(--color-red);
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' class='h-5 w-5' viewBox='0 0 20 20' fill='currentColor'%3E%3Cpath fill-rule='evenodd' d='M12 13a1 1 0 100 2h5a1 1 0 001-1V9a1 1 0 10-2 0v2.586l-4.293-4.293a1 1 0 00-1.414 0L8 9.586 3.707 5.293a1 1 0 00-1.414 1.414l5 5a1 1 0 001.414 0L11 9.414 14.586 13H12z' clip-rule='evenodd' /%3E%3C/svg%3E");
+}
+
+/* [w] Win */
+input[data-task=w]:checked,
+li[data-task=w] > input:checked,
+li[data-task=w] > p > input:checked {
+  color: var(--color-purple);
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' class='h-5 w-5' viewBox='0 0 20 20' fill='currentColor'%3E%3Cpath fill-rule='evenodd' d='M6 3a1 1 0 011-1h.01a1 1 0 010 2H7a1 1 0 01-1-1zm2 3a1 1 0 00-2 0v1a2 2 0 00-2 2v1a2 2 0 00-2 2v.683a3.7 3.7 0 011.055.485 1.704 1.704 0 001.89 0 3.704 3.704 0 014.11 0 1.704 1.704 0 001.89 0 3.704 3.704 0 014.11 0 1.704 1.704 0 001.89 0A3.7 3.7 0 0118 12.683V12a2 2 0 00-2-2V9a2 2 0 00-2-2V6a1 1 0 10-2 0v1h-1V6a1 1 0 10-2 0v1H8V6zm10 8.868a3.704 3.704 0 01-4.055-.036 1.704 1.704 0 00-1.89 0 3.704 3.704 0 01-4.11 0 1.704 1.704 0 00-1.89 0A3.704 3.704 0 012 14.868V17a1 1 0 001 1h14a1 1 0 001-1v-2.132zM9 3a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1zm3 0a1 1 0 011-1h.01a1 1 0 110 2H13a1 1 0 01-1-1z' clip-rule='evenodd' /%3E%3C/svg%3E");
+}
+
+/* [p] Pros */
+input[data-task=p]:checked,
+li[data-task=p] > input:checked,
+li[data-task=p] > p > input:checked {
+  color: var(--color-green);
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' class='h-5 w-5' viewBox='0 0 20 20' fill='currentColor'%3E%3Cpath d='M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z' /%3E%3C/svg%3E");
+}
+
+/* [c] Cons */
+input[data-task=c]:checked,
+li[data-task=c] > input:checked,
+li[data-task=c] > p > input:checked {
+  color: var(--color-orange);
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' class='h-5 w-5' viewBox='0 0 20 20' fill='currentColor'%3E%3Cpath d='M18 9.5a1.5 1.5 0 11-3 0v-6a1.5 1.5 0 013 0v6zM14 9.667v-5.43a2 2 0 00-1.105-1.79l-.05-.025A4 4 0 0011.055 2H5.64a2 2 0 00-1.962 1.608l-1.2 6A2 2 0 004.44 12H8v4a2 2 0 002 2 1 1 0 001-1v-.667a4 4 0 01.8-2.4l1.4-1.866a4 4 0 00.8-2.4z' /%3E%3C/svg%3E");
+}
+
+/* [b] Bookmark */
+input[data-task=b]:checked,
+li[data-task=b] > input:checked,
+li[data-task=b] > p > input:checked {
+  color: var(--color-orange);
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' class='h-5 w-5' viewBox='0 0 20 20' fill='currentColor'%3E%3Cpath d='M5 4a2 2 0 012-2h6a2 2 0 012 2v14l-5-2.5L5 18V4z' /%3E%3C/svg%3E");
+}
+
 /* Colorful active states */
 .colorful-active .nav-files-container {
   --nav-item-background-active: var(--interactive-accent);
@@ -6302,28 +6571,24 @@ https://ethanschoonover.com/solarized/
   --tab-outline-color:#24262a;
 }
 
+/* Wayfinder identity (kept last so the Atlas palette remains authoritative) */
 /*
- * Canonical Wayfinder identity
- *
- * Keep these last. They intentionally supersede inherited palettes and map
- * the Atlas design tokens onto Obsidian's semantic variables.
- */
-/*
- * Canonical Wayfinder identity
- *
- * Loaded after inherited color schemes so the Atlas palette remains
- * authoritative.
+ * Wayfinder foundation
+ * --------------------
+ * The quiet, everyday layer of the Atlas. Expressive dashboards and map
+ * artifacts may build on these tokens, but should not redefine them.
  */
 body {
-  /* Sans serif for sustained writing and functional UI; serif for display. */
-  --wayfinder-font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, Ubuntu, sans-serif;
-  --wayfinder-font-display: Cinzel, Georgia, "Times New Roman", serif;
-  --wayfinder-font-interface: var(--wayfinder-font-body);
+  /* Typography */
+  --wayfinder-font-body: "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+  --wayfinder-font-display: Cinzel, "Palatino Linotype", Palatino, Georgia, serif;
+  --wayfinder-font-interface: Inter, "Segoe UI", system-ui, sans-serif;
   --wayfinder-font-code: "Cascadia Code", "SFMono-Regular", Consolas, monospace;
   --font-text-theme: var(--wayfinder-font-body);
   --font-interface-theme: var(--wayfinder-font-interface);
   --font-monospace-theme: var(--wayfinder-font-code);
   --font-editor-theme: var(--wayfinder-font-body);
+  /* Shape, depth, and movement */
   --wayfinder-radius-small: 3px;
   --wayfinder-radius-medium: 5px;
   --wayfinder-border-fine: 1px;
@@ -6342,11 +6607,14 @@ body {
   --h2-font: var(--wayfinder-font-display);
   --h3-font: var(--wayfinder-font-display);
   --h4-font: var(--wayfinder-font-display);
-  --h5-font: var(--wayfinder-font-display);
-  --h6-font: var(--wayfinder-font-display);
   --inline-title-font: var(--wayfinder-font-display);
+  --h1-weight: 600;
+  --h2-weight: 600;
+  --h3-weight: 600;
+  --h4-weight: 600;
   --h1-variant: small-caps;
   --h2-variant: small-caps;
+  --inline-title-weight: 600;
   --line-height: 1.58;
   --p-spacing: 1.35rem;
 }
@@ -6363,9 +6631,9 @@ body {
   --atlas-parchment-shadow: #756344;
   --atlas-reading-surface: #18140f;
   --atlas-reading-raised: #201a13;
-  --atlas-ink: #e4ded0;
-  --atlas-ink-muted: #aaa28f;
-  --atlas-ink-faded: #766f61;
+  --atlas-ink: #e2d5b5;
+  --atlas-ink-muted: #ac9b79;
+  --atlas-ink-faded: #786b54;
   --atlas-brass: #b88633;
   --atlas-brass-bright: #d4aa55;
   --atlas-brass-aged: #6f4d1f;
@@ -6375,11 +6643,8 @@ body {
   --atlas-sea: #3f6970;
   --atlas-ember: #a6532b;
   --atlas-rune: #58a9c4;
-  --atlas-rune-bright: #83cee2;
-  --atlas-rune-rgb: 88, 169, 196;
   --atlas-aether: #7771b9;
-  --atlas-aether-rgb: 119, 113, 185;
-  /* Inherited Minimal internals */
+  /* Existing Minimal internals */
   --bg1: var(--atlas-reading-surface);
   --bg2: var(--atlas-leather);
   --bg3: rgba(184, 134, 51, 0.11);
@@ -6409,7 +6674,6 @@ body {
   --background-modifier-form-field: #110e0a;
   --background-modifier-form-field-highlighted: var(--atlas-reading-raised);
   --divider-color: #3b2b19;
-  --divider-color-hover: var(--atlas-rune);
   --frame-divider-color: #2c2014;
   --interactive-normal: var(--atlas-leather-raised);
   --interactive-hover: #2a1e12;
@@ -6441,7 +6705,6 @@ body {
   --status-bar-border-color: #2b1e11;
   --scrollbar-thumb-bg: #4a3520;
   --scrollbar-active-thumb-bg: var(--atlas-brass-aged);
-  /* Status and categorical colors */
   --color-red: #a9493d;
   --color-orange: #b96d35;
   --color-yellow: #c49a4b;
@@ -6452,10 +6715,6 @@ body {
   --color-pink: #965d68;
 }
 
-/*
- * Safe fallback for accidental light-mode use, not a separately maintained
- * visual experience.
- */
 .theme-light {
   color-scheme: light;
   --atlas-wood-deep: #2d2116;
@@ -6533,13 +6792,7 @@ body {
   --status-bar-text-color: #d1bd91;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  body {
-    --wayfinder-motion-quick: 0ms;
-    --wayfinder-motion-calm: 0ms;
-  }
-}
-/* Quiet material treatments suitable for everyday workspace surfaces. */
+/* Material treatment: quiet enough for all-day use. */
 .theme-dark .workspace,
 .theme-dark .horizontal-main-container {
   background: linear-gradient(rgba(255, 224, 160, 0.012), rgba(0, 0, 0, 0.1)), var(--atlas-wood-deep);
@@ -6605,7 +6858,7 @@ body {
 
 .markdown-rendered h2,
 .HyperMD-header-2 {
-  color: var(--atlas-parchment);
+  color: var(--atlas-parchment-aged);
 }
 
 input[type=text],
@@ -6625,1473 +6878,11 @@ button.mod-cta {
   border-color: var(--atlas-brass-bright);
 }
 
-/*
- * Application shell
- * -----------------
- * The dark fitted case surrounding the Atlas. These treatments establish
- * hierarchy through material, fine rules, and restrained brass rather than
- * heavy ornament.
- */
-.theme-dark {
-  --wayfinder-shell-edge: #2a1d10;
-  --wayfinder-shell-edge-bright: #4b351c;
-  --wayfinder-shell-highlight: rgba(224, 189, 113, 0.055);
-  --wayfinder-shell-shadow: rgba(0, 0, 0, 0.55);
-  --wayfinder-nav-hover: rgba(184, 134, 51, 0.075);
-  --wayfinder-nav-active: rgba(184, 134, 51, 0.14);
-}
-
-/* Window and structural frame */
-.theme-dark .titlebar,
-.theme-dark .workspace-tab-header-container,
-.theme-dark .view-header {
-  background: linear-gradient(180deg, var(--wayfinder-shell-highlight), transparent 55%), var(--atlas-wood-deep);
-}
-
-.theme-dark .titlebar {
-  border-bottom: 1px solid var(--wayfinder-shell-edge);
-  box-shadow: inset 0 -1px rgba(0, 0, 0, 0.35);
-}
-
-.theme-dark .titlebar-text {
-  color: var(--atlas-ink-faded);
-  font-size: var(--font-ui-smaller);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.theme-dark .workspace-split.mod-left-split {
-  border-right: 1px solid var(--wayfinder-shell-edge);
-  box-shadow: inset -1px 0 rgba(224, 189, 113, 0.025), 5px 0 18px rgba(0, 0, 0, 0.12);
-}
-
-.theme-dark .workspace-split.mod-right-split {
-  border-left: 1px solid var(--wayfinder-shell-edge);
-  box-shadow: inset 1px 0 rgba(224, 189, 113, 0.025), -5px 0 18px rgba(0, 0, 0, 0.12);
-}
-
-.theme-dark .workspace-split:not(.mod-root) .workspace-leaf-content {
-  background: linear-gradient(90deg, rgba(255, 226, 164, 0.014), transparent 24%), var(--atlas-leather);
-}
-
-/* Page-marker tabs */
-.theme-dark .mod-root .workspace-tab-header-container {
-  border-bottom: 1px solid var(--wayfinder-shell-edge);
-  box-shadow: inset 0 -1px rgba(0, 0, 0, 0.42), 0 2px 8px rgba(0, 0, 0, 0.13);
-}
-
-.theme-dark .mod-root .workspace-tab-header {
-  margin-top: 4px;
-  color: var(--atlas-ink-faded);
-  border: 1px solid transparent;
-  border-bottom: 0;
-  border-radius: var(--wayfinder-radius-small) var(--wayfinder-radius-small) 0 0;
-}
-
-.theme-dark .mod-root .workspace-tab-header:hover {
-  color: var(--atlas-ink-muted);
-  background: rgba(184, 134, 51, 0.055);
-  border-color: rgba(111, 77, 31, 0.35);
-}
-
-.theme-dark .mod-root .workspace-tab-header.is-active {
-  color: var(--atlas-ink);
-  background: linear-gradient(180deg, rgba(212, 170, 85, 0.07), transparent 60%), var(--atlas-reading-surface);
-  border-color: var(--wayfinder-shell-edge-bright);
-  box-shadow: inset 0 2px var(--atlas-brass-aged), 0 -2px 8px rgba(0, 0, 0, 0.16);
-}
-
-.theme-dark .workspace-tab-header-inner-title {
-  letter-spacing: 0.015em;
-}
-
-.theme-dark .mod-root .workspace-tab-header.is-active .workspace-tab-header-inner-title {
-  color: var(--atlas-parchment);
-}
-
-.theme-dark .workspace-tab-header-inner-close-button:hover,
-.theme-dark .workspace-tab-header-new-tab:hover,
-.theme-dark .sidebar-toggle-button:hover {
-  color: var(--atlas-brass-bright);
-  background: rgba(184, 134, 51, 0.1);
-}
-
-/* Sidebar tool tabs */
-.theme-dark .workspace-split:not(.mod-root) .workspace-tab-header-container {
-  border-bottom: 1px solid var(--wayfinder-shell-edge);
-  background: linear-gradient(180deg, rgba(224, 189, 113, 0.035), transparent 70%), var(--atlas-wood);
-}
-
-.theme-dark .workspace-split:not(.mod-root) .workspace-tab-header {
-  color: var(--atlas-ink-faded);
-}
-
-.theme-dark .workspace-split:not(.mod-root) .workspace-tab-header:hover {
-  color: var(--atlas-ink-muted);
-  background-color: var(--wayfinder-nav-hover);
-}
-
-.theme-dark .workspace-split:not(.mod-root) .workspace-tab-header.is-active {
-  color: var(--atlas-brass-bright);
-  background-color: var(--wayfinder-nav-active);
-  box-shadow: inset 0 -2px var(--atlas-brass-aged);
-}
-
-/* Ribbon and controls */
-.theme-dark .workspace-ribbon {
-  border-right: 1px solid var(--wayfinder-shell-edge);
-  background: linear-gradient(90deg, rgba(212, 170, 85, 0.035), transparent 55%), var(--atlas-wood-deep);
-  box-shadow: inset -1px 0 rgba(224, 189, 113, 0.02);
-}
-
-.theme-dark .workspace-ribbon .clickable-icon {
-  color: var(--atlas-ink-faded);
-  border: 1px solid transparent;
-  border-radius: var(--wayfinder-radius-small);
-}
-
-.theme-dark .workspace-ribbon .clickable-icon:hover,
-.theme-dark .workspace-ribbon .clickable-icon.is-active {
-  color: var(--atlas-brass-bright);
-  background: rgba(184, 134, 51, 0.09);
-  border-color: rgba(111, 77, 31, 0.45);
-}
-
-/* File explorer */
-.theme-dark .nav-files-container {
-  padding: var(--size-4-2) var(--size-4-2) var(--size-4-4);
-}
-
-.theme-dark .nav-folder.mod-root > .nav-folder-title {
-  margin-bottom: var(--size-4-1);
-  padding-bottom: var(--size-4-2);
-  border-bottom: 1px solid var(--wayfinder-shell-edge);
-}
-
-.theme-dark .nav-folder.mod-root > .nav-folder-title .nav-folder-title-content {
-  color: var(--atlas-brass);
-  font-family: var(--wayfinder-font-display);
-  font-weight: 600;
-  letter-spacing: 0.09em;
-}
-
-.theme-dark .nav-file-title,
-.theme-dark .nav-folder-title {
-  margin: 1px 0;
-  border: 1px solid transparent;
-  border-radius: 2px;
-}
-
-.theme-dark .nav-file-title:hover,
-.theme-dark .nav-folder-title:hover {
-  color: var(--atlas-ink);
-  background: var(--wayfinder-nav-hover);
-  border-color: rgba(111, 77, 31, 0.25);
-}
-
-.theme-dark .nav-file-title.is-active,
-.theme-dark .nav-folder-title.is-active {
-  color: var(--atlas-ink);
-  background: linear-gradient(90deg, rgba(184, 134, 51, 0.18), rgba(184, 134, 51, 0.055));
-  border-color: rgba(111, 77, 31, 0.38);
-  box-shadow: inset 2px 0 var(--atlas-brass);
-}
-
-.theme-dark .nav-file-title.is-active .nav-file-title-content {
-  font-weight: 500;
-}
-
-.theme-dark .nav-folder-collapse-indicator {
-  color: var(--atlas-ink-faded);
-}
-
-.theme-dark .nav-folder-title:hover .nav-folder-collapse-indicator,
-.theme-dark .nav-folder.is-collapsed > .nav-folder-title .nav-folder-collapse-indicator {
-  color: var(--atlas-brass-aged);
-}
-
-.theme-dark .nav-buttons-container {
-  gap: var(--size-2-2);
-  padding: var(--size-4-2);
-  border-bottom: 1px solid var(--wayfinder-shell-edge);
-}
-
-.theme-dark .nav-action-button {
-  color: var(--atlas-ink-muted);
-  border: 1px solid transparent;
-}
-
-.theme-dark .nav-action-button:hover {
-  color: var(--atlas-brass-bright);
-  background: rgba(184, 134, 51, 0.09);
-  border-color: rgba(111, 77, 31, 0.4);
-}
-
-/* Vault profile and status rail */
-.theme-dark .workspace-sidedock-vault-profile {
-  color: var(--atlas-ink-muted);
-  background: linear-gradient(180deg, rgba(212, 170, 85, 0.025), transparent), var(--atlas-wood-deep);
-  border-top: 1px solid var(--wayfinder-shell-edge);
-}
-
-.theme-dark .workspace-drawer-vault-switcher:hover,
-.theme-dark .workspace-drawer-vault-actions .clickable-icon:hover {
-  color: var(--atlas-brass-bright);
-}
-
-.theme-dark .status-bar {
-  color: var(--atlas-ink-faded);
-  background: linear-gradient(180deg, rgba(212, 170, 85, 0.025), transparent), var(--atlas-wood-deep);
-  border: 1px solid var(--wayfinder-shell-edge);
-  box-shadow: inset 0 1px rgba(224, 189, 113, 0.025), var(--wayfinder-shadow-raised);
-}
-
-.theme-dark .status-bar:hover {
-  color: var(--atlas-ink-muted);
-}
-
-.theme-dark .status-bar .status-bar-item.mod-clickable:hover,
-.theme-dark .status-bar .status-bar-item.plugin-editor-status:hover,
-.theme-dark .status-bar .status-bar-item.plugin-sync:hover {
-  color: var(--atlas-brass-bright);
-  background-color: rgba(184, 134, 51, 0.085);
-}
-
-/* Mobile keeps hierarchy but sheds desktop framing and ornamental depth. */
-.theme-dark.is-mobile .workspace-split.mod-left-split,
-.theme-dark.is-mobile .workspace-split.mod-right-split {
-  border: 0;
-  box-shadow: none;
-}
-
-.theme-dark.is-phone .workspace-drawer {
-  --mobile-sidebar-background: var(--atlas-leather);
-}
-
-.theme-dark.is-phone .nav-files-container {
-  padding-inline: var(--size-4-3);
-}
-
-/*
- * Editor and reading surfaces
- * ---------------------------
- * Quiet working pages with serif display structure and highly legible
- * sans-serif prose, metadata, and controls.
- */
-body {
-  font-variant-numeric: proportional-nums;
-}
-
-/* Functional numbers should align and remain easy to scan at small sizes. */
-.metadata-container,
-.status-bar,
-.workspace-tab-header-container,
-.nav-files-container,
-.suggestion-container,
-.menu,
-.modal,
-.calendar-container,
-.view-header {
-  font-variant-numeric: tabular-nums;
-  font-feature-settings: "tnum" 1, "kern" 1;
-}
-
-.inline-title,
-.markdown-rendered h1,
-.markdown-rendered h2,
-.markdown-rendered h3,
-.markdown-rendered h4,
-.markdown-rendered h5,
-.markdown-rendered h6,
-.HyperMD-header-1,
-.HyperMD-header-2,
-.HyperMD-header-3,
-.HyperMD-header-4,
-.HyperMD-header-5,
-.HyperMD-header-6 {
-  font-family: var(--wayfinder-font-display);
-  line-height: 1.2;
-  text-wrap: balance;
-}
-
-.markdown-rendered h1,
-.HyperMD-header-1 {
-  letter-spacing: 0.025em;
-}
-
-.markdown-rendered h2,
-.HyperMD-header-2 {
-  letter-spacing: 0.02em;
-}
-
-.markdown-rendered h3,
-.HyperMD-header-3 {
-  color: var(--atlas-ink);
-  letter-spacing: 0.012em;
-}
-
-.markdown-rendered h4,
-.HyperMD-header-4 {
-  color: #c5beaf;
-  letter-spacing: 0.018em;
-}
-
-.markdown-rendered h5,
-.HyperMD-header-5 {
-  color: var(--atlas-ink-muted);
-  letter-spacing: 0.065em;
-}
-
-.markdown-rendered h6,
-.HyperMD-header-6 {
-  color: var(--atlas-ink-muted);
-  letter-spacing: 0.1em;
-}
-
-.inline-title {
-  margin-bottom: 1.35rem;
-  padding-top: var(--size-4-5);
-  letter-spacing: 0.025em;
-}
-
-.markdown-rendered h1,
-.markdown-rendered h2,
-.markdown-rendered h3,
-.markdown-rendered h4,
-.markdown-rendered h5,
-.markdown-rendered h6 {
-  scroll-margin-top: calc(var(--header-height) + var(--size-4-4));
-}
-
-.markdown-source-view.mod-cm6 .cm-content,
-.markdown-reading-view .markdown-preview-view {
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
-}
-
-/* Properties read as a catalog inscription, not a separate application. */
-.theme-dark .metadata-container {
-  margin-block: 0.25rem 1.5rem;
-  padding: var(--size-4-2) 0 var(--size-4-3);
-  border-top: 1px solid rgba(111, 77, 31, 0.32);
-  border-bottom: 1px solid rgba(111, 77, 31, 0.24);
-  background: linear-gradient(90deg, rgba(184, 134, 51, 0.025), transparent 55%);
-}
-
-.theme-dark .metadata-properties-heading {
-  color: var(--atlas-parchment-aged);
-  font-family: var(--wayfinder-font-display);
-  font-size: var(--font-ui-small);
-  font-weight: 600;
-  letter-spacing: 0.055em;
-}
-
-.theme-dark .metadata-property {
-  border-radius: var(--wayfinder-radius-small);
-}
-
-.theme-dark .metadata-property:hover,
-.theme-dark .metadata-property:focus-within {
-  background-color: rgba(184, 134, 51, 0.045);
-}
-
-.theme-dark .metadata-property-key {
-  color: var(--atlas-ink-muted);
-}
-
-.theme-dark .metadata-property-value {
-  color: var(--atlas-ink);
-}
-
-.theme-dark .metadata-property-icon {
-  color: var(--atlas-brass-aged);
-}
-
-.theme-dark .metadata-add-button {
-  color: var(--atlas-ink-faded);
-}
-
-.theme-dark .metadata-add-button:hover {
-  color: var(--atlas-brass-bright);
-  background-color: rgba(184, 134, 51, 0.06);
-}
-
-/* Classification glyphs */
-.theme-dark body:not(.wayfinder-unstyled-tags),
-.theme-dark:not(.wayfinder-unstyled-tags) {
-  --tag-background: rgba(184, 134, 51, 0.035);
-  --tag-background-hover: rgba(184, 134, 51, 0.09);
-  --tag-color: var(--atlas-parchment-aged);
-  --tag-color-hover: var(--atlas-brass-bright);
-  --tag-border-color: rgba(111, 77, 31, 0.55);
-  --tag-border-color-hover: var(--atlas-brass-aged);
-}
-
-.theme-dark .tag,
-.theme-dark .multi-select-pill {
-  font-family: var(--wayfinder-font-interface);
-  letter-spacing: 0.01em;
-}
-
-/* Links behave like marked paths: visible, but quieter than headings. */
-.theme-dark .markdown-rendered a,
-.theme-dark .cm-hmd-internal-link,
-.theme-dark .cm-link {
-  text-decoration-color: rgba(212, 170, 85, 0.36);
-  text-decoration-thickness: 1px;
-  text-underline-offset: 0.16em;
-}
-
-.theme-dark .markdown-rendered a:hover,
-.theme-dark .cm-hmd-internal-link:hover,
-.theme-dark .cm-link:hover {
-  color: var(--atlas-brass-bright);
-  text-decoration-color: var(--atlas-brass);
-}
-
-/* Field annotations */
-.theme-dark .markdown-rendered blockquote,
-.theme-dark .HyperMD-quote {
-  color: var(--atlas-ink-muted);
-  border-color: var(--atlas-brass-aged);
-  background: linear-gradient(90deg, rgba(184, 134, 51, 0.055), transparent 65%);
-}
-
-.theme-dark .markdown-rendered blockquote {
-  margin-inline: 0;
-  padding-block: var(--size-4-2);
-  padding-inline-end: var(--size-4-3);
-}
-
-/* Lists remain airy enough to scan without becoming dashboard furniture. */
-.markdown-source-view.mod-cm6 .HyperMD-list-line,
-.markdown-rendered li {
-  line-height: 1.52;
-}
-
-.theme-dark .markdown-rendered li::marker {
-  color: var(--atlas-brass-aged);
-}
-
-.theme-dark .task-list-item.is-checked,
-.theme-dark .HyperMD-task-line[data-task=x] {
-  --text-normal: var(--atlas-ink-faded);
-}
-
-@media (max-width: 600px) {
-  .inline-title {
-    padding-top: var(--size-4-3);
-  }
-  .theme-dark .metadata-container {
-    margin-bottom: 1rem;
-  }
-}
-/*
- * Controls and overlays
- * ---------------------
- * Familiar controls finished as compact brass-and-leather instruments.
- */
-.theme-dark {
-  --wayfinder-control-bg: #17120d;
-  --wayfinder-control-bg-hover: #21180f;
-  --wayfinder-control-bg-active: #2a1e12;
-  --wayfinder-control-border: #46321c;
-  --wayfinder-control-border-hover: #755324;
-  --wayfinder-overlay-bg: #15110d;
-  --wayfinder-overlay-header: #100c08;
-}
-
-/* Fields */
-.theme-dark input[type=text],
-.theme-dark input[type=search],
-.theme-dark input[type=email],
-.theme-dark input[type=password],
-.theme-dark input[type=number],
-.theme-dark input[type=date],
-.theme-dark textarea,
-.theme-dark select,
-.theme-dark .dropdown {
-  color: var(--atlas-ink);
-  background: linear-gradient(180deg, rgba(255, 239, 190, 0.018), transparent 55%), var(--wayfinder-control-bg);
-  border: 1px solid var(--wayfinder-control-border);
-  border-radius: var(--wayfinder-radius-small);
-  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.34), inset 0 1px rgba(255, 239, 190, 0.018);
-}
-
-.theme-dark input::placeholder,
-.theme-dark textarea::placeholder {
-  color: var(--atlas-ink-faded);
-}
-
-.theme-dark input:hover,
-.theme-dark textarea:hover,
-.theme-dark select:hover,
-.theme-dark .dropdown:hover {
-  border-color: var(--wayfinder-control-border-hover);
-}
-
-.theme-dark input:focus,
-.theme-dark input:focus-visible,
-.theme-dark textarea:focus,
-.theme-dark textarea:focus-visible,
-.theme-dark select:focus,
-.theme-dark .dropdown:focus {
-  border-color: var(--atlas-brass);
-  box-shadow: 0 0 0 1px rgba(184, 134, 51, 0.22), inset 0 1px 2px rgba(0, 0, 0, 0.34);
-}
-
-/* Buttons */
-.theme-dark button:not(.clickable-icon):not(.workspace-tab-header-inner-close-button),
-.theme-dark .mod-cta {
-  color: var(--atlas-ink);
-  background: linear-gradient(180deg, rgba(212, 170, 85, 0.07), transparent 65%), var(--atlas-leather-raised);
-  border: 1px solid var(--wayfinder-control-border);
-  border-radius: var(--wayfinder-radius-small);
-  box-shadow: inset 0 1px rgba(255, 239, 190, 0.035), 0 1px 2px rgba(0, 0, 0, 0.3);
-}
-
-.theme-dark button:not(.clickable-icon):hover {
-  color: var(--atlas-brass-bright);
-  background: linear-gradient(180deg, rgba(212, 170, 85, 0.11), transparent 70%), var(--wayfinder-control-bg-hover);
-  border-color: var(--wayfinder-control-border-hover);
-}
-
-.theme-dark button:not(.clickable-icon):active {
-  background: var(--wayfinder-control-bg-active);
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.42);
-  transform: translateY(1px);
-}
-
-.theme-dark button.mod-cta {
-  color: #171006;
-  background: linear-gradient(180deg, rgba(255, 235, 179, 0.2), transparent 60%), var(--atlas-brass);
-  border-color: var(--atlas-brass-bright);
-}
-
-.theme-dark button.mod-warning {
-  color: #f3e5dc;
-  background-color: var(--atlas-wax);
-  border-color: #b04d3e;
-}
-
-/* Menus and suggestion lists */
-.theme-dark .menu,
-.theme-dark .suggestion-container {
-  color: var(--atlas-ink);
-  background: linear-gradient(135deg, rgba(212, 170, 85, 0.025), transparent 42%), var(--wayfinder-overlay-bg);
-  border: 1px solid var(--wayfinder-control-border);
-  border-radius: var(--wayfinder-radius-medium);
-  box-shadow: inset 0 1px rgba(255, 239, 190, 0.025), 0 10px 30px rgba(0, 0, 0, 0.52);
-}
-
-.theme-dark .menu-separator {
-  border-color: var(--wayfinder-shell-edge);
-}
-
-.theme-dark .menu-item,
-.theme-dark .suggestion-item {
-  border-radius: 2px;
-}
-
-.theme-dark .menu-item:hover,
-.theme-dark .menu-item.selected,
-.theme-dark .suggestion-item.is-selected {
-  color: var(--atlas-ink);
-  background: linear-gradient(90deg, rgba(184, 134, 51, 0.15), rgba(184, 134, 51, 0.045));
-  box-shadow: inset 2px 0 var(--atlas-brass-aged);
-}
-
-.theme-dark .menu-item-icon,
-.theme-dark .suggestion-flair {
-  color: var(--atlas-brass-aged);
-}
-
-.theme-dark .menu-item:hover .menu-item-icon,
-.theme-dark .suggestion-item.is-selected .suggestion-flair {
-  color: var(--atlas-brass-bright);
-}
-
-/* Command palette and prompts */
-.theme-dark .prompt {
-  background: linear-gradient(180deg, rgba(212, 170, 85, 0.035), transparent 28%), var(--wayfinder-overlay-bg);
-  border: 1px solid var(--wayfinder-control-border-hover);
-  border-radius: var(--wayfinder-radius-medium);
-  box-shadow: inset 0 1px rgba(255, 239, 190, 0.035), 0 18px 55px rgba(0, 0, 0, 0.64);
-}
-
-.theme-dark .prompt-input-container {
-  background: var(--wayfinder-overlay-header);
-  border-bottom: 1px solid var(--wayfinder-shell-edge-bright);
-}
-
-.theme-dark input.prompt-input,
-.theme-dark input.prompt-input:hover,
-.theme-dark input.prompt-input:focus,
-.theme-dark input.prompt-input:focus-visible {
-  background: transparent;
-  border: 0;
-  border-radius: 0;
-  box-shadow: none;
-}
-
-.theme-dark .prompt-instructions {
-  color: var(--atlas-ink-faded);
-  border-top: 1px solid var(--wayfinder-shell-edge);
-}
-
-/* Modals */
-.theme-dark .modal {
-  color: var(--atlas-ink);
-  background: linear-gradient(145deg, rgba(212, 170, 85, 0.025), transparent 35%), var(--wayfinder-overlay-bg);
-  border: 1px solid var(--wayfinder-control-border);
-  border-radius: var(--wayfinder-radius-medium);
-  box-shadow: inset 0 1px rgba(255, 239, 190, 0.03), 0 20px 60px rgba(0, 0, 0, 0.62);
-}
-
-.theme-dark .modal-title,
-.theme-dark .modal h1,
-.theme-dark .modal h2 {
-  color: var(--atlas-brass-bright);
-  font-family: var(--wayfinder-font-display);
-}
-
-.theme-dark .modal-close-button {
-  color: var(--atlas-ink-faded);
-}
-
-.theme-dark .modal-close-button:hover {
-  color: var(--atlas-brass-bright);
-  background-color: rgba(184, 134, 51, 0.08);
-}
-
-.theme-dark .modal-bg {
-  background: rgba(5, 4, 3, 0.72);
-  backdrop-filter: blur(2px);
-}
-
-.theme-dark .setting-item {
-  border-color: var(--wayfinder-shell-edge);
-}
-
-.theme-dark .setting-item-name {
-  color: var(--atlas-ink);
-}
-
-.theme-dark .setting-item-description {
-  color: var(--atlas-ink-muted);
-}
-
-/* Hover previews and tooltips */
-.theme-dark .popover,
-.theme-dark .hover-popover {
-  background: linear-gradient(145deg, rgba(212, 170, 85, 0.025), transparent 38%), var(--wayfinder-overlay-bg);
-  border: 1px solid var(--wayfinder-control-border);
-  border-radius: var(--wayfinder-radius-medium);
-  box-shadow: inset 0 1px rgba(255, 239, 190, 0.025), 0 12px 36px rgba(0, 0, 0, 0.58);
-}
-
-.theme-dark .tooltip {
-  color: var(--atlas-ink);
-  background: var(--atlas-wood-deep);
-  border: 1px solid var(--wayfinder-control-border);
-  border-radius: var(--wayfinder-radius-small);
-  box-shadow: 0 5px 16px rgba(0, 0, 0, 0.45);
-}
-
-/* Find and replace */
-.theme-dark .document-search-container {
-  background: var(--atlas-wood);
-  border: 1px solid var(--wayfinder-shell-edge);
-  border-radius: 0 0 var(--wayfinder-radius-medium) var(--wayfinder-radius-medium);
-  box-shadow: var(--wayfinder-shadow-raised);
-}
-
-/* Editing Toolbar and cMenu plugin surfaces */
-.theme-dark #cMenuModalBar,
-.theme-dark #editingToolbarModalBar,
-.theme-dark .editingToolbarModalBar,
-.theme-dark .editing-toolbar {
-  background: linear-gradient(180deg, rgba(212, 170, 85, 0.035), transparent 60%), var(--atlas-leather);
-  border: 1px solid var(--wayfinder-shell-edge-bright);
-  border-radius: var(--wayfinder-radius-small);
-  box-shadow: inset 0 1px rgba(255, 239, 190, 0.025), 0 3px 12px rgba(0, 0, 0, 0.32);
-}
-
-.theme-dark #cMenuModalBar button,
-.theme-dark #editingToolbarModalBar button,
-.theme-dark .editingToolbarModalBar button,
-.theme-dark .editing-toolbar button {
-  color: var(--atlas-ink-muted);
-  background: transparent;
-  border-color: transparent;
-  box-shadow: none;
-}
-
-.theme-dark #cMenuModalBar button:hover,
-.theme-dark #editingToolbarModalBar button:hover,
-.theme-dark .editingToolbarModalBar button:hover,
-.theme-dark .editing-toolbar button:hover {
-  color: var(--atlas-brass-bright);
-  background-color: rgba(184, 134, 51, 0.09);
-  border-color: rgba(111, 77, 31, 0.38);
-  transform: none;
-}
-
-/* Mobile favors touch clarity over layered depth. */
-.theme-dark.is-mobile .modal,
-.theme-dark.is-mobile .prompt,
-.theme-dark.is-mobile .menu,
-.theme-dark.is-mobile .suggestion-container {
-  border-radius: var(--wayfinder-radius-small);
-  backdrop-filter: none;
-}
-
-.theme-dark.is-mobile .mobile-toolbar {
-  background: var(--atlas-wood-deep);
-  border-color: var(--wayfinder-shell-edge);
-}
-
-/*
- * Enchanted interaction language
- * ------------------------------
- * Hover prepares the spell, press/focus activates it, and persistent
- * selection settles into brass. Informational surfaces remain quiet.
- */
-.theme-dark {
-  --wayfinder-rune-wake-bg: rgba(var(--atlas-rune-rgb), 0.07);
-  --wayfinder-rune-wake-border: rgba(var(--atlas-rune-rgb), 0.32);
-  --wayfinder-rune-wake-glow: 0 0 9px rgba(var(--atlas-rune-rgb), 0.16);
-  --wayfinder-rune-active-bg: rgba(var(--atlas-rune-rgb), 0.13);
-  --wayfinder-rune-active-border: rgba(var(--atlas-rune-rgb), 0.62);
-  --wayfinder-rune-active-glow: 0 0 4px rgba(var(--atlas-rune-rgb), 0.42), 0 0 14px rgba(var(--atlas-rune-rgb), 0.24);
-}
-
-/* Rune-bearing icon controls */
-.theme-dark .clickable-icon,
-.theme-dark .workspace-ribbon .clickable-icon,
-.theme-dark .nav-action-button,
-.theme-dark .workspace-tab-header-new-tab,
-.theme-dark .workspace-tab-header-inner-close-button {
-  transition: color var(--wayfinder-motion-quick) ease, background-color var(--wayfinder-motion-quick) ease, border-color var(--wayfinder-motion-quick) ease, box-shadow var(--wayfinder-motion-calm) ease, text-shadow var(--wayfinder-motion-calm) ease, transform var(--wayfinder-motion-quick) ease;
-}
-
-.theme-dark .clickable-icon:hover,
-.theme-dark .workspace-ribbon .clickable-icon:hover,
-.theme-dark .nav-action-button:hover,
-.theme-dark .workspace-tab-header-new-tab:hover,
-.theme-dark .workspace-tab-header-inner-close-button:hover {
-  color: var(--atlas-rune-bright);
-  background-color: var(--wayfinder-rune-wake-bg);
-  border-color: var(--wayfinder-rune-wake-border);
-  box-shadow: var(--wayfinder-rune-wake-glow);
-  text-shadow: 0 0 7px rgba(var(--atlas-rune-rgb), 0.42);
-}
-
-.theme-dark .clickable-icon:active,
-.theme-dark .workspace-ribbon .clickable-icon:active,
-.theme-dark .nav-action-button:active,
-.theme-dark .workspace-tab-header-new-tab:active,
-.theme-dark .workspace-tab-header-inner-close-button:active {
-  color: #d9f8ff;
-  background-color: var(--wayfinder-rune-active-bg);
-  border-color: var(--wayfinder-rune-active-border);
-  box-shadow: var(--wayfinder-rune-active-glow);
-  text-shadow: 0 0 9px rgba(var(--atlas-rune-rgb), 0.68);
-  transform: translateY(1px) scale(0.97);
-  transition-duration: 45ms;
-}
-
-/* Tabs wake as paths; the selected page settles back into brass. */
-.theme-dark .workspace-tab-header:not(.is-active) {
-  transition: color var(--wayfinder-motion-quick) ease, background-color var(--wayfinder-motion-quick) ease, border-color var(--wayfinder-motion-quick) ease, box-shadow var(--wayfinder-motion-calm) ease;
-}
-
-.theme-dark .workspace-tab-header:not(.is-active):hover {
-  color: var(--atlas-rune-bright);
-  background: linear-gradient(180deg, rgba(var(--atlas-rune-rgb), 0.1), transparent 72%);
-  border-color: var(--wayfinder-rune-wake-border);
-  box-shadow: inset 0 -1px rgba(var(--atlas-rune-rgb), 0.4), var(--wayfinder-rune-wake-glow);
-}
-
-.theme-dark .workspace-tab-header:not(.is-active):active {
-  color: #d9f8ff;
-  border-color: var(--wayfinder-rune-active-border);
-  box-shadow: inset 0 -2px var(--atlas-rune), var(--wayfinder-rune-active-glow);
-}
-
-/* Navigation reveals a possible path, while the current path remains brass. */
-.theme-dark .nav-file-title:not(.is-active),
-.theme-dark .nav-folder-title:not(.is-active) {
-  transition: color var(--wayfinder-motion-quick) ease, background-color var(--wayfinder-motion-quick) ease, border-color var(--wayfinder-motion-quick) ease, box-shadow var(--wayfinder-motion-calm) ease;
-}
-
-.theme-dark .nav-file-title:not(.is-active):hover,
-.theme-dark .nav-folder-title:not(.is-active):hover {
-  color: #d8eef1;
-  background: linear-gradient(90deg, rgba(var(--atlas-rune-rgb), 0.1), transparent 72%);
-  border-color: rgba(var(--atlas-rune-rgb), 0.22);
-  box-shadow: inset 2px 0 rgba(var(--atlas-rune-rgb), 0.52), -2px 0 9px rgba(var(--atlas-rune-rgb), 0.1);
-}
-
-.theme-dark .nav-file-title:not(.is-active):active,
-.theme-dark .nav-folder-title:not(.is-active):active {
-  color: var(--atlas-rune-bright);
-  background-color: var(--wayfinder-rune-active-bg);
-  box-shadow: inset 2px 0 var(--atlas-rune-bright), var(--wayfinder-rune-active-glow);
-}
-
-/* Toolbars are the clearest collection of dormant runes. */
-.theme-dark #cMenuModalBar button,
-.theme-dark #editingToolbarModalBar button,
-.theme-dark .editingToolbarModalBar button,
-.theme-dark .editing-toolbar button {
-  transition: color var(--wayfinder-motion-quick) ease, background-color var(--wayfinder-motion-quick) ease, border-color var(--wayfinder-motion-quick) ease, box-shadow var(--wayfinder-motion-calm) ease, text-shadow var(--wayfinder-motion-calm) ease;
-}
-
-.theme-dark #cMenuModalBar button:hover,
-.theme-dark #editingToolbarModalBar button:hover,
-.theme-dark .editingToolbarModalBar button:hover,
-.theme-dark .editing-toolbar button:hover {
-  color: var(--atlas-rune-bright);
-  background-color: var(--wayfinder-rune-wake-bg);
-  border-color: var(--wayfinder-rune-wake-border);
-  box-shadow: var(--wayfinder-rune-wake-glow);
-  text-shadow: 0 0 7px rgba(var(--atlas-rune-rgb), 0.45);
-}
-
-.theme-dark #cMenuModalBar button:active,
-.theme-dark #editingToolbarModalBar button:active,
-.theme-dark .editingToolbarModalBar button:active,
-.theme-dark .editing-toolbar button:active {
-  color: #d9f8ff;
-  background-color: var(--wayfinder-rune-active-bg);
-  border-color: var(--wayfinder-rune-active-border);
-  box-shadow: var(--wayfinder-rune-active-glow);
-}
-
-/* Conventional controls receive magical readiness without losing their form. */
-.theme-dark button:not(.clickable-icon):not(.workspace-tab-header-inner-close-button),
-.theme-dark input,
-.theme-dark textarea,
-.theme-dark select,
-.theme-dark .dropdown,
-.theme-dark .menu-item,
-.theme-dark .suggestion-item {
-  transition: color var(--wayfinder-motion-quick) ease, background-color var(--wayfinder-motion-quick) ease, border-color var(--wayfinder-motion-quick) ease, box-shadow var(--wayfinder-motion-calm) ease;
-}
-
-.theme-dark button:not(.clickable-icon):not(.mod-warning):hover {
-  color: var(--atlas-rune-bright);
-  border-color: var(--wayfinder-rune-wake-border);
-  box-shadow: inset 0 1px rgba(217, 248, 255, 0.035), var(--wayfinder-rune-wake-glow);
-}
-
-.theme-dark input:hover,
-.theme-dark textarea:hover,
-.theme-dark select:hover,
-.theme-dark .dropdown:hover {
-  border-color: var(--wayfinder-rune-wake-border);
-  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.34), var(--wayfinder-rune-wake-glow);
-}
-
-.theme-dark input:focus,
-.theme-dark input:focus-visible,
-.theme-dark textarea:focus,
-.theme-dark textarea:focus-visible,
-.theme-dark select:focus,
-.theme-dark .dropdown:focus {
-  border-color: var(--atlas-rune);
-  box-shadow: 0 0 0 1px rgba(var(--atlas-rune-rgb), 0.3), var(--wayfinder-rune-active-glow), inset 0 1px 2px rgba(0, 0, 0, 0.34);
-}
-
-.theme-dark .menu-item:hover,
-.theme-dark .suggestion-item.is-selected {
-  background: linear-gradient(90deg, rgba(var(--atlas-rune-rgb), 0.13), transparent 78%);
-  box-shadow: inset 2px 0 var(--atlas-rune), var(--wayfinder-rune-wake-glow);
-}
-
-/* Links reveal the path rather than becoming button-like. */
-.theme-dark .markdown-rendered a,
-.theme-dark .cm-hmd-internal-link,
-.theme-dark .cm-link {
-  transition: color var(--wayfinder-motion-quick) ease, text-decoration-color var(--wayfinder-motion-quick) ease, text-shadow var(--wayfinder-motion-calm) ease;
-}
-
-.theme-dark .markdown-rendered a:hover,
-.theme-dark .cm-hmd-internal-link:hover,
-.theme-dark .cm-link:hover {
-  color: var(--atlas-rune-bright);
-  text-decoration-color: var(--atlas-rune);
-  text-shadow: 0 0 8px rgba(var(--atlas-rune-rgb), 0.25);
-}
-
-/* Movable workspace boundaries reveal an enchanted seam. */
-.theme-dark .workspace-leaf-resize-handle,
-.theme-dark .workspace-split-resize-handle {
-  border-color: transparent;
-  transition: border-color var(--wayfinder-motion-quick) ease, box-shadow var(--wayfinder-motion-calm) ease;
-}
-
-.theme-dark .workspace-leaf-resize-handle:hover,
-.theme-dark .workspace-split-resize-handle:hover,
-.theme-dark.is-grabbing .workspace-leaf-resize-handle,
-.theme-dark.is-grabbing .workspace-split-resize-handle {
-  border-color: var(--atlas-rune);
-  background: linear-gradient(180deg, transparent 0%, rgba(var(--atlas-aether-rgb), 0.55) 22%, var(--atlas-rune-bright) 50%, rgba(var(--atlas-aether-rgb), 0.55) 78%, transparent 100%);
-  background-size: 100% 220%;
-  box-shadow: 0 0 4px rgba(var(--atlas-rune-rgb), 0.62), 0 0 13px rgba(var(--atlas-rune-rgb), 0.3), 0 0 22px rgba(var(--atlas-aether-rgb), 0.14);
-  animation: wayfinder-seam-flow 1.35s ease-in-out infinite alternate;
-}
-
-.theme-dark .workspace-leaf-resize-handle:active,
-.theme-dark .workspace-split-resize-handle:active {
-  border-color: #d9f8ff;
-  box-shadow: 0 0 5px rgba(var(--atlas-rune-rgb), 0.85), 0 0 17px rgba(var(--atlas-rune-rgb), 0.45), 0 0 28px rgba(var(--atlas-aether-rgb), 0.25);
-}
-
-/* Obsidian's docking target becomes a temporary revealed portal. */
-.theme-dark .workspace-drop-overlay,
-.theme-dark .workspace-drop-overlay::before,
-.theme-dark .workspace-drop-overlay::after {
-  border-color: var(--atlas-rune);
-  background-color: rgba(var(--atlas-rune-rgb), 0.075);
-  box-shadow: inset 0 0 0 1px rgba(var(--atlas-rune-rgb), 0.48), inset 0 0 18px rgba(var(--atlas-rune-rgb), 0.12), 0 0 15px rgba(var(--atlas-aether-rgb), 0.18);
-}
-
-@keyframes wayfinder-seam-flow {
-  from {
-    background-position: 50% 0%;
-    filter: brightness(0.86);
-  }
-  to {
-    background-position: 50% 100%;
-    filter: brightness(1.15);
-  }
-}
-/* Keyboard focus is a full activation signal, never hover-only magic. */
-.theme-dark :focus-visible {
-  outline-color: var(--atlas-rune);
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .theme-dark .clickable-icon,
-  .theme-dark .workspace-tab-header,
-  .theme-dark .nav-file-title,
-  .theme-dark .nav-folder-title,
-  .theme-dark button,
-  .theme-dark input,
-  .theme-dark textarea,
-  .theme-dark select,
-  .theme-dark .dropdown,
-  .theme-dark a,
-  .theme-dark .workspace-leaf-resize-handle,
-  .theme-dark .workspace-split-resize-handle {
-    transition: none;
-    animation: none;
+  body {
+    --wayfinder-motion-quick: 0ms;
+    --wayfinder-motion-calm: 0ms;
   }
-}
-/* Touch devices have no persistent hover; focus/press still communicates magic. */
-.is-mobile.theme-dark {
-  --wayfinder-rune-wake-glow: none;
-}
-
-/*
- * Tables as cartographic ledgers
- * ------------------------------
- * A complete physical frame and visible grid keep dense information legible.
- * Editing affordances wake with rune light because they alter the artifact.
- */
-.theme-dark {
-  --table-background: rgba(15, 12, 9, 0.24);
-  --table-header-background: #21180f;
-  --table-header-background-hover: #271c11;
-  --table-row-alt-background: rgba(184, 134, 51, 0.022);
-  --table-row-alt-background-hover: rgba(var(--atlas-rune-rgb), 0.065);
-  --table-row-background-hover: rgba(var(--atlas-rune-rgb), 0.055);
-  --table-border-color: #563e23;
-  --table-header-border-color: #735226;
-  --table-column-divider-color: #46331f;
-  --table-border-width: 1px;
-  --table-header-border-width: 1px;
-  --table-column-first-border-width: 1px;
-  --table-column-last-border-width: 1px;
-  --table-row-last-border-width: 1px;
-  --table-add-button-border-width: 1px;
-  --table-cell-padding: 8px 12px;
-  --table-edge-cell-padding-first: 12px;
-  --table-edge-cell-padding-last: 12px;
-}
-
-.theme-dark .markdown-rendered table:not(.calendar),
-.theme-dark .markdown-source-view.mod-cm6 .cm-table-widget table:not(.calendar),
-.theme-dark table.table-view-table {
-  overflow: hidden;
-  border: 1px solid var(--table-border-color);
-  border-collapse: collapse;
-  border-radius: var(--wayfinder-radius-small);
-  background: var(--table-background);
-  box-shadow: 0 0 0 1px rgba(8, 6, 4, 0.5), inset 0 1px rgba(255, 239, 190, 0.018);
-}
-
-.theme-dark .markdown-rendered table:not(.calendar) th,
-.theme-dark .markdown-rendered table:not(.calendar) td,
-.theme-dark .markdown-source-view.mod-cm6 .cm-table-widget table:not(.calendar) th,
-.theme-dark .markdown-source-view.mod-cm6 .cm-table-widget table:not(.calendar) td,
-.theme-dark table.table-view-table th,
-.theme-dark table.table-view-table td {
-  padding: var(--table-cell-padding);
-  border: 1px solid var(--table-column-divider-color);
-  vertical-align: top;
-}
-
-.theme-dark .markdown-rendered table:not(.calendar) thead,
-.theme-dark .markdown-source-view.mod-cm6 .cm-table-widget table:not(.calendar) thead,
-.theme-dark table.table-view-table thead {
-  background: linear-gradient(180deg, rgba(212, 170, 85, 0.07), transparent 70%), var(--table-header-background);
-}
-
-.theme-dark .markdown-rendered table:not(.calendar) th,
-.theme-dark .markdown-source-view.mod-cm6 .cm-table-widget table:not(.calendar) th,
-.theme-dark table.table-view-table th {
-  color: var(--atlas-parchment);
-  font-family: var(--wayfinder-font-display);
-  font-size: 0.92em;
-  font-weight: 600;
-  font-variant: small-caps;
-  letter-spacing: 0.045em;
-  border-color: var(--table-header-border-color);
-  border-bottom-width: 1px;
-}
-
-.theme-dark .markdown-rendered table:not(.calendar) tbody tr:nth-child(even),
-.theme-dark .markdown-source-view.mod-cm6 .cm-table-widget table:not(.calendar) tbody tr:nth-child(even),
-.theme-dark table.table-view-table tbody tr:nth-child(even) {
-  background: var(--table-row-alt-background);
-}
-
-.theme-dark .markdown-rendered table:not(.calendar) tbody tr,
-.theme-dark .markdown-source-view.mod-cm6 .cm-table-widget table:not(.calendar) tbody tr,
-.theme-dark table.table-view-table tbody tr {
-  transition: background-color var(--wayfinder-motion-quick) ease, box-shadow var(--wayfinder-motion-calm) ease;
-}
-
-.theme-dark .markdown-rendered table:not(.calendar) tbody tr:hover,
-.theme-dark .markdown-source-view.mod-cm6 .cm-table-widget table:not(.calendar) tbody tr:hover,
-.theme-dark table.table-view-table tbody tr:hover {
-  background: var(--table-row-background-hover);
-  box-shadow: inset 2px 0 rgba(var(--atlas-rune-rgb), 0.48), inset 0 1px rgba(var(--atlas-rune-rgb), 0.1), inset 0 -1px rgba(var(--atlas-rune-rgb), 0.1);
-}
-
-.theme-dark .markdown-source-view.mod-cm6 .cm-table-widget .table-cell-wrapper {
-  min-height: 1.5em;
-  padding: var(--table-cell-padding);
-}
-
-.theme-dark .markdown-source-view.mod-cm6 .cm-table-widget td:focus-within,
-.theme-dark .markdown-source-view.mod-cm6 .cm-table-widget th:focus-within {
-  background: rgba(var(--atlas-rune-rgb), 0.075);
-  box-shadow: inset 0 0 0 1px rgba(var(--atlas-rune-rgb), 0.45), var(--wayfinder-rune-wake-glow);
-}
-
-/* Row/column controls are dormant construction runes. */
-.theme-dark .cm-table-widget .table-row-btn,
-.theme-dark .cm-table-widget .table-col-btn,
-.theme-dark .cm-table-widget .table-row-drag-handle,
-.theme-dark .cm-table-widget .table-col-drag-handle {
-  color: var(--atlas-ink-faded);
-  background: var(--atlas-wood);
-  border: 1px solid var(--wayfinder-shell-edge-bright);
-  border-radius: var(--wayfinder-radius-small);
-  opacity: 0.72;
-  transition: color var(--wayfinder-motion-quick) ease, background-color var(--wayfinder-motion-quick) ease, border-color var(--wayfinder-motion-quick) ease, box-shadow var(--wayfinder-motion-calm) ease, text-shadow var(--wayfinder-motion-calm) ease, opacity var(--wayfinder-motion-quick) ease, transform var(--wayfinder-motion-quick) ease;
-}
-
-.theme-dark .cm-table-widget .table-row-btn:hover,
-.theme-dark .cm-table-widget .table-col-btn:hover,
-.theme-dark .cm-table-widget .table-row-drag-handle:hover,
-.theme-dark .cm-table-widget .table-col-drag-handle:hover {
-  color: var(--atlas-rune-bright);
-  background: var(--wayfinder-rune-wake-bg);
-  border-color: var(--wayfinder-rune-wake-border);
-  box-shadow: var(--wayfinder-rune-active-glow);
-  text-shadow: 0 0 8px rgba(var(--atlas-rune-rgb), 0.58);
-  opacity: 1;
-}
-
-.theme-dark .cm-table-widget .table-row-btn:active,
-.theme-dark .cm-table-widget .table-col-btn:active,
-.theme-dark .cm-table-widget .table-row-drag-handle:active,
-.theme-dark .cm-table-widget .table-col-drag-handle:active {
-  color: #d9f8ff;
-  background: var(--wayfinder-rune-active-bg);
-  border-color: var(--wayfinder-rune-active-border);
-  box-shadow: var(--wayfinder-rune-active-glow);
-  transform: scale(0.96);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .theme-dark .markdown-rendered table tbody tr,
-  .theme-dark .cm-table-widget .table-row-btn,
-  .theme-dark .cm-table-widget .table-col-btn,
-  .theme-dark .cm-table-widget .table-row-drag-handle,
-  .theme-dark .cm-table-widget .table-col-drag-handle {
-    transition: none;
-  }
-}
-.theme-dark.is-phone {
-  --table-cell-padding: 7px 9px;
-  --table-edge-cell-padding-first: 9px;
-  --table-edge-cell-padding-last: 9px;
-}
-
-/*
- * Content artifacts
- * -----------------
- * Notes, warnings, records, indexes, and embedded pages share one crafted
- * material language. Their semantic color is restrained to titles, icons,
- * seals, and active edges.
- */
-.theme-dark {
-  --wayfinder-artifact-bg: rgba(32, 24, 15, 0.72);
-  --wayfinder-artifact-bg-raised: rgba(39, 29, 18, 0.82);
-  --wayfinder-artifact-border: rgba(111, 77, 31, 0.68);
-  --wayfinder-artifact-rule: rgba(111, 77, 31, 0.42);
-}
-
-/* Callouts: field annotations, seals, warnings, and discoveries. */
-.theme-dark .callout {
-  --callout-border-width: 1px;
-  --callout-border-opacity: 0.62;
-  --callout-radius: var(--wayfinder-radius-medium);
-  --callout-padding: var(--size-4-3);
-  --callout-title-size: 0.92em;
-  overflow: hidden;
-  background: linear-gradient(135deg, rgba(var(--callout-color), 0.075), transparent 45%), var(--wayfinder-artifact-bg);
-  border: 1px solid rgba(var(--callout-color), 0.42);
-  border-inline-start: 3px solid rgba(var(--callout-color), 0.82);
-  box-shadow: inset 0 1px rgba(255, 239, 190, 0.025), 0 2px 8px rgba(0, 0, 0, 0.18);
-}
-
-.theme-dark .callout-title {
-  margin: calc(var(--callout-padding) * -1);
-  margin-bottom: var(--size-4-2);
-  padding: var(--size-4-2) var(--size-4-3);
-  color: rgb(var(--callout-color));
-  background: linear-gradient(90deg, rgba(var(--callout-color), 0.13), transparent 72%);
-  border-bottom: 1px solid rgba(var(--callout-color), 0.22);
-  font-family: var(--wayfinder-font-display);
-  font-variant: small-caps;
-  font-weight: 600;
-  letter-spacing: 0.055em;
-}
-
-.theme-dark .callout-icon {
-  filter: drop-shadow(0 0 4px rgba(var(--callout-color), 0.3));
-}
-
-.theme-dark .callout-content {
-  color: var(--atlas-ink);
-}
-
-.theme-dark .callout-fold {
-  color: rgba(var(--callout-color), 0.72);
-  border-radius: var(--wayfinder-radius-small);
-  transition: color var(--wayfinder-motion-quick) ease, background-color var(--wayfinder-motion-quick) ease, box-shadow var(--wayfinder-motion-calm) ease;
-}
-
-.theme-dark .callout-fold:hover {
-  color: var(--atlas-rune-bright);
-  background: var(--wayfinder-rune-wake-bg);
-  box-shadow: var(--wayfinder-rune-wake-glow);
-}
-
-.theme-dark .callout[data-callout=note],
-.theme-dark .callout[data-callout=info],
-.theme-dark .callout[data-callout=todo] {
-  --callout-color: 88, 169, 196;
-}
-
-.theme-dark .callout[data-callout=abstract],
-.theme-dark .callout[data-callout=summary],
-.theme-dark .callout[data-callout=tldr],
-.theme-dark .callout[data-callout=example] {
-  --callout-color: 119, 113, 185;
-}
-
-.theme-dark .callout[data-callout=tip],
-.theme-dark .callout[data-callout=hint],
-.theme-dark .callout[data-callout=important],
-.theme-dark .callout[data-callout=success],
-.theme-dark .callout[data-callout=check],
-.theme-dark .callout[data-callout=done] {
-  --callout-color: 102, 129, 88;
-}
-
-.theme-dark .callout[data-callout=question],
-.theme-dark .callout[data-callout=help],
-.theme-dark .callout[data-callout=faq],
-.theme-dark .callout[data-callout=warning],
-.theme-dark .callout[data-callout=caution],
-.theme-dark .callout[data-callout=attention] {
-  --callout-color: 196, 154, 75;
-}
-
-.theme-dark .callout[data-callout=failure],
-.theme-dark .callout[data-callout=fail],
-.theme-dark .callout[data-callout=missing],
-.theme-dark .callout[data-callout=danger],
-.theme-dark .callout[data-callout=error],
-.theme-dark .callout[data-callout=bug] {
-  --callout-color: 169, 73, 61;
-}
-
-.theme-dark .callout[data-callout=quote],
-.theme-dark .callout[data-callout=cite] {
-  --callout-color: 169, 149, 109;
-}
-
-/* Code: dark slate inset into the page like a technical plate. */
-.theme-dark {
-  --code-background: #0d0f0f;
-  --code-normal: #d7d8d2;
-  --code-comment: #777e74;
-  --code-function: #d4aa55;
-  --code-important: #d7825b;
-  --code-keyword: #83cee2;
-  --code-operator: #9e98d2;
-  --code-property: #cdbd98;
-  --code-punctuation: #8f938c;
-  --code-string: #91ad7d;
-  --code-tag: #d47c70;
-  --code-value: #c8a7d6;
-}
-
-.theme-dark .markdown-rendered pre,
-.theme-dark .HyperMD-codeblock-bg {
-  background: linear-gradient(135deg, rgba(var(--atlas-rune-rgb), 0.025), transparent 38%), var(--code-background);
-  border: 1px solid #34413f;
-  border-inline-start: 3px solid var(--atlas-sea);
-  border-radius: var(--wayfinder-radius-medium);
-  box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.5), 0 2px 8px rgba(0, 0, 0, 0.2);
-}
-
-.theme-dark .markdown-rendered pre {
-  padding: var(--size-4-4);
-}
-
-.theme-dark :not(pre) > code,
-.theme-dark .cm-inline-code {
-  color: #dfc684;
-  background: rgba(184, 134, 51, 0.08);
-  border: 1px solid rgba(111, 77, 31, 0.45);
-  border-radius: 3px;
-  padding: 0.08em 0.3em;
-}
-
-.theme-dark .markdown-rendered pre:hover,
-.theme-dark .cm-codeblock:hover {
-  border-color: rgba(var(--atlas-rune-rgb), 0.45);
-  box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.5), var(--wayfinder-rune-wake-glow);
-}
-
-.theme-dark .copy-code-button,
-.theme-dark .edit-block-button {
-  color: var(--atlas-ink-faded);
-  background: var(--atlas-wood);
-  border: 1px solid var(--wayfinder-artifact-border);
-}
-
-.theme-dark .copy-code-button:hover,
-.theme-dark .edit-block-button:hover {
-  color: var(--atlas-rune-bright);
-  border-color: var(--wayfinder-rune-wake-border);
-  box-shadow: var(--wayfinder-rune-wake-glow);
-}
-
-/* Semantic checkboxes supplied by the integrated Checkboxes.css fragment. */
-.theme-dark input.task-list-item-checkbox,
-.theme-dark .task-list-item-checkbox {
-  border-color: var(--atlas-brass-aged);
-  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.22);
-  transition: color var(--wayfinder-motion-quick) ease, background-color var(--wayfinder-motion-quick) ease, border-color var(--wayfinder-motion-quick) ease, box-shadow var(--wayfinder-motion-calm) ease, transform var(--wayfinder-motion-quick) ease;
-}
-
-.theme-dark input.task-list-item-checkbox:hover,
-.theme-dark .task-list-item-checkbox:hover {
-  border-color: var(--atlas-rune);
-  box-shadow: var(--wayfinder-rune-active-glow);
-  transform: scale(1.08);
-}
-
-.theme-dark input.task-list-item-checkbox:active,
-.theme-dark .task-list-item-checkbox:active {
-  filter: brightness(1.2);
-  transform: scale(0.96);
-}
-
-/* Progress: an enchanted measuring instrument mounted in brass. */
-.theme-dark progress {
-  overflow: hidden;
-  height: 10px;
-  border: 1px solid var(--atlas-brass-aged);
-  border-radius: 2px;
-  background: #0d0b08;
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(0, 0, 0, 0.25);
-}
-
-.theme-dark progress::-webkit-progress-bar {
-  background: repeating-linear-gradient(90deg, transparent 0, transparent calc(10% - 1px), rgba(205, 189, 152, 0.1) calc(10% - 1px), rgba(205, 189, 152, 0.1) 10%), #0d0b08;
-}
-
-.theme-dark progress::-webkit-progress-value {
-  background: linear-gradient(90deg, rgba(255, 239, 190, 0.12), transparent 35%), var(--progress-complete);
-  box-shadow: inset 0 1px rgba(255, 255, 255, 0.12), 0 0 8px rgba(var(--atlas-rune-rgb), 0.16);
-  transition: filter var(--wayfinder-motion-quick) ease, box-shadow var(--wayfinder-motion-calm) ease;
-}
-
-.theme-dark progress:hover {
-  border-color: var(--atlas-rune);
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.65), var(--wayfinder-rune-wake-glow);
-}
-
-.theme-dark progress:hover::-webkit-progress-value {
-  filter: brightness(1.12);
-  box-shadow: var(--wayfinder-rune-active-glow);
-}
-
-/* Embeds: mounted pages and windows into another part of the Atlas. */
-.theme-dark .internal-embed:not(.image-embed),
-.theme-dark .markdown-embed,
-.theme-dark .file-embed {
-  background: linear-gradient(135deg, rgba(205, 189, 152, 0.025), transparent 42%), var(--wayfinder-artifact-bg);
-  border: 1px solid var(--wayfinder-artifact-border);
-  border-inline-start: 3px solid var(--atlas-brass-aged);
-  border-radius: var(--wayfinder-radius-medium);
-  box-shadow: inset 0 1px rgba(255, 239, 190, 0.025), 0 2px 8px rgba(0, 0, 0, 0.18);
-}
-
-.theme-dark .markdown-embed-title {
-  color: var(--atlas-parchment);
-  font-family: var(--wayfinder-font-display);
-  font-variant: small-caps;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  border-bottom: 1px solid var(--wayfinder-artifact-rule);
-}
-
-.theme-dark .image-embed img,
-.theme-dark .markdown-rendered img {
-  border: 1px solid var(--wayfinder-artifact-border);
-  border-radius: var(--wayfinder-radius-small);
-  box-shadow: var(--wayfinder-shadow-raised);
-}
-
-.theme-dark .markdown-embed-link:hover,
-.theme-dark .file-embed-link:hover {
-  color: var(--atlas-rune-bright);
-  filter: drop-shadow(0 0 5px rgba(var(--atlas-rune-rgb), 0.5));
-}
-
-/* Tags: compact classification seals. */
-.theme-dark:not(.wayfinder-unstyled-tags) {
-  --tag-size: 0.78em;
-  --tag-padding-x: 0.58em;
-  --tag-padding-y: 0.22em;
-  --tag-radius: 3px;
-  --tag-background: rgba(111, 77, 31, 0.12);
-  --tag-background-hover: rgba(var(--atlas-rune-rgb), 0.1);
-  --tag-color: var(--atlas-parchment-aged);
-  --tag-color-hover: var(--atlas-rune-bright);
-  --tag-border-width: 1px;
-  --tag-border-color: rgba(111, 77, 31, 0.7);
-  --tag-border-color-hover: rgba(var(--atlas-rune-rgb), 0.5);
-}
-
-.theme-dark .tag,
-.theme-dark .multi-select-pill {
-  box-shadow: inset 0 1px rgba(255, 239, 190, 0.025);
-  transition: color var(--wayfinder-motion-quick) ease, background-color var(--wayfinder-motion-quick) ease, border-color var(--wayfinder-motion-quick) ease, box-shadow var(--wayfinder-motion-calm) ease;
-}
-
-.theme-dark .tag:hover,
-.theme-dark .multi-select-pill:hover {
-  box-shadow: var(--wayfinder-rune-wake-glow);
-}
-
-/* Dataview: the enchanted index. */
-.theme-dark .block-language-dataview {
-  --table-row-background-hover: rgba(var(--atlas-rune-rgb), 0.055);
-}
-
-.theme-dark .dataview.list-view-ul,
-.theme-dark .dataview.result-group,
-.theme-dark .dataview.task-list-basic-item,
-.theme-dark .dataview.task-list-item {
-  border-color: var(--wayfinder-artifact-rule);
-}
-
-.theme-dark .dataview.list-view-ul {
-  padding: var(--size-4-3) var(--size-4-5);
-  background: linear-gradient(135deg, rgba(119, 113, 185, 0.035), transparent 45%), var(--wayfinder-artifact-bg);
-  border: 1px solid var(--wayfinder-artifact-border);
-  border-radius: var(--wayfinder-radius-medium);
-}
-
-.theme-dark .dataview.list-view-ul > li::marker {
-  color: var(--atlas-aether);
-}
-
-.theme-dark .dataview.task-list-item,
-.theme-dark .dataview.task-list-basic-item {
-  padding-block: var(--size-4-1);
-  border-bottom: 1px solid var(--wayfinder-artifact-rule);
-}
-
-.theme-dark .dataview.task-list-item:hover,
-.theme-dark .dataview.task-list-basic-item:hover,
-.theme-dark .table-view-table > tbody > tr:hover {
-  background-color: rgba(var(--atlas-rune-rgb), 0.055) !important;
-  box-shadow: inset 2px 0 rgba(var(--atlas-rune-rgb), 0.5) !important;
-}
-
-.theme-dark .dataview.inline-field-key {
-  color: var(--atlas-parchment-aged);
-  font-variant: small-caps;
-  font-weight: 600;
-  letter-spacing: 0.035em;
-}
-
-.theme-dark .dataview.inline-field-key::after {
-  content: " · ";
-  color: var(--atlas-brass-aged);
-}
-
-.theme-dark .dataview.inline-field-value,
-.theme-dark .dataview .inline-field-standalone-value {
-  color: var(--atlas-ink-muted);
-}
-
-.theme-dark .dataview-error,
-.theme-dark .dataview-error-box {
-  color: #d9b2aa;
-  background: rgba(143, 51, 39, 0.08);
-  border: 1px solid rgba(169, 73, 61, 0.4);
-  border-inline-start: 3px solid var(--atlas-wax);
-  padding: var(--size-4-3);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .theme-dark .callout-fold,
-  .theme-dark .task-list-item-checkbox,
-  .theme-dark progress::-webkit-progress-value,
-  .theme-dark .tag,
-  .theme-dark .multi-select-pill {
-    transition: none;
-  }
-}
-.theme-dark.is-phone {
-  --callout-padding: var(--size-4-2);
-  --tag-padding-x: 0.48em;
 }
 /* Plugin compatibility */
 
@@ -8137,146 +6928,6 @@ community:
 - sliding-panes-obsidian
 - todoist-sync-plugin
 */
-
-/*
-Wayfinder semantic checkboxes
-
-Temporary emoji symbols for the Atlas task vocabulary. Keep all semantic
-mappings in this file so they can be replaced with cohesive custom SVG icons
-without changing note syntax or component styling.
-*/
-
-/* Semantic map */
-[data-task="X"] { --wayfinder-task-icon: "✅"; }
-[data-task="-"] { --wayfinder-task-icon: "❌"; }
-[data-task=">"] { --wayfinder-task-icon: "➡️"; }
-[data-task="<"] { --wayfinder-task-icon: "⬅️"; }
-[data-task="D"] { --wayfinder-task-icon: "📅"; }
-[data-task="?"] { --wayfinder-task-icon: "❓"; }
-[data-task="/"] { --wayfinder-task-icon: "⏳"; }
-[data-task="+"] { --wayfinder-task-icon: "➕"; }
-[data-task="R"] { --wayfinder-task-icon: "🔍"; }
-[data-task="!"] { --wayfinder-task-icon: "❗"; }
-[data-task="i"] { --wayfinder-task-icon: "💡"; }
-[data-task="B"] { --wayfinder-task-icon: "🪲"; }
-[data-task="P"] { --wayfinder-task-icon: "💼"; }
-[data-task="C"] { --wayfinder-task-icon: "⚠️"; }
-[data-task="Q"] { --wayfinder-task-icon: "❝"; }
-[data-task="N"] { --wayfinder-task-icon: "📝"; }
-[data-task="b"] { --wayfinder-task-icon: "🔖"; }
-[data-task="I"] { --wayfinder-task-icon: "ℹ️"; }
-[data-task="p"] { --wayfinder-task-icon: "🐍"; }
-[data-task="L"] { --wayfinder-task-icon: "📍"; }
-[data-task="E"] { --wayfinder-task-icon: "🧩"; }
-[data-task="A"] { --wayfinder-task-icon: "💬"; }
-[data-task="r"] { --wayfinder-task-icon: "📚"; }
-[data-task="c"] { --wayfinder-task-icon: "⚖️"; }
-[data-task="d"] { --wayfinder-task-icon: "📊"; }
-[data-task="T"] { --wayfinder-task-icon: "🕒"; }
-[data-task="@"] { --wayfinder-task-icon: "👤"; }
-[data-task="t"] { --wayfinder-task-icon: "🗣️"; }
-[data-task="O"] { --wayfinder-task-icon: "🎯"; }
-[data-task="~"] { --wayfinder-task-icon: "🚧"; }
-[data-task="W"] { --wayfinder-task-icon: "📋"; }
-[data-task="f"] { --wayfinder-task-icon: "🔁"; }
-[data-task="F"] { --wayfinder-task-icon: "📂"; }
-[data-task="H"] { --wayfinder-task-icon: "🏠"; }
-[data-task="&"] { --wayfinder-task-icon: "🔗"; }
-[data-task="s"] { --wayfinder-task-icon: "🔒"; }
-[data-task="q"] { --wayfinder-task-icon: "🗃️"; }
-[data-task="v"] { --wayfinder-task-icon: "✔️"; }
-[data-task="m"] { --wayfinder-task-icon: "📐"; }
-[data-task="g"] { --wayfinder-task-icon: "📈"; }
-[data-task="G"] { --wayfinder-task-icon: "💵"; }
-[data-task="w"] { --wayfinder-task-icon: "⌛"; }
-[data-task="S"] { --wayfinder-task-icon: "🧠"; }
-
-/*
-Custom states are semantic markers rather than completed tasks. Remove
-Obsidian's generic checked appearance and draw the mapped symbol instead.
-*/
-body:not(.alt-chkbx-off) .task-list-item-checkbox[data-task]:not([data-task="x"]):checked,
-body:not(.alt-chkbx-off) .markdown-source-view.mod-cm6 .HyperMD-task-line[data-task]:not([data-task="x"]) > input[type="checkbox"]:checked,
-body:not(.alt-chkbx-off) .markdown-source-view.mod-cm6 .HyperMD-task-line[data-task]:not([data-task="x"]) :is(.task-list-label, p) > input[type="checkbox"]:checked,
-body:not(.alt-chkbx-off) li.task-list-item[data-task]:not([data-task="x"]) > input[type="checkbox"]:checked,
-body:not(.alt-chkbx-off) li.task-list-item[data-task]:not([data-task="x"]) > p > input[type="checkbox"]:checked {
-	--checkbox-marker-color: transparent;
-	-webkit-appearance: none !important;
-	appearance: none !important;
-	display: inline-grid;
-	position: relative;
-	overflow: visible;
-	width: var(--checkbox-size);
-	height: var(--checkbox-size);
-	margin: var(--checkbox-margin);
-	padding: 0;
-	place-items: center;
-	border: 0 !important;
-	background: transparent !important;
-	background-color: transparent !important;
-	background-image: none !important;
-	-webkit-mask: none !important;
-	mask: none !important;
-	box-shadow: none !important;
-}
-
-body:not(.alt-chkbx-off) .task-list-item-checkbox[data-task]:not([data-task="x"]):checked::after,
-body:not(.alt-chkbx-off) .markdown-source-view.mod-cm6 .HyperMD-task-line[data-task]:not([data-task="x"]) > input[type="checkbox"]:checked::after,
-body:not(.alt-chkbx-off) .markdown-source-view.mod-cm6 .HyperMD-task-line[data-task]:not([data-task="x"]) :is(.task-list-label, p) > input[type="checkbox"]:checked::after,
-body:not(.alt-chkbx-off) li.task-list-item[data-task]:not([data-task="x"]) > input[type="checkbox"]:checked::after,
-body:not(.alt-chkbx-off) li.task-list-item[data-task]:not([data-task="x"]) > p > input[type="checkbox"]:checked::after {
-	content: var(--wayfinder-task-icon, "•") !important;
-	display: grid;
-	position: absolute;
-	inset: 50% auto auto 50%;
-	width: 1.35em;
-	height: 1.35em;
-	place-items: center;
-	color: initial;
-	border: 0 !important;
-	background: none !important;
-	-webkit-mask: none !important;
-	mask: none !important;
-	clip-path: none !important;
-	opacity: 1 !important;
-	font-family: "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", sans-serif !important;
-	font-size: 1.02em;
-	font-style: normal;
-	font-variant: normal;
-	font-weight: 400;
-	line-height: 1;
-	text-decoration: none;
-	text-shadow: none;
-	transform: translate(-50%, -50%);
-	-webkit-transform: translate(-50%, -50%);
-	z-index: 2;
-}
-
-/* Only genuinely terminal states receive completion treatment. */
-.markdown-source-view.mod-cm6 .HyperMD-task-line[data-task]:not([data-task="x"]):not([data-task="X"]):not([data-task="-"]),
-.markdown-preview-view li.task-list-item.is-checked[data-task]:not([data-task="x"]):not([data-task="X"]):not([data-task="-"]) {
-	color: var(--text-normal);
-	text-decoration: none;
-}
-
-.markdown-source-view.mod-cm6 .HyperMD-task-line[data-task="X"],
-.markdown-preview-view li.task-list-item.is-checked[data-task="X"] {
-	color: var(--text-faint);
-	text-decoration: line-through solid var(--text-faint) 1px;
-}
-
-.markdown-source-view.mod-cm6 .HyperMD-task-line[data-task="-"],
-.markdown-preview-view li.task-list-item.is-checked[data-task="-"] {
-	color: var(--text-faint);
-	text-decoration: line-through solid var(--text-faint) 1px;
-}
-
-/* Style Settings opt-out retained from the original snippet. */
-.alt-chkbx-off .task-list-item-checkbox[data-task]:not([data-task="x"]):checked::after,
-.alt-chkbx-off li.task-list-item[data-task]:not([data-task="x"]) > input[type="checkbox"]:checked::after,
-.alt-chkbx-off li.task-list-item[data-task]:not([data-task="x"]) > p > input[type="checkbox"]:checked::after {
-	content: none;
-}
 
 /* @settings
 
@@ -8879,13 +7530,13 @@ settings:
 		title: H1 font
 		description: Name of the font as it appears on your system
 		type: variable-text
-		default: var(--font-interface)
+		default: ''
 	-
 		id: h1-size
 		title: H1 font size
 		description: Accepts any CSS font-size value
 		type: variable-text
-		default: 2em
+		default: 1.125em
 	-
 		id: h1-weight
 		title: H1 font weight
@@ -8906,7 +7557,7 @@ settings:
 		title: H1 font variant
 		type: variable-select
 		allowEmpty: false
-		default: small-caps
+		default: normal
 		options:
 			-
 				label: Normal
@@ -8947,13 +7598,13 @@ settings:
 		title: H2 font
 		description: Name of the font as it appears on your system
 		type: variable-text
-		default: var(--font-interface)
+		default: ''
 	-
 		id: h2-size
 		title: H2 font size
 		description: Accepts any CSS font-size value
 		type: variable-text
-		default: 1.65em
+		default: 1em
 	-
 		id: h2-weight
 		title: H2 font weight
@@ -8974,7 +7625,7 @@ settings:
 		title: H2 font variant
 		type: variable-select
 		allowEmpty: false
-		default: small-caps
+		default: normal
 		options:
 			-
 				label: Normal
@@ -9015,13 +7666,13 @@ settings:
 		title: H3 font
 		description: Name of the font as it appears on your system
 		type: variable-text
-		default: var(--font-interface)
+		default: ''
 	-
 		id: h3-size
 		title: H3 font size
 		description: Accepts any CSS font-size value
 		type: variable-text
-		default: 1.4em
+		default: 1em
 	-
 		id: h3-weight
 		title: H3 font weight
@@ -9083,18 +7734,18 @@ settings:
 		title: H4 font
 		description: Name of the font as it appears on your system
 		type: variable-text
-		default: var(--font-interface)
+		default: ''
 	-
 		id: h4-size
 		title: H4 font size
 		description: Accepts any CSS font-size value
 		type: variable-text
-		default: 1.22em
+		default: 0.9em
 	-
 		id: h4-weight
 		title: H4 font weight
 		type: variable-number-slider
-		default: 600
+		default: 500
 		min: 100
 		max: 900
 		step: 100
@@ -9151,18 +7802,18 @@ settings:
 		title: H5 font
 		description: Name of the font as it appears on your system
 		type: variable-text
-		default: var(--font-interface)
+		default: ''
 	- 
 		id: h5-size
 		title: H5 font size
 		description: Accepts any CSS font-size value
 		type: variable-text
-		default: 1.08em
+		default: 0.85em
 	-
 		id: h5-weight
 		title: H5 font weight
 		type: variable-number-slider
-		default: 600
+		default: 500
 		min: 100
 		max: 900
 		step: 100
@@ -9219,18 +7870,18 @@ settings:
 		title: H6 font
 		description: Name of the font as it appears on your system
 		type: variable-text
-		default: var(--font-interface)
+		default: ''
 	-
 		id: h6-size
 		title: H6 font size
 		description: Accepts any CSS font-size value
 		type: variable-text
-		default: 0.95em
+		default: 0.85em
 	-
 		id: h6-weight
 		title: H6 font weight
 		type: variable-number-slider
-		default: 600
+		default: 400
 		min: 100
 		max: 900
 		step: 100
@@ -9246,7 +7897,7 @@ settings:
 		title: H6 font variant
 		type: variable-select
 		allowEmpty: false
-		default: all-small-caps
+		default: small-caps
 		options:
 			-
 				label: Normal
@@ -9547,9 +8198,9 @@ settings:
 				label: Square
 				value: checkbox-square
 	-
-		id: wayfinder-no-strike-lists
-		title: Do not strike completed tasks
-		description: Keeps completed task text unmodified instead of crossed out
+		id: wayfinder-strike-lists
+		title: Strike completed tasks
+		description: Adds strikethrough line and greyed text for completed tasks
 		type: class-toggle
 		default: false
 	-
@@ -10230,13 +8881,13 @@ settings:
 		title: Inline title font
 		description: Name of the font as it appears on your system
 		type: variable-text
-		default: var(--font-interface)
+		default: ''
 	-
 		id: inline-title-size
 		title: Inline title font size
 		description: Accepts any CSS font-size value
 		type: variable-text
-		default: 2em
+		default: 1.125em
 	-
 		id: inline-title-weight
 		title: Inline title font weight

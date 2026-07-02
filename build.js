@@ -16,6 +16,7 @@ const SRC = path.join(__dirname, 'src');
 const SCSS_ENTRY = path.join(SRC, 'scss/index.scss');
 const FRAGMENTS_DIR = path.join(SRC, 'fragments');
 const LICENSE = path.join(FRAGMENTS_DIR, 'license.css');
+const CHECKBOXES = path.join(FRAGMENTS_DIR, 'checkboxes.css');
 const PLUGIN_COMPAT = path.join(FRAGMENTS_DIR, 'plugin-compatibility.css');
 const STYLE_SETTINGS = path.join(FRAGMENTS_DIR, 'style-settings.css');
 
@@ -44,10 +45,11 @@ function build() {
 	// const compressed = sass.compile(SCSS_ENTRY, { style: 'compressed' }).css;
 
 	const license = fs.readFileSync(LICENSE, 'utf8');
+	const checkboxes = fs.readFileSync(CHECKBOXES, 'utf8');
 	const pluginCompat = fs.readFileSync(PLUGIN_COMPAT, 'utf8');
 	const styleSettings = fs.readFileSync(STYLE_SETTINGS, 'utf8');
 
-	const themeCss = [license, expanded, pluginCompat, styleSettings].join('\n');
+	const themeCss = [license, expanded, pluginCompat, checkboxes, styleSettings].join('\n');
 
 	fs.writeFileSync(path.join(__dirname, 'theme.css'), themeCss);
 

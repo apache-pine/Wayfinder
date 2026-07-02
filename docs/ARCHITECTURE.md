@@ -34,6 +34,8 @@ development workflow and should not be changed as part of unrelated work.
 - `plugins-core/` contains Obsidian core-plugin compatibility.
 - `plugins/` contains community-plugin compatibility.
 - `color-schemes/` contains selectable palette implementations.
+- `wayfinder/` contains the canonical Atlas identity and material treatments.
+  It is loaded last so inherited palettes cannot override Wayfinder tokens.
 - `dev/` contains inactive development helpers.
 
 ## Ordering
@@ -49,7 +51,8 @@ ordering unless a tested change requires otherwise:
 6. Mobile rules
 7. Core plugins
 8. Community plugins
-9. Color schemes
+9. Inherited color schemes
+10. Canonical Wayfinder identity
 
 CSS cascade order is behavior. Reordering imports is not a cosmetic cleanup and
 must be tested as a functional change.
@@ -65,6 +68,8 @@ The files in `src/fragments/` are concatenated around the compiled Sass:
 
 - `license.css` supplies the required license header.
 - `plugin-compatibility.css` contains compatibility rules kept outside Sass.
+- `checkboxes.css` contains the lightweight semantic checkbox map and temporary
+  emoji symbols that will eventually be replaced by custom Wayfinder SVGs.
 - `style-settings.css` contains Style Settings metadata and associated rules.
 
 These are source inputs despite their `.css` extension.

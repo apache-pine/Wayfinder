@@ -1,0 +1,168 @@
+/*
+ * Tables as cartographic ledgers
+ * ------------------------------
+ * A complete physical frame and visible grid keep dense information legible.
+ * Editing affordances wake with rune light because they alter the artifact.
+ */
+
+.theme-dark {
+	--table-background: rgba(15, 12, 9, 0.24);
+	--table-header-background: #21180f;
+	--table-header-background-hover: #271c11;
+	--table-row-alt-background: rgba(184, 134, 51, 0.022);
+	--table-row-alt-background-hover: rgba(var(--atlas-rune-rgb), 0.065);
+	--table-row-background-hover: rgba(var(--atlas-rune-rgb), 0.055);
+	--table-border-color: #563e23;
+	--table-header-border-color: #735226;
+	--table-column-divider-color: #46331f;
+	--table-border-width: 1px;
+	--table-header-border-width: 1px;
+	--table-column-first-border-width: 1px;
+	--table-column-last-border-width: 1px;
+	--table-row-last-border-width: 1px;
+	--table-add-button-border-width: 1px;
+	--table-cell-padding: 8px 12px;
+	--table-edge-cell-padding-first: 12px;
+	--table-edge-cell-padding-last: 12px;
+}
+
+.theme-dark .markdown-rendered table:not(.calendar),
+.theme-dark .markdown-source-view.mod-cm6 .cm-table-widget table:not(.calendar),
+.theme-dark table.table-view-table {
+	overflow: hidden;
+	border: 1px solid var(--table-border-color);
+	border-collapse: collapse;
+	border-radius: var(--wayfinder-radius-small);
+	background: var(--table-background);
+	box-shadow:
+		0 0 0 1px rgba(8, 6, 4, 0.5),
+		inset 0 1px rgba(255, 239, 190, 0.018);
+}
+
+.theme-dark .markdown-rendered table:not(.calendar) th,
+.theme-dark .markdown-rendered table:not(.calendar) td,
+.theme-dark .markdown-source-view.mod-cm6 .cm-table-widget table:not(.calendar) th,
+.theme-dark .markdown-source-view.mod-cm6 .cm-table-widget table:not(.calendar) td,
+.theme-dark table.table-view-table th,
+.theme-dark table.table-view-table td {
+	padding: var(--table-cell-padding);
+	border: 1px solid var(--table-column-divider-color);
+	vertical-align: top;
+}
+
+.theme-dark .markdown-rendered table:not(.calendar) thead,
+.theme-dark .markdown-source-view.mod-cm6 .cm-table-widget table:not(.calendar) thead,
+.theme-dark table.table-view-table thead {
+	background:
+		linear-gradient(180deg, rgba(212, 170, 85, 0.07), transparent 70%),
+		var(--table-header-background);
+}
+
+.theme-dark .markdown-rendered table:not(.calendar) th,
+.theme-dark .markdown-source-view.mod-cm6 .cm-table-widget table:not(.calendar) th,
+.theme-dark table.table-view-table th {
+	color: var(--atlas-parchment);
+	font-family: var(--wayfinder-font-display);
+	font-size: 0.92em;
+	font-weight: 600;
+	font-variant: small-caps;
+	letter-spacing: 0.045em;
+	border-color: var(--table-header-border-color);
+	border-bottom-width: 1px;
+}
+
+.theme-dark .markdown-rendered table:not(.calendar) tbody tr:nth-child(even),
+.theme-dark .markdown-source-view.mod-cm6 .cm-table-widget table:not(.calendar) tbody tr:nth-child(even),
+.theme-dark table.table-view-table tbody tr:nth-child(even) {
+	background: var(--table-row-alt-background);
+}
+
+.theme-dark .markdown-rendered table:not(.calendar) tbody tr,
+.theme-dark .markdown-source-view.mod-cm6 .cm-table-widget table:not(.calendar) tbody tr,
+.theme-dark table.table-view-table tbody tr {
+	transition:
+		background-color var(--wayfinder-motion-quick) ease,
+		box-shadow var(--wayfinder-motion-calm) ease;
+}
+
+.theme-dark .markdown-rendered table:not(.calendar) tbody tr:hover,
+.theme-dark .markdown-source-view.mod-cm6 .cm-table-widget table:not(.calendar) tbody tr:hover,
+.theme-dark table.table-view-table tbody tr:hover {
+	background: var(--table-row-background-hover);
+	box-shadow:
+		inset 2px 0 rgba(var(--atlas-rune-rgb), 0.48),
+		inset 0 1px rgba(var(--atlas-rune-rgb), 0.1),
+		inset 0 -1px rgba(var(--atlas-rune-rgb), 0.1);
+}
+
+.theme-dark .markdown-source-view.mod-cm6 .cm-table-widget .table-cell-wrapper {
+	min-height: 1.5em;
+	padding: var(--table-cell-padding);
+}
+
+.theme-dark .markdown-source-view.mod-cm6 .cm-table-widget td:focus-within,
+.theme-dark .markdown-source-view.mod-cm6 .cm-table-widget th:focus-within {
+	background: rgba(var(--atlas-rune-rgb), 0.075);
+	box-shadow:
+		inset 0 0 0 1px rgba(var(--atlas-rune-rgb), 0.45),
+		var(--wayfinder-rune-wake-glow);
+}
+
+/* Row/column controls are dormant construction runes. */
+.theme-dark .cm-table-widget .table-row-btn,
+.theme-dark .cm-table-widget .table-col-btn,
+.theme-dark .cm-table-widget .table-row-drag-handle,
+.theme-dark .cm-table-widget .table-col-drag-handle {
+	color: var(--atlas-ink-faded);
+	background: var(--atlas-wood);
+	border: 1px solid var(--wayfinder-shell-edge-bright);
+	border-radius: var(--wayfinder-radius-small);
+	opacity: 0.72;
+	transition:
+		color var(--wayfinder-motion-quick) ease,
+		background-color var(--wayfinder-motion-quick) ease,
+		border-color var(--wayfinder-motion-quick) ease,
+		box-shadow var(--wayfinder-motion-calm) ease,
+		text-shadow var(--wayfinder-motion-calm) ease,
+		opacity var(--wayfinder-motion-quick) ease,
+		transform var(--wayfinder-motion-quick) ease;
+}
+
+.theme-dark .cm-table-widget .table-row-btn:hover,
+.theme-dark .cm-table-widget .table-col-btn:hover,
+.theme-dark .cm-table-widget .table-row-drag-handle:hover,
+.theme-dark .cm-table-widget .table-col-drag-handle:hover {
+	color: var(--atlas-rune-bright);
+	background: var(--wayfinder-rune-wake-bg);
+	border-color: var(--wayfinder-rune-wake-border);
+	box-shadow: var(--wayfinder-rune-active-glow);
+	text-shadow: 0 0 8px rgba(var(--atlas-rune-rgb), 0.58);
+	opacity: 1;
+}
+
+.theme-dark .cm-table-widget .table-row-btn:active,
+.theme-dark .cm-table-widget .table-col-btn:active,
+.theme-dark .cm-table-widget .table-row-drag-handle:active,
+.theme-dark .cm-table-widget .table-col-drag-handle:active {
+	color: #d9f8ff;
+	background: var(--wayfinder-rune-active-bg);
+	border-color: var(--wayfinder-rune-active-border);
+	box-shadow: var(--wayfinder-rune-active-glow);
+	transform: scale(0.96);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.theme-dark .markdown-rendered table tbody tr,
+	.theme-dark .cm-table-widget .table-row-btn,
+	.theme-dark .cm-table-widget .table-col-btn,
+	.theme-dark .cm-table-widget .table-row-drag-handle,
+	.theme-dark .cm-table-widget .table-col-drag-handle {
+		transition: none;
+	}
+}
+
+.theme-dark.is-phone {
+	--table-cell-padding: 7px 9px;
+	--table-edge-cell-padding-first: 9px;
+	--table-edge-cell-padding-last: 9px;
+}

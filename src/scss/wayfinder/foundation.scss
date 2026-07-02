@@ -1,0 +1,239 @@
+/*
+ * Canonical Wayfinder identity
+ *
+ * Loaded after inherited color schemes so the Atlas palette remains
+ * authoritative.
+ */
+
+body {
+	/* Sans serif for sustained writing and functional UI; serif for display. */
+	--wayfinder-font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, Ubuntu, sans-serif;
+	--wayfinder-font-display: Cinzel, Georgia, "Times New Roman", serif;
+	--wayfinder-font-interface: var(--wayfinder-font-body);
+	--wayfinder-font-code: "Cascadia Code", "SFMono-Regular", Consolas, monospace;
+	--font-text-theme: var(--wayfinder-font-body);
+	--font-interface-theme: var(--wayfinder-font-interface);
+	--font-monospace-theme: var(--wayfinder-font-code);
+	--font-editor-theme: var(--wayfinder-font-body);
+
+	--wayfinder-radius-small: 3px;
+	--wayfinder-radius-medium: 5px;
+	--wayfinder-border-fine: 1px;
+	--wayfinder-shadow-inset: inset 0 1px rgba(255, 239, 190, 0.035);
+	--wayfinder-shadow-raised: 0 2px 8px rgba(0, 0, 0, 0.34);
+	--wayfinder-motion-quick: 120ms;
+	--wayfinder-motion-calm: 180ms;
+
+	--radius-s: var(--wayfinder-radius-small);
+	--radius-m: var(--wayfinder-radius-medium);
+	--input-radius: var(--wayfinder-radius-small);
+	--button-radius: var(--wayfinder-radius-small);
+	--modal-radius: var(--wayfinder-radius-medium);
+	--menu-radius: var(--wayfinder-radius-medium);
+	--tab-radius-active: var(--wayfinder-radius-small);
+
+	--h1-font: var(--wayfinder-font-display);
+	--h2-font: var(--wayfinder-font-display);
+	--h3-font: var(--wayfinder-font-display);
+	--h4-font: var(--wayfinder-font-display);
+	--h5-font: var(--wayfinder-font-display);
+	--h6-font: var(--wayfinder-font-display);
+	--inline-title-font: var(--wayfinder-font-display);
+	--h1-variant: small-caps;
+	--h2-variant: small-caps;
+	--line-height: 1.58;
+	--p-spacing: 1.35rem;
+}
+
+.theme-dark {
+	color-scheme: dark;
+
+	/* Physical materials */
+	--atlas-wood-deep: #090705;
+	--atlas-wood: #100c08;
+	--atlas-leather: #17110c;
+	--atlas-leather-raised: #20170f;
+	--atlas-parchment: #cdbd98;
+	--atlas-parchment-aged: #a9956d;
+	--atlas-parchment-shadow: #756344;
+	--atlas-reading-surface: #18140f;
+	--atlas-reading-raised: #201a13;
+	--atlas-ink: #e4ded0;
+	--atlas-ink-muted: #aaa28f;
+	--atlas-ink-faded: #766f61;
+	--atlas-brass: #b88633;
+	--atlas-brass-bright: #d4aa55;
+	--atlas-brass-aged: #6f4d1f;
+	--atlas-iron: #4b4941;
+	--atlas-wax: #8f3327;
+	--atlas-forest: #526a45;
+	--atlas-sea: #3f6970;
+	--atlas-ember: #a6532b;
+	--atlas-rune: #58a9c4;
+	--atlas-rune-bright: #83cee2;
+	--atlas-rune-rgb: 88, 169, 196;
+	--atlas-aether: #7771b9;
+	--atlas-aether-rgb: 119, 113, 185;
+
+	/* Inherited Minimal internals */
+	--bg1: var(--atlas-reading-surface);
+	--bg2: var(--atlas-leather);
+	--bg3: rgba(184, 134, 51, 0.11);
+	--ui1: #34291c;
+	--ui2: #4b3924;
+	--ui3: var(--atlas-brass-aged);
+	--tx1: var(--atlas-ink);
+	--tx2: var(--atlas-ink-muted);
+	--tx3: var(--atlas-ink-faded);
+	--tx4: #c7a86f;
+	--ax1: var(--atlas-brass-bright);
+	--ax2: #e0bd71;
+	--ax3: var(--atlas-brass);
+	--hl1: rgba(184, 134, 51, 0.24);
+	--hl2: rgba(166, 83, 43, 0.3);
+	--sp1: var(--atlas-wood-deep);
+
+	/* Obsidian semantic surface map */
+	--background-primary: var(--atlas-reading-surface);
+	--background-primary-alt: var(--atlas-reading-raised);
+	--background-secondary: var(--atlas-leather);
+	--background-secondary-alt: var(--atlas-wood);
+	--background-modifier-border: #392a19;
+	--background-modifier-border-hover: #594123;
+	--background-modifier-border-focus: var(--atlas-brass-aged);
+	--background-modifier-hover: rgba(184, 134, 51, 0.1);
+	--background-modifier-active-hover: rgba(184, 134, 51, 0.16);
+	--background-modifier-form-field: #110e0a;
+	--background-modifier-form-field-highlighted: var(--atlas-reading-raised);
+	--divider-color: #3b2b19;
+	--divider-color-hover: var(--atlas-rune);
+	--frame-divider-color: #2c2014;
+	--interactive-normal: var(--atlas-leather-raised);
+	--interactive-hover: #2a1e12;
+	--interactive-accent: var(--atlas-brass);
+	--interactive-accent-hover: var(--atlas-brass-bright);
+	--text-normal: var(--atlas-ink);
+	--text-muted: var(--atlas-ink-muted);
+	--text-faint: var(--atlas-ink-faded);
+	--text-accent: var(--atlas-brass-bright);
+	--text-accent-hover: #ecd08d;
+	--text-on-accent: #171006;
+	--text-selection: rgba(184, 134, 51, 0.28);
+	--text-highlight-bg: rgba(166, 83, 43, 0.32);
+	--icon-color: var(--atlas-ink-muted);
+	--icon-color-hover: var(--atlas-brass-bright);
+	--icon-color-active: var(--atlas-brass-bright);
+	--nav-item-color: var(--atlas-ink-muted);
+	--nav-item-color-hover: var(--atlas-ink);
+	--nav-item-color-active: var(--atlas-ink);
+	--nav-item-background-hover: rgba(184, 134, 51, 0.08);
+	--nav-item-background-active: rgba(184, 134, 51, 0.15);
+	--titlebar-background: var(--atlas-wood-deep);
+	--titlebar-background-focused: var(--atlas-wood-deep);
+	--tab-container-background: var(--atlas-leather);
+	--tab-background-active: var(--atlas-reading-surface);
+	--tab-outline-color: #3d2c19;
+	--ribbon-background: var(--atlas-wood);
+	--status-bar-background: var(--atlas-wood-deep);
+	--status-bar-border-color: #2b1e11;
+	--scrollbar-thumb-bg: #4a3520;
+	--scrollbar-active-thumb-bg: var(--atlas-brass-aged);
+
+	/* Status and categorical colors */
+	--color-red: #a9493d;
+	--color-orange: #b96d35;
+	--color-yellow: #c49a4b;
+	--color-green: #668158;
+	--color-cyan: #508088;
+	--color-blue: #527e9b;
+	--color-purple: #74689a;
+	--color-pink: #965d68;
+}
+
+/*
+ * Safe fallback for accidental light-mode use, not a separately maintained
+ * visual experience.
+ */
+.theme-light {
+	color-scheme: light;
+	--atlas-wood-deep: #2d2116;
+	--atlas-wood: #49351f;
+	--atlas-leather: #5a4027;
+	--atlas-parchment: #e3d5b2;
+	--atlas-parchment-aged: #d3c097;
+	--atlas-parchment-shadow: #af9870;
+	--atlas-reading-surface: #e8dbba;
+	--atlas-reading-raised: #f0e5c9;
+	--atlas-ink: #2b241b;
+	--atlas-ink-muted: #5d503d;
+	--atlas-ink-faded: #87775d;
+	--atlas-brass: #8d6125;
+	--atlas-brass-bright: #a9792d;
+	--atlas-brass-aged: #6d4b20;
+	--atlas-wax: #8e372b;
+	--atlas-forest: #4d6844;
+	--atlas-sea: #3f6870;
+	--atlas-ember: #a0502c;
+	--atlas-rune: #357c97;
+	--atlas-aether: #635a91;
+	--bg1: var(--atlas-reading-surface);
+	--bg2: var(--atlas-parchment-aged);
+	--bg3: rgba(89, 62, 28, 0.1);
+	--ui1: #cbb78f;
+	--ui2: #b49b6e;
+	--ui3: #8b6b3b;
+	--tx1: var(--atlas-ink);
+	--tx2: var(--atlas-ink-muted);
+	--tx3: var(--atlas-ink-faded);
+	--tx4: #67451d;
+	--ax1: var(--atlas-brass);
+	--ax2: var(--atlas-brass-aged);
+	--ax3: var(--atlas-brass-bright);
+	--hl1: rgba(141, 97, 37, 0.2);
+	--hl2: rgba(160, 80, 44, 0.2);
+	--sp1: #fffaf0;
+	--background-primary: var(--atlas-reading-surface);
+	--background-primary-alt: var(--atlas-reading-raised);
+	--background-secondary: var(--atlas-parchment-aged);
+	--background-secondary-alt: #c8b287;
+	--background-modifier-border: #b39a6d;
+	--background-modifier-border-hover: #917244;
+	--background-modifier-border-focus: var(--atlas-brass);
+	--background-modifier-hover: rgba(89, 62, 28, 0.09);
+	--background-modifier-active-hover: rgba(89, 62, 28, 0.14);
+	--background-modifier-form-field: rgba(255, 250, 236, 0.5);
+	--background-modifier-form-field-highlighted: var(--atlas-reading-raised);
+	--divider-color: #b29a70;
+	--interactive-normal: #d5c39c;
+	--interactive-hover: #c8b183;
+	--interactive-accent: var(--atlas-brass);
+	--interactive-accent-hover: var(--atlas-brass-bright);
+	--text-normal: var(--atlas-ink);
+	--text-muted: var(--atlas-ink-muted);
+	--text-faint: var(--atlas-ink-faded);
+	--text-accent: var(--atlas-brass-aged);
+	--text-accent-hover: #493015;
+	--text-on-accent: #fff7e2;
+	--text-selection: rgba(141, 97, 37, 0.22);
+	--text-highlight-bg: rgba(196, 154, 75, 0.32);
+	--nav-item-background-hover: rgba(89, 62, 28, 0.08);
+	--nav-item-background-active: rgba(89, 62, 28, 0.14);
+	--titlebar-background: var(--atlas-wood-deep);
+	--titlebar-background-focused: var(--atlas-wood-deep);
+	--titlebar-text-color: #dfcca2;
+	--titlebar-text-color-focused: #f0dfb7;
+	--tab-container-background: var(--atlas-parchment-aged);
+	--tab-background-active: var(--atlas-reading-surface);
+	--tab-outline-color: #b49b6e;
+	--ribbon-background: var(--atlas-wood);
+	--status-bar-background: var(--atlas-wood-deep);
+	--status-bar-border-color: #21170f;
+	--status-bar-text-color: #d1bd91;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	body {
+		--wayfinder-motion-quick: 0ms;
+		--wayfinder-motion-calm: 0ms;
+	}
+}

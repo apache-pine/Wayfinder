@@ -599,13 +599,13 @@ settings:
 		title: H1 font
 		description: Name of the font as it appears on your system
 		type: variable-text
-		default: ''
+		default: var(--font-interface)
 	-
 		id: h1-size
 		title: H1 font size
 		description: Accepts any CSS font-size value
 		type: variable-text
-		default: 1.125em
+		default: 2em
 	-
 		id: h1-weight
 		title: H1 font weight
@@ -626,7 +626,7 @@ settings:
 		title: H1 font variant
 		type: variable-select
 		allowEmpty: false
-		default: normal
+		default: small-caps
 		options:
 			-
 				label: Normal
@@ -667,13 +667,13 @@ settings:
 		title: H2 font
 		description: Name of the font as it appears on your system
 		type: variable-text
-		default: ''
+		default: var(--font-interface)
 	-
 		id: h2-size
 		title: H2 font size
 		description: Accepts any CSS font-size value
 		type: variable-text
-		default: 1em
+		default: 1.65em
 	-
 		id: h2-weight
 		title: H2 font weight
@@ -694,7 +694,7 @@ settings:
 		title: H2 font variant
 		type: variable-select
 		allowEmpty: false
-		default: normal
+		default: small-caps
 		options:
 			-
 				label: Normal
@@ -735,13 +735,13 @@ settings:
 		title: H3 font
 		description: Name of the font as it appears on your system
 		type: variable-text
-		default: ''
+		default: var(--font-interface)
 	-
 		id: h3-size
 		title: H3 font size
 		description: Accepts any CSS font-size value
 		type: variable-text
-		default: 1em
+		default: 1.4em
 	-
 		id: h3-weight
 		title: H3 font weight
@@ -803,18 +803,18 @@ settings:
 		title: H4 font
 		description: Name of the font as it appears on your system
 		type: variable-text
-		default: ''
+		default: var(--font-interface)
 	-
 		id: h4-size
 		title: H4 font size
 		description: Accepts any CSS font-size value
 		type: variable-text
-		default: 0.9em
+		default: 1.22em
 	-
 		id: h4-weight
 		title: H4 font weight
 		type: variable-number-slider
-		default: 500
+		default: 600
 		min: 100
 		max: 900
 		step: 100
@@ -871,18 +871,18 @@ settings:
 		title: H5 font
 		description: Name of the font as it appears on your system
 		type: variable-text
-		default: ''
+		default: var(--font-interface)
 	- 
 		id: h5-size
 		title: H5 font size
 		description: Accepts any CSS font-size value
 		type: variable-text
-		default: 0.85em
+		default: 1.08em
 	-
 		id: h5-weight
 		title: H5 font weight
 		type: variable-number-slider
-		default: 500
+		default: 600
 		min: 100
 		max: 900
 		step: 100
@@ -939,18 +939,18 @@ settings:
 		title: H6 font
 		description: Name of the font as it appears on your system
 		type: variable-text
-		default: ''
+		default: var(--font-interface)
 	-
 		id: h6-size
 		title: H6 font size
 		description: Accepts any CSS font-size value
 		type: variable-text
-		default: 0.85em
+		default: 0.95em
 	-
 		id: h6-weight
 		title: H6 font weight
 		type: variable-number-slider
-		default: 400
+		default: 600
 		min: 100
 		max: 900
 		step: 100
@@ -966,7 +966,7 @@ settings:
 		title: H6 font variant
 		type: variable-select
 		allowEmpty: false
-		default: small-caps
+		default: all-small-caps
 		options:
 			-
 				label: Normal
@@ -1267,9 +1267,9 @@ settings:
 				label: Square
 				value: checkbox-square
 	-
-		id: wayfinder-strike-lists
-		title: Strike completed tasks
-		description: Adds strikethrough line and greyed text for completed tasks
+		id: wayfinder-no-strike-lists
+		title: Do not strike completed tasks
+		description: Keeps completed task text unmodified instead of crossed out
 		type: class-toggle
 		default: false
 	-
@@ -1950,13 +1950,13 @@ settings:
 		title: Inline title font
 		description: Name of the font as it appears on your system
 		type: variable-text
-		default: ''
+		default: var(--font-interface)
 	-
 		id: inline-title-size
 		title: Inline title font size
 		description: Accepts any CSS font-size value
 		type: variable-text
-		default: 1.125em
+		default: 2em
 	-
 		id: inline-title-weight
 		title: Inline title font weight

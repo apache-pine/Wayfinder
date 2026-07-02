@@ -47,7 +47,7 @@
 @use 'features/block-width';
 @use 'features/borders';
 @use 'features/cards';
-@use 'features/checklist-icons';
+// Custom semantic checkbox icons are supplied by src/fragments/checkboxes.css.
 @use 'features/colorful-active-states';
 @use 'features/colorful-frame';
 @use 'features/colorful-headings';
@@ -106,3 +106,18 @@
 @use 'color-schemes/rose-pine';
 @use 'color-schemes/solarized';
 @use 'color-schemes/things';
+
+/*
+ * Canonical Wayfinder identity
+ *
+ * Keep these last. They intentionally supersede inherited palettes and map
+ * the Atlas design tokens onto Obsidian's semantic variables.
+ */
+@use 'wayfinder/foundation';
+@use 'wayfinder/materials';
+@use 'wayfinder/shell';
+@use 'wayfinder/content';
+@use 'wayfinder/controls';
+@use 'wayfinder/interactions';
+@use 'wayfinder/tables' as wayfinder-tables;
+@use 'wayfinder/artifacts';

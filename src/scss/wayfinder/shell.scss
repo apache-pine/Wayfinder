@@ -1,0 +1,272 @@
+/*
+ * Application shell
+ * -----------------
+ * The dark fitted case surrounding the Atlas. These treatments establish
+ * hierarchy through material, fine rules, and restrained brass rather than
+ * heavy ornament.
+ */
+
+.theme-dark {
+	--wayfinder-shell-edge: #2a1d10;
+	--wayfinder-shell-edge-bright: #4b351c;
+	--wayfinder-shell-highlight: rgba(224, 189, 113, 0.055);
+	--wayfinder-shell-shadow: rgba(0, 0, 0, 0.55);
+	--wayfinder-nav-hover: rgba(184, 134, 51, 0.075);
+	--wayfinder-nav-active: rgba(184, 134, 51, 0.14);
+}
+
+/* Window and structural frame */
+.theme-dark .titlebar,
+.theme-dark .workspace-tab-header-container,
+.theme-dark .view-header {
+	background:
+		linear-gradient(180deg, var(--wayfinder-shell-highlight), transparent 55%),
+		var(--atlas-wood-deep);
+}
+
+.theme-dark .titlebar {
+	border-bottom: 1px solid var(--wayfinder-shell-edge);
+	box-shadow: inset 0 -1px rgba(0, 0, 0, 0.35);
+}
+
+.theme-dark .titlebar-text {
+	color: var(--atlas-ink-faded);
+	font-size: var(--font-ui-smaller);
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+}
+
+.theme-dark .workspace-split.mod-left-split {
+	border-right: 1px solid var(--wayfinder-shell-edge);
+	box-shadow:
+		inset -1px 0 rgba(224, 189, 113, 0.025),
+		5px 0 18px rgba(0, 0, 0, 0.12);
+}
+
+.theme-dark .workspace-split.mod-right-split {
+	border-left: 1px solid var(--wayfinder-shell-edge);
+	box-shadow:
+		inset 1px 0 rgba(224, 189, 113, 0.025),
+		-5px 0 18px rgba(0, 0, 0, 0.12);
+}
+
+.theme-dark .workspace-split:not(.mod-root) .workspace-leaf-content {
+	background:
+		linear-gradient(90deg, rgba(255, 226, 164, 0.014), transparent 24%),
+		var(--atlas-leather);
+}
+
+/* Page-marker tabs */
+.theme-dark .mod-root .workspace-tab-header-container {
+	border-bottom: 1px solid var(--wayfinder-shell-edge);
+	box-shadow:
+		inset 0 -1px rgba(0, 0, 0, 0.42),
+		0 2px 8px rgba(0, 0, 0, 0.13);
+}
+
+.theme-dark .mod-root .workspace-tab-header {
+	margin-top: 4px;
+	color: var(--atlas-ink-faded);
+	border: 1px solid transparent;
+	border-bottom: 0;
+	border-radius: var(--wayfinder-radius-small) var(--wayfinder-radius-small) 0 0;
+}
+
+.theme-dark .mod-root .workspace-tab-header:hover {
+	color: var(--atlas-ink-muted);
+	background: rgba(184, 134, 51, 0.055);
+	border-color: rgba(111, 77, 31, 0.35);
+}
+
+.theme-dark .mod-root .workspace-tab-header.is-active {
+	color: var(--atlas-ink);
+	background:
+		linear-gradient(180deg, rgba(212, 170, 85, 0.07), transparent 60%),
+		var(--atlas-reading-surface);
+	border-color: var(--wayfinder-shell-edge-bright);
+	box-shadow:
+		inset 0 2px var(--atlas-brass-aged),
+		0 -2px 8px rgba(0, 0, 0, 0.16);
+}
+
+.theme-dark .workspace-tab-header-inner-title {
+	letter-spacing: 0.015em;
+}
+
+.theme-dark .mod-root .workspace-tab-header.is-active .workspace-tab-header-inner-title {
+	color: var(--atlas-parchment);
+}
+
+.theme-dark .workspace-tab-header-inner-close-button:hover,
+.theme-dark .workspace-tab-header-new-tab:hover,
+.theme-dark .sidebar-toggle-button:hover {
+	color: var(--atlas-brass-bright);
+	background: rgba(184, 134, 51, 0.1);
+}
+
+/* Sidebar tool tabs */
+.theme-dark .workspace-split:not(.mod-root) .workspace-tab-header-container {
+	border-bottom: 1px solid var(--wayfinder-shell-edge);
+	background:
+		linear-gradient(180deg, rgba(224, 189, 113, 0.035), transparent 70%),
+		var(--atlas-wood);
+}
+
+.theme-dark .workspace-split:not(.mod-root) .workspace-tab-header {
+	color: var(--atlas-ink-faded);
+}
+
+.theme-dark .workspace-split:not(.mod-root) .workspace-tab-header:hover {
+	color: var(--atlas-ink-muted);
+	background-color: var(--wayfinder-nav-hover);
+}
+
+.theme-dark .workspace-split:not(.mod-root) .workspace-tab-header.is-active {
+	color: var(--atlas-brass-bright);
+	background-color: var(--wayfinder-nav-active);
+	box-shadow: inset 0 -2px var(--atlas-brass-aged);
+}
+
+/* Ribbon and controls */
+.theme-dark .workspace-ribbon {
+	border-right: 1px solid var(--wayfinder-shell-edge);
+	background:
+		linear-gradient(90deg, rgba(212, 170, 85, 0.035), transparent 55%),
+		var(--atlas-wood-deep);
+	box-shadow: inset -1px 0 rgba(224, 189, 113, 0.02);
+}
+
+.theme-dark .workspace-ribbon .clickable-icon {
+	color: var(--atlas-ink-faded);
+	border: 1px solid transparent;
+	border-radius: var(--wayfinder-radius-small);
+}
+
+.theme-dark .workspace-ribbon .clickable-icon:hover,
+.theme-dark .workspace-ribbon .clickable-icon.is-active {
+	color: var(--atlas-brass-bright);
+	background: rgba(184, 134, 51, 0.09);
+	border-color: rgba(111, 77, 31, 0.45);
+}
+
+/* File explorer */
+.theme-dark .nav-files-container {
+	padding: var(--size-4-2) var(--size-4-2) var(--size-4-4);
+}
+
+.theme-dark .nav-folder.mod-root > .nav-folder-title {
+	margin-bottom: var(--size-4-1);
+	padding-bottom: var(--size-4-2);
+	border-bottom: 1px solid var(--wayfinder-shell-edge);
+}
+
+.theme-dark .nav-folder.mod-root > .nav-folder-title .nav-folder-title-content {
+	color: var(--atlas-brass);
+	font-family: var(--wayfinder-font-display);
+	font-weight: 600;
+	letter-spacing: 0.09em;
+}
+
+.theme-dark .nav-file-title,
+.theme-dark .nav-folder-title {
+	margin: 1px 0;
+	border: 1px solid transparent;
+	border-radius: 2px;
+}
+
+.theme-dark .nav-file-title:hover,
+.theme-dark .nav-folder-title:hover {
+	color: var(--atlas-ink);
+	background: var(--wayfinder-nav-hover);
+	border-color: rgba(111, 77, 31, 0.25);
+}
+
+.theme-dark .nav-file-title.is-active,
+.theme-dark .nav-folder-title.is-active {
+	color: var(--atlas-ink);
+	background:
+		linear-gradient(90deg, rgba(184, 134, 51, 0.18), rgba(184, 134, 51, 0.055));
+	border-color: rgba(111, 77, 31, 0.38);
+	box-shadow: inset 2px 0 var(--atlas-brass);
+}
+
+.theme-dark .nav-file-title.is-active .nav-file-title-content {
+	font-weight: 500;
+}
+
+.theme-dark .nav-folder-collapse-indicator {
+	color: var(--atlas-ink-faded);
+}
+
+.theme-dark .nav-folder-title:hover .nav-folder-collapse-indicator,
+.theme-dark .nav-folder.is-collapsed > .nav-folder-title .nav-folder-collapse-indicator {
+	color: var(--atlas-brass-aged);
+}
+
+.theme-dark .nav-buttons-container {
+	gap: var(--size-2-2);
+	padding: var(--size-4-2);
+	border-bottom: 1px solid var(--wayfinder-shell-edge);
+}
+
+.theme-dark .nav-action-button {
+	color: var(--atlas-ink-muted);
+	border: 1px solid transparent;
+}
+
+.theme-dark .nav-action-button:hover {
+	color: var(--atlas-brass-bright);
+	background: rgba(184, 134, 51, 0.09);
+	border-color: rgba(111, 77, 31, 0.4);
+}
+
+/* Vault profile and status rail */
+.theme-dark .workspace-sidedock-vault-profile {
+	color: var(--atlas-ink-muted);
+	background:
+		linear-gradient(180deg, rgba(212, 170, 85, 0.025), transparent),
+		var(--atlas-wood-deep);
+	border-top: 1px solid var(--wayfinder-shell-edge);
+}
+
+.theme-dark .workspace-drawer-vault-switcher:hover,
+.theme-dark .workspace-drawer-vault-actions .clickable-icon:hover {
+	color: var(--atlas-brass-bright);
+}
+
+.theme-dark .status-bar {
+	color: var(--atlas-ink-faded);
+	background:
+		linear-gradient(180deg, rgba(212, 170, 85, 0.025), transparent),
+		var(--atlas-wood-deep);
+	border: 1px solid var(--wayfinder-shell-edge);
+	box-shadow:
+		inset 0 1px rgba(224, 189, 113, 0.025),
+		var(--wayfinder-shadow-raised);
+}
+
+.theme-dark .status-bar:hover {
+	color: var(--atlas-ink-muted);
+}
+
+.theme-dark .status-bar .status-bar-item.mod-clickable:hover,
+.theme-dark .status-bar .status-bar-item.plugin-editor-status:hover,
+.theme-dark .status-bar .status-bar-item.plugin-sync:hover {
+	color: var(--atlas-brass-bright);
+	background-color: rgba(184, 134, 51, 0.085);
+}
+
+/* Mobile keeps hierarchy but sheds desktop framing and ornamental depth. */
+.theme-dark.is-mobile .workspace-split.mod-left-split,
+.theme-dark.is-mobile .workspace-split.mod-right-split {
+	border: 0;
+	box-shadow: none;
+}
+
+.theme-dark.is-phone .workspace-drawer {
+	--mobile-sidebar-background: var(--atlas-leather);
+}
+
+.theme-dark.is-phone .nav-files-container {
+	padding-inline: var(--size-4-3);
+}

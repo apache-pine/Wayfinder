@@ -4,6 +4,7 @@ body {
 	--checkbox-top: 2px;
 	--checkbox-left: 0px;
 	--checkbox-margin: 0px 6px 0px -2em;
+	--checklist-done-decoration: line-through;
 }
 .checkbox-square {
 	--checkbox-size: calc(var(--font-text-size) * 0.85);
@@ -13,10 +14,7 @@ body {
 	--checkbox-margin: 0px 8px 0px -2em;
 }
 
-body.wayfinder-strike-lists {
-	--checklist-done-decoration: line-through;
-}
-body:not(.wayfinder-strike-lists) {
+body.wayfinder-no-strike-lists {
 	--checklist-done-decoration: none;
 	--checklist-done-color: var(--text-normal);
 }

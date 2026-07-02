@@ -1,0 +1,300 @@
+/*
+ * Controls and overlays
+ * ---------------------
+ * Familiar controls finished as compact brass-and-leather instruments.
+ */
+
+.theme-dark {
+	--wayfinder-control-bg: #17120d;
+	--wayfinder-control-bg-hover: #21180f;
+	--wayfinder-control-bg-active: #2a1e12;
+	--wayfinder-control-border: #46321c;
+	--wayfinder-control-border-hover: #755324;
+	--wayfinder-overlay-bg: #15110d;
+	--wayfinder-overlay-header: #100c08;
+}
+
+/* Fields */
+.theme-dark input[type="text"],
+.theme-dark input[type="search"],
+.theme-dark input[type="email"],
+.theme-dark input[type="password"],
+.theme-dark input[type="number"],
+.theme-dark input[type="date"],
+.theme-dark textarea,
+.theme-dark select,
+.theme-dark .dropdown {
+	color: var(--atlas-ink);
+	background:
+		linear-gradient(180deg, rgba(255, 239, 190, 0.018), transparent 55%),
+		var(--wayfinder-control-bg);
+	border: 1px solid var(--wayfinder-control-border);
+	border-radius: var(--wayfinder-radius-small);
+	box-shadow:
+		inset 0 1px 2px rgba(0, 0, 0, 0.34),
+		inset 0 1px rgba(255, 239, 190, 0.018);
+}
+
+.theme-dark input::placeholder,
+.theme-dark textarea::placeholder {
+	color: var(--atlas-ink-faded);
+}
+
+.theme-dark input:hover,
+.theme-dark textarea:hover,
+.theme-dark select:hover,
+.theme-dark .dropdown:hover {
+	border-color: var(--wayfinder-control-border-hover);
+}
+
+.theme-dark input:focus,
+.theme-dark input:focus-visible,
+.theme-dark textarea:focus,
+.theme-dark textarea:focus-visible,
+.theme-dark select:focus,
+.theme-dark .dropdown:focus {
+	border-color: var(--atlas-brass);
+	box-shadow:
+		0 0 0 1px rgba(184, 134, 51, 0.22),
+		inset 0 1px 2px rgba(0, 0, 0, 0.34);
+}
+
+/* Buttons */
+.theme-dark button:not(.clickable-icon):not(.workspace-tab-header-inner-close-button),
+.theme-dark .mod-cta {
+	color: var(--atlas-ink);
+	background:
+		linear-gradient(180deg, rgba(212, 170, 85, 0.07), transparent 65%),
+		var(--atlas-leather-raised);
+	border: 1px solid var(--wayfinder-control-border);
+	border-radius: var(--wayfinder-radius-small);
+	box-shadow:
+		inset 0 1px rgba(255, 239, 190, 0.035),
+		0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.theme-dark button:not(.clickable-icon):hover {
+	color: var(--atlas-brass-bright);
+	background:
+		linear-gradient(180deg, rgba(212, 170, 85, 0.11), transparent 70%),
+		var(--wayfinder-control-bg-hover);
+	border-color: var(--wayfinder-control-border-hover);
+}
+
+.theme-dark button:not(.clickable-icon):active {
+	background: var(--wayfinder-control-bg-active);
+	box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.42);
+	transform: translateY(1px);
+}
+
+.theme-dark button.mod-cta {
+	color: #171006;
+	background:
+		linear-gradient(180deg, rgba(255, 235, 179, 0.2), transparent 60%),
+		var(--atlas-brass);
+	border-color: var(--atlas-brass-bright);
+}
+
+.theme-dark button.mod-warning {
+	color: #f3e5dc;
+	background-color: var(--atlas-wax);
+	border-color: #b04d3e;
+}
+
+/* Menus and suggestion lists */
+.theme-dark .menu,
+.theme-dark .suggestion-container {
+	color: var(--atlas-ink);
+	background:
+		linear-gradient(135deg, rgba(212, 170, 85, 0.025), transparent 42%),
+		var(--wayfinder-overlay-bg);
+	border: 1px solid var(--wayfinder-control-border);
+	border-radius: var(--wayfinder-radius-medium);
+	box-shadow:
+		inset 0 1px rgba(255, 239, 190, 0.025),
+		0 10px 30px rgba(0, 0, 0, 0.52);
+}
+
+.theme-dark .menu-separator {
+	border-color: var(--wayfinder-shell-edge);
+}
+
+.theme-dark .menu-item,
+.theme-dark .suggestion-item {
+	border-radius: 2px;
+}
+
+.theme-dark .menu-item:hover,
+.theme-dark .menu-item.selected,
+.theme-dark .suggestion-item.is-selected {
+	color: var(--atlas-ink);
+	background:
+		linear-gradient(90deg, rgba(184, 134, 51, 0.15), rgba(184, 134, 51, 0.045));
+	box-shadow: inset 2px 0 var(--atlas-brass-aged);
+}
+
+.theme-dark .menu-item-icon,
+.theme-dark .suggestion-flair {
+	color: var(--atlas-brass-aged);
+}
+
+.theme-dark .menu-item:hover .menu-item-icon,
+.theme-dark .suggestion-item.is-selected .suggestion-flair {
+	color: var(--atlas-brass-bright);
+}
+
+/* Command palette and prompts */
+.theme-dark .prompt {
+	background:
+		linear-gradient(180deg, rgba(212, 170, 85, 0.035), transparent 28%),
+		var(--wayfinder-overlay-bg);
+	border: 1px solid var(--wayfinder-control-border-hover);
+	border-radius: var(--wayfinder-radius-medium);
+	box-shadow:
+		inset 0 1px rgba(255, 239, 190, 0.035),
+		0 18px 55px rgba(0, 0, 0, 0.64);
+}
+
+.theme-dark .prompt-input-container {
+	background: var(--wayfinder-overlay-header);
+	border-bottom: 1px solid var(--wayfinder-shell-edge-bright);
+}
+
+.theme-dark input.prompt-input,
+.theme-dark input.prompt-input:hover,
+.theme-dark input.prompt-input:focus,
+.theme-dark input.prompt-input:focus-visible {
+	background: transparent;
+	border: 0;
+	border-radius: 0;
+	box-shadow: none;
+}
+
+.theme-dark .prompt-instructions {
+	color: var(--atlas-ink-faded);
+	border-top: 1px solid var(--wayfinder-shell-edge);
+}
+
+/* Modals */
+.theme-dark .modal {
+	color: var(--atlas-ink);
+	background:
+		linear-gradient(145deg, rgba(212, 170, 85, 0.025), transparent 35%),
+		var(--wayfinder-overlay-bg);
+	border: 1px solid var(--wayfinder-control-border);
+	border-radius: var(--wayfinder-radius-medium);
+	box-shadow:
+		inset 0 1px rgba(255, 239, 190, 0.03),
+		0 20px 60px rgba(0, 0, 0, 0.62);
+}
+
+.theme-dark .modal-title,
+.theme-dark .modal h1,
+.theme-dark .modal h2 {
+	color: var(--atlas-brass-bright);
+	font-family: var(--wayfinder-font-display);
+}
+
+.theme-dark .modal-close-button {
+	color: var(--atlas-ink-faded);
+}
+
+.theme-dark .modal-close-button:hover {
+	color: var(--atlas-brass-bright);
+	background-color: rgba(184, 134, 51, 0.08);
+}
+
+.theme-dark .modal-bg {
+	background: rgba(5, 4, 3, 0.72);
+	backdrop-filter: blur(2px);
+}
+
+.theme-dark .setting-item {
+	border-color: var(--wayfinder-shell-edge);
+}
+
+.theme-dark .setting-item-name {
+	color: var(--atlas-ink);
+}
+
+.theme-dark .setting-item-description {
+	color: var(--atlas-ink-muted);
+}
+
+/* Hover previews and tooltips */
+.theme-dark .popover,
+.theme-dark .hover-popover {
+	background:
+		linear-gradient(145deg, rgba(212, 170, 85, 0.025), transparent 38%),
+		var(--wayfinder-overlay-bg);
+	border: 1px solid var(--wayfinder-control-border);
+	border-radius: var(--wayfinder-radius-medium);
+	box-shadow:
+		inset 0 1px rgba(255, 239, 190, 0.025),
+		0 12px 36px rgba(0, 0, 0, 0.58);
+}
+
+.theme-dark .tooltip {
+	color: var(--atlas-ink);
+	background: var(--atlas-wood-deep);
+	border: 1px solid var(--wayfinder-control-border);
+	border-radius: var(--wayfinder-radius-small);
+	box-shadow: 0 5px 16px rgba(0, 0, 0, 0.45);
+}
+
+/* Find and replace */
+.theme-dark .document-search-container {
+	background: var(--atlas-wood);
+	border: 1px solid var(--wayfinder-shell-edge);
+	border-radius: 0 0 var(--wayfinder-radius-medium) var(--wayfinder-radius-medium);
+	box-shadow: var(--wayfinder-shadow-raised);
+}
+
+/* Editing Toolbar and cMenu plugin surfaces */
+.theme-dark #cMenuModalBar,
+.theme-dark #editingToolbarModalBar,
+.theme-dark .editingToolbarModalBar,
+.theme-dark .editing-toolbar {
+	background:
+		linear-gradient(180deg, rgba(212, 170, 85, 0.035), transparent 60%),
+		var(--atlas-leather);
+	border: 1px solid var(--wayfinder-shell-edge-bright);
+	border-radius: var(--wayfinder-radius-small);
+	box-shadow:
+		inset 0 1px rgba(255, 239, 190, 0.025),
+		0 3px 12px rgba(0, 0, 0, 0.32);
+}
+
+.theme-dark #cMenuModalBar button,
+.theme-dark #editingToolbarModalBar button,
+.theme-dark .editingToolbarModalBar button,
+.theme-dark .editing-toolbar button {
+	color: var(--atlas-ink-muted);
+	background: transparent;
+	border-color: transparent;
+	box-shadow: none;
+}
+
+.theme-dark #cMenuModalBar button:hover,
+.theme-dark #editingToolbarModalBar button:hover,
+.theme-dark .editingToolbarModalBar button:hover,
+.theme-dark .editing-toolbar button:hover {
+	color: var(--atlas-brass-bright);
+	background-color: rgba(184, 134, 51, 0.09);
+	border-color: rgba(111, 77, 31, 0.38);
+	transform: none;
+}
+
+/* Mobile favors touch clarity over layered depth. */
+.theme-dark.is-mobile .modal,
+.theme-dark.is-mobile .prompt,
+.theme-dark.is-mobile .menu,
+.theme-dark.is-mobile .suggestion-container {
+	border-radius: var(--wayfinder-radius-small);
+	backdrop-filter: none;
+}
+
+.theme-dark.is-mobile .mobile-toolbar {
+	background: var(--atlas-wood-deep);
+	border-color: var(--wayfinder-shell-edge);
+}

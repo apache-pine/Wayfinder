@@ -1,0 +1,311 @@
+/*
+ * Enchanted interaction language
+ * ------------------------------
+ * Hover prepares the spell, press/focus activates it, and persistent
+ * selection settles into brass. Informational surfaces remain quiet.
+ */
+
+.theme-dark {
+	--wayfinder-rune-wake-bg: rgba(var(--atlas-rune-rgb), 0.07);
+	--wayfinder-rune-wake-border: rgba(var(--atlas-rune-rgb), 0.32);
+	--wayfinder-rune-wake-glow: 0 0 9px rgba(var(--atlas-rune-rgb), 0.16);
+	--wayfinder-rune-active-bg: rgba(var(--atlas-rune-rgb), 0.13);
+	--wayfinder-rune-active-border: rgba(var(--atlas-rune-rgb), 0.62);
+	--wayfinder-rune-active-glow: 0 0 4px rgba(var(--atlas-rune-rgb), 0.42), 0 0 14px rgba(var(--atlas-rune-rgb), 0.24);
+}
+
+/* Rune-bearing icon controls */
+.theme-dark .clickable-icon,
+.theme-dark .workspace-ribbon .clickable-icon,
+.theme-dark .nav-action-button,
+.theme-dark .workspace-tab-header-new-tab,
+.theme-dark .workspace-tab-header-inner-close-button {
+	transition:
+		color var(--wayfinder-motion-quick) ease,
+		background-color var(--wayfinder-motion-quick) ease,
+		border-color var(--wayfinder-motion-quick) ease,
+		box-shadow var(--wayfinder-motion-calm) ease,
+		text-shadow var(--wayfinder-motion-calm) ease,
+		transform var(--wayfinder-motion-quick) ease;
+}
+
+.theme-dark .clickable-icon:hover,
+.theme-dark .workspace-ribbon .clickable-icon:hover,
+.theme-dark .nav-action-button:hover,
+.theme-dark .workspace-tab-header-new-tab:hover,
+.theme-dark .workspace-tab-header-inner-close-button:hover {
+	color: var(--atlas-rune-bright);
+	background-color: var(--wayfinder-rune-wake-bg);
+	border-color: var(--wayfinder-rune-wake-border);
+	box-shadow: var(--wayfinder-rune-wake-glow);
+	text-shadow: 0 0 7px rgba(var(--atlas-rune-rgb), 0.42);
+}
+
+.theme-dark .clickable-icon:active,
+.theme-dark .workspace-ribbon .clickable-icon:active,
+.theme-dark .nav-action-button:active,
+.theme-dark .workspace-tab-header-new-tab:active,
+.theme-dark .workspace-tab-header-inner-close-button:active {
+	color: #d9f8ff;
+	background-color: var(--wayfinder-rune-active-bg);
+	border-color: var(--wayfinder-rune-active-border);
+	box-shadow: var(--wayfinder-rune-active-glow);
+	text-shadow: 0 0 9px rgba(var(--atlas-rune-rgb), 0.68);
+	transform: translateY(1px) scale(0.97);
+	transition-duration: 45ms;
+}
+
+/* Tabs wake as paths; the selected page settles back into brass. */
+.theme-dark .workspace-tab-header:not(.is-active) {
+	transition:
+		color var(--wayfinder-motion-quick) ease,
+		background-color var(--wayfinder-motion-quick) ease,
+		border-color var(--wayfinder-motion-quick) ease,
+		box-shadow var(--wayfinder-motion-calm) ease;
+}
+
+.theme-dark .workspace-tab-header:not(.is-active):hover {
+	color: var(--atlas-rune-bright);
+	background:
+		linear-gradient(180deg, rgba(var(--atlas-rune-rgb), 0.1), transparent 72%);
+	border-color: var(--wayfinder-rune-wake-border);
+	box-shadow:
+		inset 0 -1px rgba(var(--atlas-rune-rgb), 0.4),
+		var(--wayfinder-rune-wake-glow);
+}
+
+.theme-dark .workspace-tab-header:not(.is-active):active {
+	color: #d9f8ff;
+	border-color: var(--wayfinder-rune-active-border);
+	box-shadow:
+		inset 0 -2px var(--atlas-rune),
+		var(--wayfinder-rune-active-glow);
+}
+
+/* Navigation reveals a possible path, while the current path remains brass. */
+.theme-dark .nav-file-title:not(.is-active),
+.theme-dark .nav-folder-title:not(.is-active) {
+	transition:
+		color var(--wayfinder-motion-quick) ease,
+		background-color var(--wayfinder-motion-quick) ease,
+		border-color var(--wayfinder-motion-quick) ease,
+		box-shadow var(--wayfinder-motion-calm) ease;
+}
+
+.theme-dark .nav-file-title:not(.is-active):hover,
+.theme-dark .nav-folder-title:not(.is-active):hover {
+	color: #d8eef1;
+	background:
+		linear-gradient(90deg, rgba(var(--atlas-rune-rgb), 0.1), transparent 72%);
+	border-color: rgba(var(--atlas-rune-rgb), 0.22);
+	box-shadow:
+		inset 2px 0 rgba(var(--atlas-rune-rgb), 0.52),
+		-2px 0 9px rgba(var(--atlas-rune-rgb), 0.1);
+}
+
+.theme-dark .nav-file-title:not(.is-active):active,
+.theme-dark .nav-folder-title:not(.is-active):active {
+	color: var(--atlas-rune-bright);
+	background-color: var(--wayfinder-rune-active-bg);
+	box-shadow:
+		inset 2px 0 var(--atlas-rune-bright),
+		var(--wayfinder-rune-active-glow);
+}
+
+/* Toolbars are the clearest collection of dormant runes. */
+.theme-dark #cMenuModalBar button,
+.theme-dark #editingToolbarModalBar button,
+.theme-dark .editingToolbarModalBar button,
+.theme-dark .editing-toolbar button {
+	transition:
+		color var(--wayfinder-motion-quick) ease,
+		background-color var(--wayfinder-motion-quick) ease,
+		border-color var(--wayfinder-motion-quick) ease,
+		box-shadow var(--wayfinder-motion-calm) ease,
+		text-shadow var(--wayfinder-motion-calm) ease;
+}
+
+.theme-dark #cMenuModalBar button:hover,
+.theme-dark #editingToolbarModalBar button:hover,
+.theme-dark .editingToolbarModalBar button:hover,
+.theme-dark .editing-toolbar button:hover {
+	color: var(--atlas-rune-bright);
+	background-color: var(--wayfinder-rune-wake-bg);
+	border-color: var(--wayfinder-rune-wake-border);
+	box-shadow: var(--wayfinder-rune-wake-glow);
+	text-shadow: 0 0 7px rgba(var(--atlas-rune-rgb), 0.45);
+}
+
+.theme-dark #cMenuModalBar button:active,
+.theme-dark #editingToolbarModalBar button:active,
+.theme-dark .editingToolbarModalBar button:active,
+.theme-dark .editing-toolbar button:active {
+	color: #d9f8ff;
+	background-color: var(--wayfinder-rune-active-bg);
+	border-color: var(--wayfinder-rune-active-border);
+	box-shadow: var(--wayfinder-rune-active-glow);
+}
+
+/* Conventional controls receive magical readiness without losing their form. */
+.theme-dark button:not(.clickable-icon):not(.workspace-tab-header-inner-close-button),
+.theme-dark input,
+.theme-dark textarea,
+.theme-dark select,
+.theme-dark .dropdown,
+.theme-dark .menu-item,
+.theme-dark .suggestion-item {
+	transition:
+		color var(--wayfinder-motion-quick) ease,
+		background-color var(--wayfinder-motion-quick) ease,
+		border-color var(--wayfinder-motion-quick) ease,
+		box-shadow var(--wayfinder-motion-calm) ease;
+}
+
+.theme-dark button:not(.clickable-icon):not(.mod-warning):hover {
+	color: var(--atlas-rune-bright);
+	border-color: var(--wayfinder-rune-wake-border);
+	box-shadow:
+		inset 0 1px rgba(217, 248, 255, 0.035),
+		var(--wayfinder-rune-wake-glow);
+}
+
+.theme-dark input:hover,
+.theme-dark textarea:hover,
+.theme-dark select:hover,
+.theme-dark .dropdown:hover {
+	border-color: var(--wayfinder-rune-wake-border);
+	box-shadow:
+		inset 0 1px 2px rgba(0, 0, 0, 0.34),
+		var(--wayfinder-rune-wake-glow);
+}
+
+.theme-dark input:focus,
+.theme-dark input:focus-visible,
+.theme-dark textarea:focus,
+.theme-dark textarea:focus-visible,
+.theme-dark select:focus,
+.theme-dark .dropdown:focus {
+	border-color: var(--atlas-rune);
+	box-shadow:
+		0 0 0 1px rgba(var(--atlas-rune-rgb), 0.3),
+		var(--wayfinder-rune-active-glow),
+		inset 0 1px 2px rgba(0, 0, 0, 0.34);
+}
+
+.theme-dark .menu-item:hover,
+.theme-dark .suggestion-item.is-selected {
+	background:
+		linear-gradient(90deg, rgba(var(--atlas-rune-rgb), 0.13), transparent 78%);
+	box-shadow:
+		inset 2px 0 var(--atlas-rune),
+		var(--wayfinder-rune-wake-glow);
+}
+
+/* Links reveal the path rather than becoming button-like. */
+.theme-dark .markdown-rendered a,
+.theme-dark .cm-hmd-internal-link,
+.theme-dark .cm-link {
+	transition:
+		color var(--wayfinder-motion-quick) ease,
+		text-decoration-color var(--wayfinder-motion-quick) ease,
+		text-shadow var(--wayfinder-motion-calm) ease;
+}
+
+.theme-dark .markdown-rendered a:hover,
+.theme-dark .cm-hmd-internal-link:hover,
+.theme-dark .cm-link:hover {
+	color: var(--atlas-rune-bright);
+	text-decoration-color: var(--atlas-rune);
+	text-shadow: 0 0 8px rgba(var(--atlas-rune-rgb), 0.25);
+}
+
+/* Movable workspace boundaries reveal an enchanted seam. */
+.theme-dark .workspace-leaf-resize-handle,
+.theme-dark .workspace-split-resize-handle {
+	border-color: transparent;
+	transition:
+		border-color var(--wayfinder-motion-quick) ease,
+		box-shadow var(--wayfinder-motion-calm) ease;
+}
+
+.theme-dark .workspace-leaf-resize-handle:hover,
+.theme-dark .workspace-split-resize-handle:hover,
+.theme-dark.is-grabbing .workspace-leaf-resize-handle,
+.theme-dark.is-grabbing .workspace-split-resize-handle {
+	border-color: var(--atlas-rune);
+	background:
+		linear-gradient(
+			180deg,
+			transparent 0%,
+			rgba(var(--atlas-aether-rgb), 0.55) 22%,
+			var(--atlas-rune-bright) 50%,
+			rgba(var(--atlas-aether-rgb), 0.55) 78%,
+			transparent 100%
+		);
+	background-size: 100% 220%;
+	box-shadow:
+		0 0 4px rgba(var(--atlas-rune-rgb), 0.62),
+		0 0 13px rgba(var(--atlas-rune-rgb), 0.3),
+		0 0 22px rgba(var(--atlas-aether-rgb), 0.14);
+	animation: wayfinder-seam-flow 1.35s ease-in-out infinite alternate;
+}
+
+.theme-dark .workspace-leaf-resize-handle:active,
+.theme-dark .workspace-split-resize-handle:active {
+	border-color: #d9f8ff;
+	box-shadow:
+		0 0 5px rgba(var(--atlas-rune-rgb), 0.85),
+		0 0 17px rgba(var(--atlas-rune-rgb), 0.45),
+		0 0 28px rgba(var(--atlas-aether-rgb), 0.25);
+}
+
+/* Obsidian's docking target becomes a temporary revealed portal. */
+.theme-dark .workspace-drop-overlay,
+.theme-dark .workspace-drop-overlay::before,
+.theme-dark .workspace-drop-overlay::after {
+	border-color: var(--atlas-rune);
+	background-color: rgba(var(--atlas-rune-rgb), 0.075);
+	box-shadow:
+		inset 0 0 0 1px rgba(var(--atlas-rune-rgb), 0.48),
+		inset 0 0 18px rgba(var(--atlas-rune-rgb), 0.12),
+		0 0 15px rgba(var(--atlas-aether-rgb), 0.18);
+}
+
+@keyframes wayfinder-seam-flow {
+	from {
+		background-position: 50% 0%;
+		filter: brightness(0.86);
+	}
+	to {
+		background-position: 50% 100%;
+		filter: brightness(1.15);
+	}
+}
+
+/* Keyboard focus is a full activation signal, never hover-only magic. */
+.theme-dark :focus-visible {
+	outline-color: var(--atlas-rune);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.theme-dark .clickable-icon,
+	.theme-dark .workspace-tab-header,
+	.theme-dark .nav-file-title,
+	.theme-dark .nav-folder-title,
+	.theme-dark button,
+	.theme-dark input,
+	.theme-dark textarea,
+	.theme-dark select,
+	.theme-dark .dropdown,
+	.theme-dark a,
+	.theme-dark .workspace-leaf-resize-handle,
+	.theme-dark .workspace-split-resize-handle {
+		transition: none;
+		animation: none;
+	}
+}
+
+/* Touch devices have no persistent hover; focus/press still communicates magic. */
+.is-mobile.theme-dark {
+	--wayfinder-rune-wake-glow: none;
+}
