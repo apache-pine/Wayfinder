@@ -1,0 +1,53 @@
+---
+type: guide
+tags:
+  - guide
+  - example
+  - sidebar
+---
+
+- [ ]     Unchecked
+- [x] (x) Done
+- [X] (X) Checked
+- [-] (-) Canceled
+- [>] (>) Forward
+- [<] (<) Migrated
+- [D] (D) Date
+- [?] (?) Question
+- [/] (/) In Progress
+- [+] (+) Add
+- [R] (R) Research
+- [!] (!) Important
+- [i] (i) Idea
+- [B] (B) Bug / Broken
+- [P] (P) Project
+- [C] (C) Concern / Constraint
+- [Q] (Q) Quote
+- [N] (N) Note
+- [b] (b) Bookmark
+- [I] (I) Information
+- [p] (p) Python
+- [L] (L) Location
+- [E] (E) Example
+- [A] (A) Answer
+- [r] (r) Reference / Resource
+- [c] (c) Choice / Decision
+- [d] (d) Dashboard / Data
+- [T] (T) Time
+- [@] (@) Person / Contact
+- [t] (t) Meeting / Discussion
+- [O] (O) Objective / Outcome
+- [~] (~) Blocked
+- [W] (W) Work / Task
+- [f] (f) Follow-up / Find
+- [F] (F) File  / Folder
+- [H] (H) Home / Personal
+- [&] (&) Link / Dependency
+- [s] (s) Sensitive / Private
+- [q] (q) Query / SQL
+- [v] (v) Validate / Verify
+- [m] (m) Measure / Metric
+- [g] (g) Graph / Chart
+- [G] (G) Grant / Funding / CCBHC
+- [w] (w) Waiting / Watch
+- [S] (S) Brainstorm / Mind Map
