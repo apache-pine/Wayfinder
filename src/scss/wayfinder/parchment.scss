@@ -1,0 +1,566 @@
+/*
+ * Parchment page palette
+ * ----------------------
+ * Markdown pages are physical paper inside the dark Atlas shell. Keep these
+ * overrides last so inherited dark-theme component rules resolve to ink,
+ * rather than the shell's light-on-dark colors.
+ */
+
+.theme-dark .markdown-source-view,
+.theme-dark .markdown-reading-view {
+	--atlas-ink: #2b2116;
+	--atlas-ink-muted: #5d4933;
+	--atlas-ink-faded: #7b6245;
+	--atlas-parchment: #704618;
+	--atlas-parchment-aged: #805522;
+	--atlas-parchment-shadow: #5c3917;
+	--atlas-brass: #704618;
+	--atlas-brass-bright: #85571d;
+	--atlas-brass-aged: #634018;
+
+	--text-normal: var(--atlas-ink);
+	--text-muted: #4f3b26;
+	--text-faint: #654c30;
+	--text-accent: #594494;
+	--text-accent-hover: #39246f;
+	--text-formatting: #513b25;
+	--text-selection: rgba(92, 57, 23, 0.22);
+	--text-highlight-bg: rgba(255, 225, 111, 0.55);
+	--link-color: #594494;
+	--link-color-hover: #39246f;
+	--link-unresolved-color: #694f2d;
+	--wayfinder-completed-task-color: #62451f;
+	--wayfinder-checked-task-color: #245a36;
+	--wayfinder-canceled-task-color: #782d27;
+
+	--h1-color: #4a2608;
+	--h2-color: #56300c;
+	--h3-color: #603a16;
+	--h4-color: #68441e;
+	--h5-color: #704f29;
+	--h6-color: #765936;
+
+	--background-modifier-form-field: rgba(255, 244, 209, 0.24);
+	--background-modifier-form-field-highlighted: rgba(255, 247, 219, 0.36);
+	--background-modifier-border: rgba(76, 46, 18, 0.38);
+	--background-modifier-border-hover: rgba(76, 46, 18, 0.58);
+	--background-modifier-border-focus: #704618;
+	--wayfinder-control-bg: rgba(255, 241, 199, 0.22);
+	--wayfinder-control-bg-hover: rgba(255, 244, 210, 0.34);
+	--wayfinder-control-bg-active: rgba(91, 52, 16, 0.12);
+	--wayfinder-control-border: rgba(76, 46, 18, 0.42);
+	--wayfinder-control-border-hover: rgba(76, 46, 18, 0.68);
+
+	--tag-background: rgba(89, 68, 148, 0.1);
+	--tag-background-hover: rgba(88, 169, 196, 0.15);
+	--tag-color: #4b347f;
+	--tag-color-hover: #244f5c;
+	--tag-border-color: rgba(89, 68, 148, 0.52);
+	--tag-border-color-hover: rgba(40, 93, 104, 0.78);
+}
+
+.theme-dark .markdown-source-view .inline-title,
+.theme-dark .markdown-reading-view .inline-title,
+.theme-dark .markdown-source-view .HyperMD-header-1,
+.theme-dark .markdown-reading-view h1 {
+	color: var(--h1-color);
+}
+
+.theme-dark .markdown-source-view .HyperMD-header-2,
+.theme-dark .markdown-reading-view h2 {
+	color: var(--h2-color);
+}
+
+.theme-dark .markdown-source-view .HyperMD-header-3,
+.theme-dark .markdown-reading-view h3 {
+	color: var(--h3-color);
+}
+
+.theme-dark .markdown-source-view .HyperMD-header-4,
+.theme-dark .markdown-reading-view h4 {
+	color: var(--h4-color);
+}
+
+.theme-dark .markdown-source-view .HyperMD-header-5,
+.theme-dark .markdown-reading-view h5 {
+	color: var(--h5-color);
+}
+
+.theme-dark .markdown-source-view .HyperMD-header-6,
+.theme-dark .markdown-reading-view h6 {
+	color: var(--h6-color);
+}
+
+.theme-dark .markdown-source-view,
+.theme-dark .markdown-reading-view {
+	--h1-size: 2em;
+	--h2-size: 1.65em;
+	--h3-size: 1.42em;
+	--h4-size: 1.26em;
+	--h5-size: 1.06em;
+	--h6-size: 0.96em;
+}
+
+.theme-dark .markdown-source-view .metadata-properties-heading,
+.theme-dark .markdown-reading-view .metadata-properties-heading {
+	color: #e8d8b7;
+}
+
+.theme-dark .markdown-source-view .metadata-container,
+.theme-dark .markdown-reading-view .metadata-container {
+	--atlas-ink: #f0e6d2;
+	--atlas-ink-muted: #c6b89c;
+	--atlas-ink-faded: #968972;
+	--text-normal: var(--atlas-ink);
+	--text-muted: var(--atlas-ink-muted);
+	--text-faint: var(--atlas-ink-faded);
+	--text-accent: #8ed4e3;
+	--background-modifier-form-field: rgba(8, 7, 5, 0.34);
+	--background-modifier-form-field-highlighted: rgba(8, 7, 5, 0.48);
+	--wayfinder-control-bg: rgba(13, 10, 7, 0.48);
+	--wayfinder-control-bg-hover: rgba(13, 10, 7, 0.62);
+	--wayfinder-control-border: rgba(212, 170, 85, 0.42);
+	--wayfinder-control-border-hover: rgba(212, 170, 85, 0.7);
+	margin-block: 0.5rem 1.75rem;
+	padding: var(--size-4-3) var(--size-4-4);
+	color: var(--atlas-ink);
+	background:
+		linear-gradient(135deg, rgba(212, 170, 85, 0.07), transparent 48%),
+		rgba(22, 16, 10, 0.74);
+	border: 1px solid rgba(111, 77, 31, 0.72);
+	border-radius: var(--wayfinder-radius-medium);
+	box-shadow:
+		inset 0 1px rgba(255, 239, 190, 0.04),
+		0 2px 8px rgba(48, 28, 10, 0.18);
+}
+
+.theme-dark .markdown-source-view .metadata-container :is(.metadata-property-key, .metadata-property-value, .metadata-input-longtext, .multi-select-pill-content),
+.theme-dark .markdown-reading-view .metadata-container :is(.metadata-property-key, .metadata-property-value, .metadata-input-longtext, .multi-select-pill-content) {
+	color: var(--atlas-ink);
+}
+
+.theme-dark .markdown-source-view input:not([type="checkbox"]),
+.theme-dark .markdown-reading-view input:not([type="checkbox"]),
+.theme-dark .markdown-source-view textarea,
+.theme-dark .markdown-reading-view textarea,
+.theme-dark .markdown-source-view select,
+.theme-dark .markdown-reading-view select,
+.theme-dark .markdown-source-view .dropdown,
+.theme-dark .markdown-reading-view .dropdown {
+	color: var(--atlas-ink);
+	background:
+		linear-gradient(rgba(255, 247, 219, 0.08), rgba(255, 247, 219, 0.08)),
+		var(--wayfinder-control-bg);
+	border-color: var(--wayfinder-control-border);
+	box-shadow: inset 0 1px 2px rgba(76, 46, 18, 0.12);
+}
+
+.theme-dark .markdown-source-view .metadata-property:hover,
+.theme-dark .markdown-source-view .metadata-property:focus-within,
+.theme-dark .markdown-reading-view .metadata-property:hover,
+.theme-dark .markdown-reading-view .metadata-property:focus-within {
+	background-color: rgba(91, 52, 16, 0.06);
+}
+
+.theme-dark .markdown-source-view .metadata-property-icon,
+.theme-dark .markdown-reading-view .metadata-property-icon,
+.theme-dark .markdown-source-view .metadata-add-button,
+.theme-dark .markdown-reading-view .metadata-add-button,
+.theme-dark .markdown-source-view li::marker,
+.theme-dark .markdown-reading-view li::marker {
+	color: var(--atlas-brass-aged);
+}
+
+.theme-dark .markdown-source-view .metadata-container .metadata-property-icon,
+.theme-dark .markdown-reading-view .metadata-container .metadata-property-icon {
+	color: #d4aa55;
+	opacity: 1;
+	filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.5));
+}
+
+.theme-dark .markdown-source-view .metadata-container .metadata-property-icon svg,
+.theme-dark .markdown-reading-view .metadata-container .metadata-property-icon svg {
+	stroke-width: 2.2px;
+}
+
+.theme-dark .markdown-source-view .metadata-container .multi-select-container,
+.theme-dark .markdown-reading-view .metadata-container .multi-select-container {
+	min-height: calc(var(--input-height) + 4px);
+	padding-block: 2px;
+	overflow: visible;
+	align-items: center;
+}
+
+.theme-dark .markdown-source-view .metadata-container .multi-select-pill,
+.theme-dark .markdown-reading-view .metadata-container .multi-select-pill {
+	min-height: calc(var(--input-height) - 4px);
+	margin-block: 1px;
+	padding: 0.18em 0.58em;
+	line-height: 1.25;
+	overflow: visible;
+}
+
+.theme-dark .markdown-source-view .metadata-container .metadata-property[data-property-key="cssclasses"] .metadata-property-value,
+.theme-dark .markdown-reading-view .metadata-container .metadata-property[data-property-key="cssclasses"] .metadata-property-value {
+	min-height: var(--input-height);
+	padding: 0.3em 0.65em;
+	line-height: 1.35;
+}
+
+/* Property links are luminous catalog references, independent of note links. */
+.theme-dark .markdown-source-view .metadata-container :is(a, .external-link, .internal-link, .metadata-link),
+.theme-dark .markdown-reading-view .metadata-container :is(a, .external-link, .internal-link, .metadata-link) {
+	color: #83cee2 !important;
+	-webkit-text-fill-color: #83cee2;
+	text-decoration-color: rgba(131, 206, 226, 0.58);
+	opacity: 1 !important;
+}
+
+.theme-dark .markdown-source-view .metadata-container :is(a, .external-link, .internal-link, .metadata-link):hover,
+.theme-dark .markdown-reading-view .metadata-container :is(a, .external-link, .internal-link, .metadata-link):hover {
+	color: #c3f2fb !important;
+	-webkit-text-fill-color: #c3f2fb;
+	text-shadow: 0 0 8px rgba(88, 169, 196, 0.42);
+}
+
+.theme-dark .markdown-source-view .metadata-container .metadata-add-button,
+.theme-dark .markdown-reading-view .metadata-container .metadata-add-button {
+	width: fit-content;
+	margin-top: var(--size-4-2);
+	padding: 0.3em 0.65em;
+	color: #d4aa55;
+	background: rgba(212, 170, 85, 0.08);
+	border: 1px solid rgba(212, 170, 85, 0.28);
+	border-radius: var(--wayfinder-radius-small);
+	opacity: 1;
+}
+
+.theme-dark .markdown-source-view .metadata-container .metadata-add-button:hover,
+.theme-dark .markdown-reading-view .metadata-container .metadata-add-button:hover {
+	color: #f0d18a;
+	background: rgba(212, 170, 85, 0.14);
+	border-color: rgba(212, 170, 85, 0.55);
+}
+
+/* Headings are chart landmarks: strong silhouette, restrained decoration. */
+.theme-dark .markdown-source-view :is(.inline-title, .HyperMD-header-1),
+.theme-dark .markdown-reading-view :is(.inline-title, h1) {
+	padding-bottom: 0.2em;
+	border-bottom: 1px solid rgba(74, 38, 8, 0.52);
+	text-shadow: 0 1px rgba(255, 225, 166, 0.2);
+}
+
+.theme-dark .markdown-source-view .HyperMD-header-2,
+.theme-dark .markdown-reading-view h2 {
+	padding-bottom: 0.18em;
+	border-bottom: 1px solid rgba(91, 52, 16, 0.42);
+}
+
+.theme-dark .markdown-source-view :is(.HyperMD-header-5, .HyperMD-header-6),
+.theme-dark .markdown-reading-view :is(h5, h6) {
+	text-transform: uppercase;
+}
+
+/* Links are revealed paths: dark and legible at rest, awakened on intent. */
+.theme-dark .markdown-source-view,
+.theme-dark .markdown-reading-view {
+	--link-color: #452273;
+	--link-color-hover: #271044;
+	--link-unresolved-color: #694f2d;
+	--link-unresolved-opacity: 0.88;
+}
+
+.theme-dark .markdown-source-view :is(.cm-hmd-internal-link, .cm-link, .cm-url, .cm-string.cm-url, .external-link, .internal-query),
+.theme-dark .markdown-reading-view :is(a, .external-link, .internal-query) {
+	color: var(--link-color) !important;
+	text-decoration-color: rgba(89, 68, 148, 0.6);
+	text-decoration-thickness: 1px;
+	text-underline-offset: 0.16em;
+	transition:
+		color var(--wayfinder-motion-quick) ease,
+		background-color var(--wayfinder-motion-quick) ease,
+		box-shadow var(--wayfinder-motion-calm) ease,
+		text-shadow var(--wayfinder-motion-calm) ease;
+}
+
+.theme-dark .markdown-source-view :is(.cm-hmd-internal-link, .cm-link, .cm-url, .cm-string.cm-url, .external-link, .internal-query):hover,
+.theme-dark .markdown-reading-view :is(a, .external-link, .internal-query):hover {
+	color: var(--link-color-hover);
+	background: rgba(88, 169, 196, 0.1);
+	box-shadow: 0 1px rgba(40, 93, 104, 0.4);
+	text-shadow: 0 0 8px rgba(131, 206, 226, 0.28);
+}
+
+/*
+ * CodeMirror assigns color to nested underline/string spans, which can defeat
+ * an inherited link color. Target those text-bearing nodes explicitly.
+ */
+.theme-dark .markdown-source-view :is(
+	.cm-hmd-internal-link,
+	.cm-hmd-internal-link .cm-underline,
+	.cm-link,
+	.cm-link .cm-underline,
+	.cm-url,
+	.cm-string.cm-url,
+	.cm-string.cm-link,
+	.external-link,
+	.internal-query
+) {
+	color: var(--link-color) !important;
+	-webkit-text-fill-color: var(--link-color);
+	opacity: 1 !important;
+}
+
+.theme-dark .markdown-source-view :is(
+	.cm-hmd-internal-link,
+	.cm-hmd-internal-link .cm-underline,
+	.cm-link,
+	.cm-link .cm-underline,
+	.cm-url,
+	.cm-string.cm-url,
+	.cm-string.cm-link,
+	.external-link,
+	.internal-query
+):hover {
+	color: var(--link-color-hover) !important;
+	-webkit-text-fill-color: var(--link-color-hover);
+}
+
+.theme-dark .markdown-source-view :is(.cm-formatting-link, .cm-formatting-link-string, .cm-formatting-link-start, .cm-formatting-link-end) {
+	color: #513b25;
+	opacity: 1;
+}
+
+.theme-dark .markdown-source-view :is(.tag, .multi-select-pill),
+.theme-dark .markdown-reading-view :is(.tag, .multi-select-pill) {
+	color: var(--tag-color);
+	background: var(--tag-background);
+	border-color: var(--tag-border-color);
+	box-shadow: inset 0 1px rgba(255, 255, 255, 0.12);
+}
+
+.theme-dark .markdown-source-view :is(.tag, .multi-select-pill):hover,
+.theme-dark .markdown-reading-view :is(.tag, .multi-select-pill):hover {
+	color: var(--tag-color-hover);
+	background: var(--tag-background-hover);
+	border-color: var(--tag-border-color-hover);
+	box-shadow: 0 0 8px rgba(88, 169, 196, 0.24);
+}
+
+/* Dark mounted artifacts keep their own light ink. */
+.theme-dark .markdown-source-view .callout,
+.theme-dark .markdown-reading-view .callout,
+.theme-dark .markdown-source-view .internal-embed:not(.image-embed),
+.theme-dark .markdown-reading-view .internal-embed:not(.image-embed) {
+	--atlas-ink: #e8dfcc;
+	--atlas-ink-muted: #bdb29c;
+	--atlas-ink-faded: #8f8675;
+	--text-normal: var(--atlas-ink);
+	--text-muted: var(--atlas-ink-muted);
+	--text-faint: var(--atlas-ink-faded);
+	--text-accent: #83cee2;
+	--link-color: #83cee2;
+	--link-color-hover: #c3f2fb;
+	color: var(--atlas-ink);
+}
+
+.theme-dark .markdown-source-view .callout-content,
+.theme-dark .markdown-reading-view .callout-content {
+	color: var(--atlas-ink);
+}
+
+/* Blockquotes remain parchment annotations, not washed-out dark-mode text. */
+.theme-dark .markdown-source-view .HyperMD-quote,
+.theme-dark .markdown-reading-view blockquote {
+	--blockquote-color: #382616;
+	color: #382616;
+	background:
+		linear-gradient(90deg, rgba(91, 52, 16, 0.12), rgba(255, 232, 174, 0.16) 70%);
+	border-inline-start: 3px solid #704618;
+}
+
+.theme-dark .markdown-source-view .HyperMD-quote *,
+.theme-dark .markdown-reading-view blockquote * {
+	color: inherit;
+}
+
+.theme-dark .markdown-reading-view blockquote {
+	margin-inline: 0;
+	padding: var(--size-4-3) var(--size-4-4);
+}
+
+/* Cartographic ledgers stay dark, so their ink must remain light. */
+.theme-dark .markdown-source-view,
+.theme-dark .markdown-reading-view {
+	--table-background: rgba(38, 26, 14, 0.7);
+	--table-header-background: rgba(20, 15, 10, 0.92);
+	--table-header-background-hover: rgba(31, 23, 14, 0.94);
+	--table-row-alt-background: rgba(255, 231, 183, 0.055);
+	--table-row-background-hover: rgba(88, 169, 196, 0.1);
+	--table-border-color: rgba(92, 57, 23, 0.82);
+	--table-header-border-color: rgba(212, 170, 85, 0.52);
+	--table-column-divider-color: rgba(184, 134, 51, 0.34);
+}
+
+.theme-dark .markdown-source-view table:not(.calendar),
+.theme-dark .markdown-reading-view table:not(.calendar) {
+	color: #eee3cd;
+}
+
+.theme-dark .markdown-source-view table:not(.calendar) :is(th, td),
+.theme-dark .markdown-reading-view table:not(.calendar) :is(th, td) {
+	color: inherit;
+}
+
+.theme-dark .markdown-source-view table:not(.calendar) th,
+.theme-dark .markdown-reading-view table:not(.calendar) th {
+	color: #f3d99c;
+	text-shadow: 0 1px rgba(0, 0, 0, 0.42);
+}
+
+.theme-dark .markdown-source-view table:not(.calendar) a,
+.theme-dark .markdown-reading-view table:not(.calendar) a {
+	color: #bca9ee;
+	text-decoration-color: rgba(188, 169, 238, 0.65);
+}
+
+.theme-dark .markdown-source-view table:not(.calendar) :is(.tag, .multi-select-pill),
+.theme-dark .markdown-reading-view table:not(.calendar) :is(.tag, .multi-select-pill) {
+	color: #d1c2f4;
+	background: rgba(119, 113, 185, 0.22);
+	border-color: rgba(188, 169, 238, 0.5);
+}
+
+/* Dataview results use the same light-on-dark ledger language. */
+.theme-dark .markdown-source-view :is(.block-language-dataview, .dataview),
+.theme-dark .markdown-reading-view :is(.block-language-dataview, .dataview) {
+	--text-normal: #eee3cd;
+	--text-muted: #c9bda6;
+	--text-faint: #aa9d86;
+	--text-accent: #bca9ee;
+	--link-color: #bca9ee;
+	--link-color-hover: #d9d0f6;
+	color: var(--text-normal);
+}
+
+.theme-dark .markdown-source-view :is(.dataview.list-view-ul, .dataview.result-group),
+.theme-dark .markdown-reading-view :is(.dataview.list-view-ul, .dataview.result-group) {
+	color: #eee3cd;
+	background:
+		linear-gradient(135deg, rgba(119, 113, 185, 0.09), transparent 45%),
+		rgba(31, 23, 14, 0.86);
+}
+
+.theme-dark .markdown-source-view .dataview :is(.inline-field-key, .inline-field-value, .inline-field-standalone-value, .small-text),
+.theme-dark .markdown-reading-view .dataview :is(.inline-field-key, .inline-field-value, .inline-field-standalone-value, .small-text) {
+	color: #c9bda6;
+}
+
+/* Standalone task queries sit directly on parchment and therefore use ink. */
+.theme-dark .markdown-source-view :is(.dataview.task-list-item, .dataview.task-list-basic-item),
+.theme-dark .markdown-reading-view :is(.dataview.task-list-item, .dataview.task-list-basic-item) {
+	--text-normal: #382616;
+	--text-muted: #503920;
+	color: var(--text-normal);
+}
+
+/* A task query mounted inside a dark callout returns to light artifact ink. */
+.theme-dark .markdown-source-view .callout :is(.dataview.task-list-item, .dataview.task-list-basic-item),
+.theme-dark .markdown-reading-view .callout :is(.dataview.task-list-item, .dataview.task-list-basic-item) {
+	--text-normal: #e8dfcc;
+	--text-muted: #bdb29c;
+	color: var(--text-normal);
+}
+
+/* Saturated semantic seals remain distinct against the dark callout body. */
+.theme-dark .markdown-source-view .callout:is([data-callout="note"], [data-callout="info"], [data-callout="todo"]),
+.theme-dark .markdown-reading-view .callout:is([data-callout="note"], [data-callout="info"], [data-callout="todo"]) {
+	--callout-color: 73, 190, 220;
+}
+
+.theme-dark .markdown-source-view .callout:is([data-callout="abstract"], [data-callout="summary"], [data-callout="tldr"], [data-callout="example"]),
+.theme-dark .markdown-reading-view .callout:is([data-callout="abstract"], [data-callout="summary"], [data-callout="tldr"], [data-callout="example"]) {
+	--callout-color: 154, 112, 235;
+}
+
+.theme-dark .markdown-source-view .callout:is([data-callout="tip"], [data-callout="hint"], [data-callout="important"], [data-callout="success"], [data-callout="check"], [data-callout="done"]),
+.theme-dark .markdown-reading-view .callout:is([data-callout="tip"], [data-callout="hint"], [data-callout="important"], [data-callout="success"], [data-callout="check"], [data-callout="done"]) {
+	--callout-color: 99, 180, 95;
+}
+
+.theme-dark .markdown-source-view .callout:is([data-callout="question"], [data-callout="help"], [data-callout="faq"], [data-callout="warning"], [data-callout="caution"], [data-callout="attention"]),
+.theme-dark .markdown-reading-view .callout:is([data-callout="question"], [data-callout="help"], [data-callout="faq"], [data-callout="warning"], [data-callout="caution"], [data-callout="attention"]) {
+	--callout-color: 226, 164, 59;
+}
+
+.theme-dark .markdown-source-view .callout:is([data-callout="failure"], [data-callout="fail"], [data-callout="missing"], [data-callout="danger"], [data-callout="error"], [data-callout="bug"]),
+.theme-dark .markdown-reading-view .callout:is([data-callout="failure"], [data-callout="fail"], [data-callout="missing"], [data-callout="danger"], [data-callout="error"], [data-callout="bug"]) {
+	--callout-color: 225, 89, 75;
+}
+
+/* All paths inside dark callouts glow clearly, including unresolved paths. */
+.theme-dark .markdown-source-view .callout :is(a, .internal-link, .external-link, .is-unresolved, .cm-hmd-internal-link, .cm-link, .cm-url),
+.theme-dark .markdown-source-view .callout :is(a, .internal-link, .external-link, .is-unresolved, .cm-hmd-internal-link, .cm-link, .cm-url) *,
+.theme-dark .markdown-reading-view .callout :is(a, .internal-link, .external-link, .is-unresolved),
+.theme-dark .markdown-reading-view .callout :is(a, .internal-link, .external-link, .is-unresolved) * {
+	color: #83cee2 !important;
+	-webkit-text-fill-color: #83cee2 !important;
+	text-decoration-color: rgba(131, 206, 226, 0.62);
+	opacity: 1 !important;
+}
+
+.theme-dark .markdown-source-view .callout :is(a, .internal-link, .external-link, .is-unresolved, .cm-hmd-internal-link, .cm-link, .cm-url):hover,
+.theme-dark .markdown-reading-view .callout :is(a, .internal-link, .external-link, .is-unresolved):hover {
+	color: #c3f2fb !important;
+	-webkit-text-fill-color: #c3f2fb !important;
+	text-shadow: 0 0 8px rgba(88, 169, 196, 0.46);
+}
+
+/* Images are mounted plates; note embeds are readable windows into the Atlas. */
+.theme-dark .markdown-source-view .image-embed,
+.theme-dark .markdown-reading-view .image-embed {
+	padding: var(--size-4-2);
+	background: rgba(37, 25, 13, 0.32);
+	border: 1px solid rgba(91, 52, 16, 0.5);
+	border-radius: var(--wayfinder-radius-medium);
+	box-shadow: 0 3px 10px rgba(48, 28, 10, 0.18);
+}
+
+.theme-dark .markdown-source-view .image-embed img,
+.theme-dark .markdown-reading-view .image-embed img {
+	display: block;
+	margin-inline: auto;
+}
+
+.theme-dark .markdown-source-view .internal-embed:not(.image-embed),
+.theme-dark .markdown-reading-view .internal-embed:not(.image-embed) {
+	background:
+		linear-gradient(135deg, rgba(212, 170, 85, 0.06), transparent 44%),
+		rgba(31, 23, 14, 0.86);
+	border-color: rgba(111, 77, 31, 0.78);
+}
+
+.theme-dark .markdown-source-view .markdown-embed .markdown-preview-view,
+.theme-dark .markdown-reading-view .markdown-embed .markdown-preview-view {
+	color: var(--atlas-ink);
+	background: transparent;
+}
+
+.theme-dark .markdown-source-view .internal-embed.is-loaded:not(.image-embed),
+.theme-dark .markdown-reading-view .internal-embed.is-loaded:not(.image-embed) {
+	padding: var(--size-4-3);
+}
+
+/*
+ * Metadata URLs contain nested CodeMirror spans that receive the general
+ * parchment link rule later in the cascade. Keep every text-bearing child in
+ * the catalog-reference blue.
+ */
+.theme-dark .markdown-source-view .metadata-container :is(.external-link, .metadata-link, .cm-link, .cm-url),
+.theme-dark .markdown-source-view .metadata-container :is(.external-link, .metadata-link, .cm-link, .cm-url) *,
+.theme-dark .markdown-reading-view .metadata-container :is(.external-link, .metadata-link, .cm-link, .cm-url),
+.theme-dark .markdown-reading-view .metadata-container :is(.external-link, .metadata-link, .cm-link, .cm-url) * {
+	color: #83cee2 !important;
+	-webkit-text-fill-color: #83cee2 !important;
+	opacity: 1 !important;
+}

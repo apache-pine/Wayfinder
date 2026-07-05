@@ -3,8 +3,8 @@
 .theme-dark .workspace,
 .theme-dark .horizontal-main-container {
 	background:
-		linear-gradient(rgba(255, 224, 160, 0.012), rgba(0, 0, 0, 0.1)),
-		var(--atlas-wood-deep);
+		radial-gradient(circle at top, rgba(212, 161, 74, 0.08), transparent 45%),
+		var(--wayfinder-bg-table);
 }
 
 .theme-dark .workspace-split:not(.mod-root),
@@ -14,12 +14,34 @@
 		var(--background-secondary);
 }
 
-.theme-dark .workspace-leaf-content[data-type=markdown],
-.theme-dark .markdown-source-view,
-.theme-dark .markdown-reading-view {
+.markdown-source-view .cm-scroller,
+.markdown-reading-view .markdown-preview-view {
 	background:
-		radial-gradient(circle at 50% 0, rgba(205, 189, 152, 0.025), transparent 42%),
+		linear-gradient(
+			var(--wayfinder-parchment-overlay),
+			var(--wayfinder-parchment-overlay)
+		),
+		repeating-linear-gradient(
+			to bottom,
+			rgb(224, 162, 82) 0,
+			rgb(224, 162, 82) var(--wayfinder-parchment-seam-core),
+			rgba(224, 162, 82, 0.72) calc(var(--wayfinder-parchment-seam-core) + var(--wayfinder-parchment-seam-core)),
+			transparent var(--wayfinder-parchment-seam-overlap),
+			transparent calc(var(--wayfinder-parchment-tile-height) - var(--wayfinder-parchment-seam-overlap)),
+			rgba(224, 162, 82, 0.72) calc(var(--wayfinder-parchment-tile-height) - var(--wayfinder-parchment-seam-core) - var(--wayfinder-parchment-seam-core)),
+			rgb(224, 162, 82) calc(var(--wayfinder-parchment-tile-height) - var(--wayfinder-parchment-seam-core)),
+			rgb(224, 162, 82) var(--wayfinder-parchment-tile-height)
+		),
+		var(--wayfinder-parchment-texture),
 		var(--background-primary);
+	background-attachment: local, local, local, local;
+	background-position: top center, top center, top center, top center;
+	background-repeat: no-repeat, repeat-y, repeat-y, no-repeat;
+	background-size:
+		auto,
+		100% var(--wayfinder-parchment-tile-height),
+		var(--wayfinder-parchment-texture-size),
+		auto;
 }
 
 .workspace-split.mod-root > .workspace-leaf-resize-handle,

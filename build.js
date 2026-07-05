@@ -14,6 +14,7 @@ const sass = require('sass');
 
 const SRC = path.join(__dirname, 'src');
 const SCSS_ENTRY = path.join(SRC, 'scss/index.scss');
+const PARCHMENT_TEXTURE = path.join(__dirname, 'assets/parchment.svg');
 const FRAGMENTS_DIR = path.join(SRC, 'fragments');
 const LICENSE = path.join(FRAGMENTS_DIR, 'license.css');
 const CHECKBOXES = path.join(FRAGMENTS_DIR, 'checkboxes.css');
@@ -40,7 +41,10 @@ function loadEnv() {
 
 function build() {
 	const t0 = Date.now();
-	const expanded = sass.compile(SCSS_ENTRY, { style: 'expanded' }).css;
+	const parchmentTexture = fs.readFileSync(PARCHMENT_TEXTURE).toString('base64');
+	const parchmentDataUri = `data:image/svg+xml;base64,${parchmentTexture}`;
+	const expanded = sass.compile(SCSS_ENTRY, { style: 'expanded' }).css
+		.replaceAll('__WAYFINDER_PARCHMENT_TEXTURE__', parchmentDataUri);
 	// Minification temporarily disabled — re-enable by switching back to 'compressed'.
 	// const compressed = sass.compile(SCSS_ENTRY, { style: 'compressed' }).css;
 
