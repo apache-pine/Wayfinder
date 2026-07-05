@@ -23,6 +23,12 @@ body {
 	--wayfinder-shadow-raised: 0 2px 8px rgba(0, 0, 0, 0.34);
 	--wayfinder-motion-quick: 120ms;
 	--wayfinder-motion-calm: 180ms;
+	/* Replaced with the asset's data URI by build.js. */
+	--wayfinder-parchment-texture: url("__WAYFINDER_PARCHMENT_TEXTURE__");
+	--wayfinder-parchment-texture-size: 1600px 3239px;
+	--wayfinder-parchment-tile-height: 3239px;
+	--wayfinder-parchment-seam-overlap: 30px;
+	--wayfinder-parchment-seam-core: 8px;
 
 	--radius-s: var(--wayfinder-radius-small);
 	--radius-m: var(--wayfinder-radius-medium);
@@ -74,6 +80,8 @@ body {
 	--atlas-rune-rgb: 88, 169, 196;
 	--atlas-aether: #7771b9;
 	--atlas-aether-rgb: 119, 113, 185;
+	--wayfinder-bg-table: #090705;
+	--wayfinder-parchment-overlay: rgba(246, 220, 160, 0.035);
 
 	/* Inherited Minimal internals */
 	--bg1: var(--atlas-reading-surface);
@@ -176,6 +184,8 @@ body {
 	--atlas-ember: #a0502c;
 	--atlas-rune: #357c97;
 	--atlas-aether: #635a91;
+	--wayfinder-bg-table: #2d2116;
+	--wayfinder-parchment-overlay: rgba(255, 247, 219, 0.08);
 	--bg1: var(--atlas-reading-surface);
 	--bg2: var(--atlas-parchment-aged);
 	--bg3: rgba(89, 62, 28, 0.1);

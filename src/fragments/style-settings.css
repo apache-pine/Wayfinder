@@ -1254,6 +1254,18 @@ settings:
 		default-light: '#'
 		default-dark: '#'
 	-
+		id: check-bg
+		title: Semantic alternate checkbox backgrounds
+		description: Tint each alternate task row according to its semantic state
+		type: class-toggle
+		default: false
+	-
+		id: check-color
+		title: Semantic alternate checkbox text
+		description: Color each alternate task row according to its semantic state
+		type: class-toggle
+		default: false
+	-
 		id: checkbox-shape
 		title: Checkbox shape
 		type: class-select
