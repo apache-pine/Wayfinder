@@ -8186,6 +8186,17 @@ body {
   --tag-border-color-hover: rgba(40, 93, 104, 0.78);
 }
 
+/*
+ * Ink weight: a hair-thin stroke adds density to every glyph on parchment
+ * without touching font-weight, so headings/links/muted text keep their
+ * existing weight relationships relative to one another (unlike bumping
+ * font-weight, which can push some already-heavy elements past sane values).
+ */
+.theme-dark .markdown-source-view,
+.theme-dark .markdown-reading-view {
+  -webkit-text-stroke: 0.35px currentColor;
+}
+
 .theme-dark .markdown-source-view .inline-title,
 .theme-dark .markdown-reading-view .inline-title,
 .theme-dark .markdown-source-view .HyperMD-header-1,
@@ -8765,6 +8776,26 @@ body {
 .theme-dark .markdown-reading-view .markdown-embed .markdown-preview-view {
   color: var(--atlas-ink);
   background: transparent;
+}
+
+/*
+ * Mermaid ships a light-mode SVG theme, and Obsidian's base CSS makes it dark
+ * mode-safe with `.theme-dark .mermaid > svg { filter: invert(100%) ... }`.
+ * That filter is what turns Mermaid's near-white node fill into the dark
+ * boxes we want, but it also inverts Mermaid's default *dark* line/arrowhead
+ * color into a near-white one - invisible against parchment. Feeding the
+ * pre-filter source colors true white makes the filter land on true black,
+ * matching the dark node boxes instead of vanishing into the page.
+ */
+.theme-dark .markdown-source-view .mermaid :is(.edgePath .path, .flowchart-link, .messageLine0, .messageLine1),
+.theme-dark .markdown-reading-view .mermaid :is(.edgePath .path, .flowchart-link, .messageLine0, .messageLine1) {
+  stroke: #ffffff !important;
+}
+
+.theme-dark .markdown-source-view .mermaid :is(.arrowheadPath, marker path),
+.theme-dark .markdown-reading-view .mermaid :is(.arrowheadPath, marker path) {
+  fill: #ffffff !important;
+  stroke: #ffffff !important;
 }
 
 .theme-dark .markdown-source-view .internal-embed.is-loaded:not(.image-embed),
