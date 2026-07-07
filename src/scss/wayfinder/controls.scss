@@ -60,7 +60,10 @@
 }
 
 /* Buttons */
-.theme-dark button:not(.clickable-icon):not(.workspace-tab-header-inner-close-button),
+/* :not(.excalidraw *) keeps this off Excalidraw's own controls (e.g. its
+   color-swatch buttons), which rely on the browser default button background
+   being transparent so their inline swatch color shows through. */
+.theme-dark button:not(.clickable-icon):not(.workspace-tab-header-inner-close-button):not(.excalidraw *),
 .theme-dark .mod-cta {
 	color: var(--atlas-ink);
 	background:
@@ -73,7 +76,7 @@
 		0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
-.theme-dark button:not(.clickable-icon):hover {
+.theme-dark button:not(.clickable-icon):not(.excalidraw *):hover {
 	color: var(--atlas-brass-bright);
 	background:
 		linear-gradient(180deg, rgba(212, 170, 85, 0.11), transparent 70%),
@@ -81,7 +84,7 @@
 	border-color: var(--wayfinder-control-border-hover);
 }
 
-.theme-dark button:not(.clickable-icon):active {
+.theme-dark button:not(.clickable-icon):not(.excalidraw *):active {
 	background: var(--wayfinder-control-bg-active);
 	box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.42);
 	transform: translateY(1px);

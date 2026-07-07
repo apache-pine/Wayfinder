@@ -8,6 +8,26 @@
 .cm-editor .cm-content {
 	padding-top:0.5em;
 }
+
+/* Typing caret: default rendering is too pale against the parchment/leather
+   surfaces, so pin it to the aether purple accent for visibility. Covers both
+   CodeMirror's drawn cursor overlay and the native contenteditable caret. */
+.cm-editor .cm-cursor,
+.cm-editor .cm-cursor-primary,
+.cm-editor .cm-dropCursor {
+	border-left-color: var(--atlas-aether) !important;
+	border-left-width: 2px !important;
+}
+.cm-editor .cm-content,
+.cm-editor .cm-line,
+.inline-title,
+.metadata-input,
+textarea,
+input[type="text"],
+input[type="search"],
+[contenteditable="true"] {
+	caret-color: var(--atlas-aether) !important;
+}
 .markdown-source-view {
 	color: var(--text-normal);
 }

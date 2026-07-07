@@ -660,6 +660,27 @@ body {
   padding-top: 0.5em;
 }
 
+/* Typing caret: default rendering is too pale against the parchment/leather
+   surfaces, so pin it to the aether purple accent for visibility. Covers both
+   CodeMirror's drawn cursor overlay and the native contenteditable caret. */
+.cm-editor .cm-cursor,
+.cm-editor .cm-cursor-primary,
+.cm-editor .cm-dropCursor {
+  border-left-color: var(--atlas-aether) !important;
+  border-left-width: 2px !important;
+}
+
+.cm-editor .cm-content,
+.cm-editor .cm-line,
+.inline-title,
+.metadata-input,
+textarea,
+input[type=text],
+input[type=search],
+[contenteditable=true] {
+  caret-color: var(--atlas-aether) !important;
+}
+
 .markdown-source-view {
   color: var(--text-normal);
 }
@@ -7149,7 +7170,10 @@ body {
 }
 
 /* Buttons */
-.theme-dark button:not(.clickable-icon):not(.workspace-tab-header-inner-close-button),
+/* :not(.excalidraw *) keeps this off Excalidraw's own controls (e.g. its
+   color-swatch buttons), which rely on the browser default button background
+   being transparent so their inline swatch color shows through. */
+.theme-dark button:not(.clickable-icon):not(.workspace-tab-header-inner-close-button):not(.excalidraw *),
 .theme-dark .mod-cta {
   color: var(--atlas-ink);
   background: linear-gradient(180deg, rgba(212, 170, 85, 0.07), transparent 65%), var(--atlas-leather-raised);
@@ -7158,13 +7182,13 @@ body {
   box-shadow: inset 0 1px rgba(255, 239, 190, 0.035), 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
-.theme-dark button:not(.clickable-icon):hover {
+.theme-dark button:not(.clickable-icon):not(.excalidraw *):hover {
   color: var(--atlas-brass-bright);
   background: linear-gradient(180deg, rgba(212, 170, 85, 0.11), transparent 70%), var(--wayfinder-control-bg-hover);
   border-color: var(--wayfinder-control-border-hover);
 }
 
-.theme-dark button:not(.clickable-icon):active {
+.theme-dark button:not(.clickable-icon):not(.excalidraw *):active {
   background: var(--wayfinder-control-bg-active);
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.42);
   transform: translateY(1px);
