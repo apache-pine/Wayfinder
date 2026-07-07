@@ -29,6 +29,8 @@
 	--link-color: #594494;
 	--link-color-hover: #39246f;
 	--link-unresolved-color: #694f2d;
+	--wayfinder-magic-purple: #452273;
+	--wayfinder-magic-blue: #9bddeb;
 	--wayfinder-completed-task-color: #62451f;
 	--wayfinder-checked-task-color: #245a36;
 	--wayfinder-canceled-task-color: #782d27;
@@ -218,9 +220,12 @@
 
 .theme-dark .markdown-source-view .metadata-container :is(a, .external-link, .internal-link, .metadata-link):hover,
 .theme-dark .markdown-reading-view .metadata-container :is(a, .external-link, .internal-link, .metadata-link):hover {
-	color: #c3f2fb !important;
-	-webkit-text-fill-color: #c3f2fb;
-	text-shadow: 0 0 8px rgba(88, 169, 196, 0.42);
+	color: var(--wayfinder-magic-purple) !important;
+	-webkit-text-fill-color: var(--wayfinder-magic-purple);
+	background: var(--wayfinder-magic-blue);
+	border-radius: 3px;
+	box-shadow: 0 0 9px rgba(88, 169, 196, 0.34);
+	text-shadow: none;
 }
 
 .theme-dark .markdown-source-view .metadata-container .metadata-add-button,
@@ -261,11 +266,20 @@
 	text-transform: uppercase;
 }
 
-/* Links are revealed paths: dark and legible at rest, awakened on intent. */
+/* Inline code is an inked technical plaque rather than pale text on paper. */
+.theme-dark .markdown-source-view .cm-inline-code,
+.theme-dark .markdown-reading-view :not(pre) > code {
+	color: #ead7aa;
+	background: rgba(57, 37, 19, 0.82);
+	border-color: rgba(112, 76, 34, 0.82);
+	box-shadow: inset 0 1px rgba(255, 239, 190, 0.035);
+}
+
+/* Links are revealed paths: purple at rest, blue when magically awakened. */
 .theme-dark .markdown-source-view,
 .theme-dark .markdown-reading-view {
-	--link-color: #452273;
-	--link-color-hover: #271044;
+	--link-color: var(--wayfinder-magic-purple);
+	--link-color-hover: var(--wayfinder-magic-blue);
 	--link-unresolved-color: #694f2d;
 	--link-unresolved-opacity: 0.88;
 }
@@ -285,10 +299,13 @@
 
 .theme-dark .markdown-source-view :is(.cm-hmd-internal-link, .cm-link, .cm-url, .cm-string.cm-url, .external-link, .internal-query):hover,
 .theme-dark .markdown-reading-view :is(a, .external-link, .internal-query):hover {
-	color: var(--link-color-hover);
-	background: rgba(88, 169, 196, 0.1);
-	box-shadow: 0 1px rgba(40, 93, 104, 0.4);
-	text-shadow: 0 0 8px rgba(131, 206, 226, 0.28);
+	color: var(--link-color-hover) !important;
+	background: var(--wayfinder-magic-purple);
+	border-radius: 3px;
+	box-shadow:
+		0 0 0 1px rgba(69, 34, 115, 0.28),
+		0 0 9px rgba(88, 169, 196, 0.2);
+	text-shadow: 0 0 7px rgba(155, 221, 235, 0.22);
 }
 
 /*
@@ -451,9 +468,75 @@
 		rgba(31, 23, 14, 0.86);
 }
 
-.theme-dark .markdown-source-view .dataview :is(.inline-field-key, .inline-field-value, .inline-field-standalone-value, .small-text),
-.theme-dark .markdown-reading-view .dataview :is(.inline-field-key, .inline-field-value, .inline-field-standalone-value, .small-text) {
-	color: #c9bda6;
+/*
+ * Dataview's "no results" banner renders as
+ * <div class="dataview dataview-error-box"><p class="dataview
+ * dataview-error-message">…</p></div> (see ErrorMessage in the plugin's
+ * markdown.tsx). The message carries the plain `.dataview` class too, so
+ * without this it inherits the light cream ink meant for the dark boxed
+ * results above — unreadable here since this banner's own background stays
+ * transparent (plugins/dataview.scss), showing parchment straight through.
+ */
+.theme-dark .markdown-source-view .dataview-error-message,
+.theme-dark .markdown-reading-view .dataview-error-message {
+	color: #6b2b21;
+}
+
+.theme-dark .markdown-source-view .dataview-error-box,
+.theme-dark .markdown-reading-view .dataview-error-box {
+	background: rgba(120, 45, 33, 0.07);
+	border-color: rgba(120, 45, 33, 0.38);
+}
+
+/*
+ * Inline fields are compact data plaques on the parchment. Their dark surface
+ * supports Dataview's lighter text and links without changing frontmatter.
+ */
+.theme-dark .markdown-source-view .dataview.inline-field,
+.theme-dark .markdown-reading-view .dataview.inline-field {
+	display: inline-block;
+	padding: 0.08em 0.4em;
+	background: rgba(57, 37, 19, 0.72);
+	border: 1px solid rgba(105, 73, 37, 0.72);
+	border-radius: var(--radius-s);
+	box-shadow: inset 0 1px rgba(255, 239, 190, 0.035);
+}
+
+.theme-dark .markdown-source-view :is(.dataview.inline-field-value, .dataview .inline-field-value, .dataview .inline-field-standalone-value),
+.theme-dark .markdown-reading-view :is(.dataview.inline-field-value, .dataview .inline-field-value, .dataview .inline-field-standalone-value) {
+	color: #d8c9aa;
+}
+
+.theme-dark .markdown-source-view :is(.dataview.inline-field-key, .dataview .inline-field-key),
+.theme-dark .markdown-reading-view :is(.dataview.inline-field-key, .dataview .inline-field-key) {
+	color: #c8b58f;
+}
+
+.theme-dark .markdown-source-view :is(.dataview.inline-field-key, .dataview .inline-field-key)::after,
+.theme-dark .markdown-reading-view :is(.dataview.inline-field-key, .dataview .inline-field-key)::after {
+	color: #a98b5e;
+}
+
+/*
+ * DataviewJS creates ordinary Obsidian buttons. The global dark-shell button
+ * style uses leather, so restore parchment controls inside rendered notes.
+ */
+.theme-dark .markdown-source-view .block-language-dataviewjs button:not(.clickable-icon),
+.theme-dark .markdown-reading-view .block-language-dataviewjs button:not(.clickable-icon) {
+	color: var(--text-normal);
+	background:
+		linear-gradient(180deg, rgba(255, 248, 224, 0.18), transparent 70%),
+		var(--wayfinder-control-bg);
+	border-color: var(--wayfinder-control-border);
+	box-shadow: 0 1px 2px rgba(76, 46, 18, 0.16);
+}
+
+.theme-dark .markdown-source-view .block-language-dataviewjs button:not(.clickable-icon):hover,
+.theme-dark .markdown-reading-view .block-language-dataviewjs button:not(.clickable-icon):hover {
+	color: var(--text-accent-hover);
+	background: var(--wayfinder-control-bg-hover);
+	border-color: var(--wayfinder-control-border-hover);
+	box-shadow: 0 0 0 1px rgba(112, 70, 24, 0.12);
 }
 
 /* Standalone task queries sit directly on parchment and therefore use ink. */
@@ -461,7 +544,44 @@
 .theme-dark .markdown-reading-view :is(.dataview.task-list-item, .dataview.task-list-basic-item) {
 	--text-normal: #382616;
 	--text-muted: #503920;
+	--link-color: var(--wayfinder-magic-purple);
+	--link-color-hover: var(--wayfinder-magic-blue);
 	color: var(--text-normal);
+}
+
+/* Dataview task Markdown uses the same code plaques and magical paths as prose. */
+.theme-dark .markdown-source-view :is(.dataview.task-list-item, .dataview.task-list-basic-item) :not(pre) > code,
+.theme-dark .markdown-reading-view :is(.dataview.task-list-item, .dataview.task-list-basic-item) :not(pre) > code {
+	color: #ead7aa;
+	background: rgba(57, 37, 19, 0.86);
+	border: 1px solid rgba(112, 76, 34, 0.82);
+	border-radius: 3px;
+	box-shadow: inset 0 1px rgba(255, 239, 190, 0.035);
+}
+
+.theme-dark .markdown-source-view :is(.dataview.task-list-item, .dataview.task-list-basic-item) :is(a, .internal-link, .external-link),
+.theme-dark .markdown-reading-view :is(.dataview.task-list-item, .dataview.task-list-basic-item) :is(a, .internal-link, .external-link) {
+	color: var(--wayfinder-magic-purple) !important;
+	-webkit-text-fill-color: var(--wayfinder-magic-purple) !important;
+}
+
+.theme-dark .markdown-source-view :is(.dataview.task-list-item, .dataview.task-list-basic-item) :is(a, .internal-link, .external-link):hover,
+.theme-dark .markdown-reading-view :is(.dataview.task-list-item, .dataview.task-list-basic-item) :is(a, .internal-link, .external-link):hover {
+	color: var(--wayfinder-magic-blue) !important;
+	-webkit-text-fill-color: var(--wayfinder-magic-blue) !important;
+	background: var(--wayfinder-magic-purple);
+	border-radius: 3px;
+	box-shadow: 0 0 9px rgba(88, 169, 196, 0.2);
+}
+
+/*
+ * Dataview emits a real recursive task tree, but Obsidian's task-list reset
+ * removes its visual depth. Restore one consistent indent per nested level.
+ */
+.theme-dark :is(.markdown-source-view, .markdown-reading-view)
+	.block-language-dataview li.dataview > ul.contains-task-list {
+	margin-block: 0.2em 0;
+	padding-inline-start: 2em !important;
 }
 
 /* A task query mounted inside a dark callout returns to light artifact ink. */
@@ -565,6 +685,22 @@
 	opacity: 1 !important;
 }
 
+.theme-dark .markdown-source-view .metadata-container :is(.external-link, .metadata-link, .cm-link, .cm-url):hover,
+.theme-dark .markdown-source-view .metadata-container :is(.external-link, .metadata-link, .cm-link, .cm-url):hover *,
+.theme-dark .markdown-reading-view .metadata-container :is(.external-link, .metadata-link, .cm-link, .cm-url):hover,
+.theme-dark .markdown-reading-view .metadata-container :is(.external-link, .metadata-link, .cm-link, .cm-url):hover * {
+	color: var(--wayfinder-magic-purple) !important;
+	-webkit-text-fill-color: var(--wayfinder-magic-purple) !important;
+	text-shadow: none;
+}
+
+.theme-dark .markdown-source-view .metadata-container :is(.external-link, .metadata-link, .cm-link, .cm-url):hover,
+.theme-dark .markdown-reading-view .metadata-container :is(.external-link, .metadata-link, .cm-link, .cm-url):hover {
+	background: var(--wayfinder-magic-blue);
+	border-radius: 3px;
+	box-shadow: 0 0 9px rgba(88, 169, 196, 0.34);
+}
+
 /* Reading View parity ----------------------------------------------------- */
 
 .theme-dark .markdown-reading-view :not(pre) > code {
@@ -612,15 +748,25 @@
 }
 
 .theme-dark .markdown-reading-view li.task-list-item {
+	position: relative;
 	min-height: calc(var(--checkbox-size) + 4px);
 	padding-block: 2px;
 	line-height: 1.45;
 }
 
+/*
+ * Keep task fold affordances in the gutter, to the left of the checkbox.
+ * Reading view and Live Preview render separate indicator elements.
+ */
+.theme-dark .markdown-reading-view li.task-list-item .list-collapse-indicator,
+.theme-dark .markdown-source-view.mod-cm6 .HyperMD-task-line[data-task] .cm-fold-indicator {
+	transform: translateX(-2.5em) !important;
+}
+
 .theme-dark .markdown-reading-view li.task-list-item > .task-list-item-checkbox,
 .theme-dark .markdown-reading-view li.task-list-item > p > .task-list-item-checkbox {
-	top: 0.1em;
-	vertical-align: text-bottom;
+	top: -0.05em;
+	vertical-align: middle;
 }
 
 .theme-dark .markdown-reading-view table:not(.calendar) :is(a, a *, .internal-link, .external-link) {

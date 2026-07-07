@@ -25,10 +25,18 @@ body {
 	--wayfinder-motion-calm: 180ms;
 	/* Replaced with the asset's data URI by build.js. */
 	--wayfinder-parchment-texture: url("__WAYFINDER_PARCHMENT_TEXTURE__");
-	--wayfinder-parchment-texture-size: 1600px 3239px;
-	--wayfinder-parchment-tile-height: 3239px;
-	--wayfinder-parchment-seam-overlap: 30px;
-	--wayfinder-parchment-seam-core: 8px;
+	/* Native width of assets/parchment-texture.webp (1050x1498) — keeps the
+	   repeat-y tile at its own resolution instead of being upscaled. */
+	--wayfinder-parchment-width: 1050px;
+	/* Rendered tile height, derived from the same width so the seam-blend
+	   gradient below lines up with the texture at any pane width. */
+	--wayfinder-parchment-tile-height: calc(min(100%, var(--wayfinder-parchment-width)) * 1.4267);
+	/* The image's own vignette darkens roughly its outer 10%; this is how far
+	   the seam highlight fades in, to counteract two vignette edges meeting. */
+	--wayfinder-parchment-seam-fade: calc(var(--wayfinder-parchment-tile-height) * 0.13);
+	/* A flat plateau at the seam itself, so the highlight's peak isn't a
+	   single sharp point (visible as a crease) but a soft, brief band. */
+	--wayfinder-parchment-seam-plateau: calc(var(--wayfinder-parchment-tile-height) * 0.03);
 
 	--radius-s: var(--wayfinder-radius-small);
 	--radius-m: var(--wayfinder-radius-medium);

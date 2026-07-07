@@ -160,7 +160,13 @@
 	border-bottom: 1px solid var(--wayfinder-shell-edge);
 }
 
-.theme-dark .nav-folder.mod-root > .nav-folder-title .nav-folder-title-content {
+/*
+ * Matches plugins-core/file-explorer.scss's specificity (which includes a
+ * `body` selector) so this dark-mode treatment wins the cascade instead of
+ * losing on a specificity tie-breaker. That light/all-theme rule still
+ * supplies text-transform and font-size, which this block doesn't set.
+ */
+body.theme-dark .nav-folder.mod-root > .nav-folder-title .nav-folder-title-content {
 	color: var(--atlas-brass);
 	font-family: var(--wayfinder-font-display);
 	font-weight: 600;

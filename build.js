@@ -14,7 +14,7 @@ const sass = require('sass');
 
 const SRC = path.join(__dirname, 'src');
 const SCSS_ENTRY = path.join(SRC, 'scss/index.scss');
-const PARCHMENT_TEXTURE = path.join(__dirname, 'assets/parchment.svg');
+const PARCHMENT_TEXTURE = path.join(__dirname, 'assets/parchment-texture.webp');
 const FRAGMENTS_DIR = path.join(SRC, 'fragments');
 const LICENSE = path.join(FRAGMENTS_DIR, 'license.css');
 const CHECKBOXES = path.join(FRAGMENTS_DIR, 'checkboxes.css');
@@ -42,18 +42,16 @@ function loadEnv() {
 function build() {
 	const t0 = Date.now();
 	const parchmentTexture = fs.readFileSync(PARCHMENT_TEXTURE).toString('base64');
-	const parchmentDataUri = `data:image/svg+xml;base64,${parchmentTexture}`;
-	const expanded = sass.compile(SCSS_ENTRY, { style: 'expanded' }).css
+	const parchmentDataUri = `data:image/webp;base64,${parchmentTexture}`;
+	const compiled = sass.compile(SCSS_ENTRY, { style: 'expanded' }).css
 		.replaceAll('__WAYFINDER_PARCHMENT_TEXTURE__', parchmentDataUri);
-	// Minification temporarily disabled — re-enable by switching back to 'compressed'.
-	// const compressed = sass.compile(SCSS_ENTRY, { style: 'compressed' }).css;
 
 	const license = fs.readFileSync(LICENSE, 'utf8');
 	const checkboxes = fs.readFileSync(CHECKBOXES, 'utf8');
 	const pluginCompat = fs.readFileSync(PLUGIN_COMPAT, 'utf8');
 	const styleSettings = fs.readFileSync(STYLE_SETTINGS, 'utf8');
 
-	const themeCss = [license, expanded, pluginCompat, checkboxes, styleSettings].join('\n');
+	const themeCss = [license, compiled, pluginCompat, checkboxes, styleSettings].join('\n');
 
 	fs.writeFileSync(path.join(__dirname, 'theme.css'), themeCss);
 

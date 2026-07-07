@@ -1,0 +1,135 @@
+/*
+ * Home automation launchpad
+ * -------------------------
+ * These controls execute commands rather than merely navigating prose, so
+ * they receive a restrained rune glow while remaining practical dashboard UI.
+ */
+
+body.theme-dark .home-dashboard .home-launchpad {
+	align-items: start;
+	gap: 0.85rem;
+}
+
+body.theme-dark .home-dashboard .home-launch-card {
+	position: relative;
+	min-height: 0;
+	padding: 0.9rem;
+	color: #eee3cd;
+	background:
+		linear-gradient(145deg, rgba(var(--atlas-aether-rgb), 0.09), transparent 42%),
+		linear-gradient(180deg, rgba(212, 170, 85, 0.055), transparent 55%),
+		rgba(27, 19, 12, 0.94);
+	border-color: rgba(151, 108, 49, 0.72);
+	border-radius: var(--wayfinder-radius-medium);
+	box-shadow:
+		inset 0 1px rgba(255, 239, 190, 0.045),
+		0 3px 10px rgba(48, 28, 10, 0.2);
+}
+
+body.theme-dark .home-dashboard .home-launch-card::before {
+	content: "";
+	position: absolute;
+	inset: 0.3rem 0.75rem auto;
+	height: 1px;
+	pointer-events: none;
+	background: linear-gradient(
+		90deg,
+		transparent,
+		rgba(var(--atlas-rune-rgb), 0.52),
+		rgba(212, 170, 85, 0.46),
+		transparent
+	);
+	opacity: 0.72;
+}
+
+body.theme-dark .home-dashboard .home-launch-title {
+	margin-bottom: 0.7rem;
+	padding: 0.1rem 0 0.45rem;
+	color: #dfc17d;
+	border-bottom-color: rgba(151, 108, 49, 0.42);
+	font-family: var(--font-interface);
+	font-size: 0.9rem;
+	letter-spacing: 0.035em;
+	text-shadow: 0 0 9px rgba(212, 170, 85, 0.12);
+}
+
+body.theme-dark .home-dashboard .home-launch-actions {
+	gap: 0.48rem;
+}
+
+body.theme-dark .home-dashboard button.home-launch-button {
+	--home-tone-rgb: var(--atlas-rune-rgb);
+	min-height: 2.5rem;
+	padding-inline: 0.8rem;
+	color: #e9dfca;
+	background:
+		linear-gradient(90deg, rgba(var(--home-tone-rgb), 0.1), transparent 48%),
+		rgba(238, 220, 181, 0.075);
+	border-color: rgba(151, 108, 49, 0.46);
+	border-inline-start: 3px solid rgba(var(--home-tone-rgb), 0.9);
+	border-radius: var(--wayfinder-radius-small);
+	box-shadow:
+		inset 0 1px rgba(255, 239, 190, 0.035),
+		0 1px 2px rgba(0, 0, 0, 0.22);
+	font-weight: 500;
+	transition:
+		color var(--wayfinder-motion-quick) ease,
+		background-color var(--wayfinder-motion-quick) ease,
+		border-color var(--wayfinder-motion-quick) ease,
+		box-shadow var(--wayfinder-motion-calm) ease,
+		transform var(--wayfinder-motion-quick) ease;
+}
+
+body.theme-dark .home-dashboard button.home-launch-button.create {
+	--home-tone-rgb: 102, 129, 88;
+}
+
+body.theme-dark .home-dashboard button.home-launch-button.navigate {
+	--home-tone-rgb: 82, 126, 155;
+}
+
+body.theme-dark .home-dashboard button.home-launch-button.attention {
+	--home-tone-rgb: 169, 73, 61;
+}
+
+body.theme-dark .home-dashboard button.home-launch-button.review {
+	--home-tone-rgb: 119, 113, 185;
+}
+
+body.theme-dark .home-dashboard button.home-launch-button.resource {
+	--home-tone-rgb: 196, 154, 75;
+}
+
+body.theme-dark .home-dashboard button.home-launch-button.utility {
+	--home-tone-rgb: 160, 80, 44;
+}
+
+body.theme-dark .home-dashboard button.home-launch-button:hover {
+	color: #fff3d6;
+	background:
+		linear-gradient(90deg, rgba(var(--home-tone-rgb), 0.21), transparent 64%),
+		rgba(238, 220, 181, 0.1);
+	border-color: rgba(var(--home-tone-rgb), 0.84);
+	border-inline-start-color: rgb(var(--home-tone-rgb));
+	box-shadow:
+		inset 0 1px rgba(255, 249, 224, 0.055),
+		0 0 0 1px rgba(var(--home-tone-rgb), 0.12),
+		0 0 12px rgba(var(--home-tone-rgb), 0.2);
+	transform: translateY(-1px);
+}
+
+body.theme-dark .home-dashboard button.home-launch-button:focus-visible {
+	outline: 2px solid rgba(var(--home-tone-rgb), 0.92);
+	outline-offset: 2px;
+	box-shadow: 0 0 14px rgba(var(--home-tone-rgb), 0.28);
+}
+
+body.theme-dark .home-dashboard button.home-launch-button:active {
+	background: rgba(var(--home-tone-rgb), 0.18);
+	box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.38);
+	transform: translateY(0);
+}
+
+body.theme-dark .home-dashboard .dashboard-button-label {
+	color: inherit;
+}

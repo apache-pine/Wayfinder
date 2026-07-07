@@ -14,6 +14,16 @@
 		var(--background-secondary);
 }
 
+/*
+ * Repeated at native resolution rather than stretched to `cover`: a single
+ * image scaled to fill an entire long note gets upscaled far past its native
+ * size and looks soft. Tiling keeps every repeat at native sharpness.
+ *
+ * The image has its own vignette (darkens toward every edge), so two tile
+ * repeats meet dark-edge-to-dark-edge at each seam. The repeating-linear-
+ * gradient layer below lays a soft highlight across that boundary so it
+ * reads as a page transition rather than a double-dark stripe.
+ */
 .markdown-source-view .cm-scroller,
 .markdown-reading-view .markdown-preview-view {
 	background:
@@ -23,14 +33,12 @@
 		),
 		repeating-linear-gradient(
 			to bottom,
-			rgb(224, 162, 82) 0,
-			rgb(224, 162, 82) var(--wayfinder-parchment-seam-core),
-			rgba(224, 162, 82, 0.72) calc(var(--wayfinder-parchment-seam-core) + var(--wayfinder-parchment-seam-core)),
-			transparent var(--wayfinder-parchment-seam-overlap),
-			transparent calc(var(--wayfinder-parchment-tile-height) - var(--wayfinder-parchment-seam-overlap)),
-			rgba(224, 162, 82, 0.72) calc(var(--wayfinder-parchment-tile-height) - var(--wayfinder-parchment-seam-core) - var(--wayfinder-parchment-seam-core)),
-			rgb(224, 162, 82) calc(var(--wayfinder-parchment-tile-height) - var(--wayfinder-parchment-seam-core)),
-			rgb(224, 162, 82) var(--wayfinder-parchment-tile-height)
+			rgba(255, 241, 214, 0.18) 0,
+			rgba(255, 241, 214, 0.18) var(--wayfinder-parchment-seam-plateau),
+			transparent var(--wayfinder-parchment-seam-fade),
+			transparent calc(var(--wayfinder-parchment-tile-height) - var(--wayfinder-parchment-seam-fade)),
+			rgba(255, 241, 214, 0.18) calc(var(--wayfinder-parchment-tile-height) - var(--wayfinder-parchment-seam-plateau)),
+			rgba(255, 241, 214, 0.18) var(--wayfinder-parchment-tile-height)
 		),
 		var(--wayfinder-parchment-texture),
 		var(--background-primary);
@@ -39,8 +47,8 @@
 	background-repeat: no-repeat, repeat-y, repeat-y, no-repeat;
 	background-size:
 		auto,
-		100% var(--wayfinder-parchment-tile-height),
-		var(--wayfinder-parchment-texture-size),
+		min(100%, var(--wayfinder-parchment-width)) var(--wayfinder-parchment-tile-height),
+		min(100%, var(--wayfinder-parchment-width)) var(--wayfinder-parchment-tile-height),
 		auto;
 }
 

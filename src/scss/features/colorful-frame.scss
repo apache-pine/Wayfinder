@@ -84,9 +84,6 @@ body {
 		--icon-color-hover: var(--frame-icon-color);
 		--icon-color-active: var(--frame-icon-color);
 		--icon-color-focused: var(--frame-icon-color);
-
-		// #todo Remove line below after 1.0.2
-		--icon-color-focus: var(--frame-icon-color);
 	}
 	.mod-right-split .mod-top .workspace-tab-header.is-active .workspace-tab-header-inner-icon,
 	.mod-left-split .mod-top .workspace-tab-header.is-active .workspace-tab-header-inner-icon {

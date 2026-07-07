@@ -120,9 +120,6 @@ body:not(.sidebar-tabs-underline):not(.sidebar-tabs-index):not(.sidebar-tabs-squ
 			height: var(--tab-height);
 			margin-left: var(--size-4-1);
 			padding: 0;
-			&:hover {
-
-			}
 			&.is-active {
 				.workspace-tab-header-inner-title {
 					color: var(--tab-text-color-active);
@@ -247,11 +244,6 @@ body:not(.sidebar-tabs-underline):not(.sidebar-tabs-index):not(.sidebar-tabs-squ
 	}
 
 	&:not(.labeled-nav) .mod-left-split,
-	&.labeled-nav .mod-left-split .workspace-tabs:not(.mod-top) {
-		--tab-background-active: var(--background-secondary);
-	}
-
-	&:not(.labeled-nav) .mod-left-split,
 	&.labeled-nav .mod-left-split .workspace-tabs:not(.mod-top),
 	.mod-right-split {
 		.workspace-tab-header-container {
@@ -278,6 +270,7 @@ body:not(.sidebar-tabs-underline):not(.sidebar-tabs-index):not(.sidebar-tabs-squ
 }
 
 
+.sidebar-tabs-plain-square,
 .sidebar-tabs-square,
 .sidebar-tabs-index {
 
@@ -285,6 +278,10 @@ body:not(.sidebar-tabs-underline):not(.sidebar-tabs-index):not(.sidebar-tabs-squ
 	&.labeled-nav .mod-left-split .workspace-tabs:not(.mod-top) {
 		--tab-background-active: var(--background-secondary);
 	}
+}
+
+.sidebar-tabs-square,
+.sidebar-tabs-index {
 
 	&:not(.labeled-nav) .mod-left-split,
 	&.labeled-nav .mod-left-split .workspace-tabs:not(.mod-top),

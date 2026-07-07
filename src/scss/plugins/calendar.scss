@@ -61,9 +61,6 @@ body {
 		font-weight:500;
 		letter-spacing:0.1em;
 		font-size:var(--font-adaptive-smallest);
-		&:first-child {
-			padding-left: 0 !important;
-		}
 	}
 	tr td {
 		padding:2px 0 0;
@@ -71,9 +68,10 @@ body {
 		cursor:var(--cursor);
 		border:1px solid transparent;
 		transition:none;
-		&:first-child {
-			padding-left: 0 !important;
-		}
+	}
+	tr th:first-child,
+	tr td:first-child {
+		padding-left: 0 !important;
 	}
 
 	.nav {
