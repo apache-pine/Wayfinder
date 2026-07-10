@@ -8211,6 +8211,27 @@ body {
 }
 
 /*
+ * Raw HTML ink: inline/embedded HTML shares the --code-* custom properties
+ * with fenced code blocks, but fenced blocks stay dark technical plates
+ * (see artifacts.scss) while raw HTML sits directly on the parchment page.
+ * Re-pitch the palette for paper instead of slate, and leave fenced
+ * codeblock lines (.HyperMD-codeblock) on the dark-plate colors.
+ */
+.theme-dark .markdown-source-view .cm-line:not(.HyperMD-codeblock) {
+  --code-normal: var(--atlas-ink);
+  --code-comment: var(--atlas-ink-faded);
+  --code-punctuation: var(--atlas-ink-muted);
+  --code-tag: #6b3418;
+  --code-function: #7a5c12;
+  --code-property: var(--wayfinder-magic-purple);
+  --code-string: #2f5c34;
+  --code-keyword: #234f61;
+  --code-operator: #594494;
+  --code-value: #7a4a12;
+  --code-important: var(--wayfinder-canceled-task-color);
+}
+
+/*
  * Ink weight: a hair-thin stroke adds density to every glyph on parchment
  * without touching font-weight, so headings/links/muted text keep their
  * existing weight relationships relative to one another (unlike bumping
