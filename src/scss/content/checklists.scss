@@ -3,15 +3,15 @@ body {
 	--checkbox-radius: 50%;
 	--checkbox-top: 2px;
 	--checkbox-left: 0px;
-	--checkbox-margin: 0px 6px 0px -2em;
+	--checkbox-margin: 0px 6px 0px 0.5em;
 	--checklist-done-decoration: line-through;
 }
 .checkbox-square {
 	--checkbox-size: calc(var(--font-text-size) * 0.85);
 	--checkbox-radius: 4px;
-	--checkbox-top: 1px;
+	--checkbox-top: -3px;
 	--checkbox-left: 0px;
-	--checkbox-margin: 0px 8px 0px -2em;
+	--checkbox-margin: 0px 8px 0px 0.5em;
 }
 
 body.wayfinder-no-strike-lists {
@@ -27,10 +27,18 @@ body.wayfinder-no-strike-lists {
 	margin: 1px;
 }
 
-.markdown-preview-view .task-list-item-checkbox {
+.markdown-preview-view .task-list-item-checkbox,
+.markdown-reading-view li.task-list-item .task-list-item-checkbox,
+.markdown-source-view.mod-cm6 li.task-list-item .task-list-item-checkbox,
+.markdown-source-view.mod-cm6 .HyperMD-task-line .task-list-item-checkbox {
 	position: relative;
 	top: var(--checkbox-top);
 	left: var(--checkbox-left);
+}
+
+/* Native checkboxes in Live Preview sit a touch lower than Dataview's <li> rendering. */
+.markdown-source-view.mod-cm6 .HyperMD-task-line .task-list-item-checkbox {
+	top: calc(var(--checkbox-top) - 1px);
 }
 .markdown-preview-view ul > li.task-list-item {
 	text-indent: 0;

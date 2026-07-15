@@ -82,7 +82,9 @@ without changing note syntax or component styling.
 
 /* Optional Style Settings treatments preserve per-state meaning. */
 .check-bg:not(.alt-chkbx-off) .markdown-source-view.mod-cm6 .HyperMD-task-line[data-task],
-.check-bg:not(.alt-chkbx-off) .markdown-preview-view li.task-list-item[data-task] {
+.check-bg:not(.alt-chkbx-off) .markdown-source-view.mod-cm6 li.task-list-item[data-task],
+.check-bg:not(.alt-chkbx-off) .markdown-preview-view li.task-list-item[data-task],
+.check-bg:not(.alt-chkbx-off) .markdown-reading-view li.task-list-item[data-task] {
 	--wayfinder-task-row-bg: rgba(var(--wayfinder-task-rgb, 91, 65, 45), 0.32);
 	position: relative;
 	isolation: isolate;
@@ -91,11 +93,13 @@ without changing note syntax or component styling.
 }
 
 .check-bg:not(.alt-chkbx-off) .markdown-source-view.mod-cm6 .HyperMD-task-line[data-task]::before,
-.check-bg:not(.alt-chkbx-off) .markdown-preview-view li.task-list-item[data-task]::before {
+.check-bg:not(.alt-chkbx-off) .markdown-source-view.mod-cm6 li.task-list-item[data-task]::before,
+.check-bg:not(.alt-chkbx-off) .markdown-preview-view li.task-list-item[data-task]::before,
+.check-bg:not(.alt-chkbx-off) .markdown-reading-view li.task-list-item[data-task]::before {
 	content: "";
 	position: absolute;
 	z-index: -1;
-	inset: -1px 0 -1px -2.15em;
+	inset: -1px 0 -1px -0.15em;
 	pointer-events: none;
 	background: var(--wayfinder-task-row-bg);
 	border: 1px solid rgba(var(--wayfinder-task-rgb, 91, 65, 45), 0.18);
@@ -103,7 +107,9 @@ without changing note syntax or component styling.
 }
 
 .check-color:not(.alt-chkbx-off) .markdown-source-view.mod-cm6 .HyperMD-task-line[data-task],
-.check-color:not(.alt-chkbx-off) .markdown-preview-view li.task-list-item[data-task] {
+.check-color:not(.alt-chkbx-off) .markdown-source-view.mod-cm6 li.task-list-item[data-task],
+.check-color:not(.alt-chkbx-off) .markdown-preview-view li.task-list-item[data-task],
+.check-color:not(.alt-chkbx-off) .markdown-reading-view li.task-list-item[data-task] {
 	color: color-mix(
 		in srgb,
 		rgb(var(--wayfinder-task-rgb, 91, 65, 45)) 72%,
@@ -116,7 +122,9 @@ Keep native and semantic markers in the same layout slot. Emoji glyphs differ
 visually, but their box and the following task text must not move.
 */
 .markdown-preview-view .task-list-item-checkbox,
-.markdown-source-view.mod-cm6 .HyperMD-task-line .task-list-item-checkbox {
+.markdown-source-view.mod-cm6 .HyperMD-task-line .task-list-item-checkbox,
+.markdown-source-view.mod-cm6 li.task-list-item .task-list-item-checkbox,
+.markdown-reading-view li.task-list-item .task-list-item-checkbox {
 	display: inline-grid;
 	width: var(--checkbox-size);
 	min-width: var(--checkbox-size);
@@ -190,25 +198,33 @@ body:not(.alt-chkbx-off) li.task-list-item[data-task]:not([data-task="x"]) > p >
 
 /* Only genuinely terminal states receive completion treatment. */
 .markdown-source-view.mod-cm6 .HyperMD-task-line[data-task="x"],
-.markdown-preview-view li.task-list-item.is-checked[data-task="x"] {
+.markdown-source-view.mod-cm6 li.task-list-item.is-checked[data-task="x"],
+.markdown-preview-view li.task-list-item.is-checked[data-task="x"],
+.markdown-reading-view li.task-list-item.is-checked[data-task="x"] {
 	color: var(--wayfinder-completed-task-color, #62451f);
 	text-decoration: line-through solid currentColor 1px;
 }
 
 .markdown-source-view.mod-cm6 .HyperMD-task-line[data-task]:not([data-task="x"]):not([data-task="X"]):not([data-task="-"]),
-.markdown-preview-view li.task-list-item.is-checked[data-task]:not([data-task="x"]):not([data-task="X"]):not([data-task="-"]) {
+.markdown-source-view.mod-cm6 li.task-list-item.is-checked[data-task]:not([data-task="x"]):not([data-task="X"]):not([data-task="-"]),
+.markdown-preview-view li.task-list-item.is-checked[data-task]:not([data-task="x"]):not([data-task="X"]):not([data-task="-"]),
+.markdown-reading-view li.task-list-item.is-checked[data-task]:not([data-task="x"]):not([data-task="X"]):not([data-task="-"]) {
 	color: var(--text-normal);
 	text-decoration: none;
 }
 
 .markdown-source-view.mod-cm6 .HyperMD-task-line[data-task="X"],
-.markdown-preview-view li.task-list-item.is-checked[data-task="X"] {
+.markdown-source-view.mod-cm6 li.task-list-item.is-checked[data-task="X"],
+.markdown-preview-view li.task-list-item.is-checked[data-task="X"],
+.markdown-reading-view li.task-list-item.is-checked[data-task="X"] {
 	color: var(--wayfinder-checked-task-color, #245a36);
 	text-decoration: line-through solid currentColor 1px;
 }
 
 .markdown-source-view.mod-cm6 .HyperMD-task-line[data-task="-"],
-.markdown-preview-view li.task-list-item.is-checked[data-task="-"] {
+.markdown-source-view.mod-cm6 li.task-list-item.is-checked[data-task="-"],
+.markdown-preview-view li.task-list-item.is-checked[data-task="-"],
+.markdown-reading-view li.task-list-item.is-checked[data-task="-"] {
 	color: var(--wayfinder-canceled-task-color, #782d27);
 	text-decoration: line-through solid currentColor 1px;
 }
