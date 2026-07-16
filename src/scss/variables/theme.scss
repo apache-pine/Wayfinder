@@ -90,6 +90,9 @@
 	--text-on-accent:                    var(--sp1);
 	--text-selection:                    var(--hl1);
 
+	/* Obsidian's default search-match blend mode washes out against this palette. */
+	--highlight-mix-blend-mode:          normal;
+
 	--text-formatting:                   var(--tx3);
 
 	--title-color-inactive:              var(--tx2);

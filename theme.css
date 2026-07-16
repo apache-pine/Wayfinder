@@ -506,6 +506,8 @@ body .excalidraw {
   --text-normal: var(--tx1);
   --text-on-accent: var(--sp1);
   --text-selection: var(--hl1);
+  /* Obsidian's default search-match blend mode washes out against this palette. */
+  --highlight-mix-blend-mode: normal;
   --text-formatting: var(--tx3);
   --title-color-inactive: var(--tx2);
   --title-color: var(--tx1);
@@ -9660,20 +9662,6 @@ settings:
 			-
 				label: Outlined
 				value: callouts-outlined
-	-
-		id: callout-blend-mode
-		title: Color blending
-		description: Blend the color of nested callouts
-		type: variable-select
-		allowEmpty: false
-		default: var(--highlight-mix-blend-mode)
-		options:
-			-
-				label: On
-				value: var(--highlight-mix-blend-mode)
-			-
-				label: Off
-				value: normal
 	-
 		id: canvas
 		title: Canvas

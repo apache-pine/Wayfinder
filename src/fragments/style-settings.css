@@ -293,20 +293,6 @@ settings:
 				label: Outlined
 				value: callouts-outlined
 	-
-		id: callout-blend-mode
-		title: Color blending
-		description: Blend the color of nested callouts
-		type: variable-select
-		allowEmpty: false
-		default: var(--highlight-mix-blend-mode)
-		options:
-			-
-				label: On
-				value: var(--highlight-mix-blend-mode)
-			-
-				label: Off
-				value: normal
-	-
 		id: canvas
 		title: Canvas
 		type: heading
