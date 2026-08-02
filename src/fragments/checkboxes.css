@@ -218,7 +218,7 @@ body:not(.alt-chkbx-off) li.task-list-item[data-task]:not([data-task="x"]) > p >
 .markdown-preview-view li.task-list-item.is-checked[data-task="X"],
 .markdown-reading-view li.task-list-item.is-checked[data-task="X"] {
 	color: var(--wayfinder-checked-task-color, #245a36);
-	text-decoration: line-through solid currentColor 1px;
+	text-decoration: none;
 }
 
 .markdown-source-view.mod-cm6 .HyperMD-task-line[data-task="-"],

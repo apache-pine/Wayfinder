@@ -9,17 +9,96 @@
 	padding-top:0.5em;
 }
 
-/* Typing caret: default rendering is too pale against the parchment/leather
-   surfaces, so pin it to the aether purple accent for visibility. Covers both
-   CodeMirror's drawn cursor overlay and the native contenteditable caret. */
-.cm-editor .cm-cursor,
-.cm-editor .cm-cursor-primary,
-.cm-editor .cm-dropCursor {
-	border-left-color: var(--atlas-aether) !important;
-	border-left-width: 2px !important;
+/*
+ * Typing caret: default rendering is too pale against the parchment/leather
+ * surfaces, so pin it to the aether purple accent for visibility. Covers both
+ * CodeMirror's drawn cursor overlay and the native contenteditable caret.
+ *
+ * The border-left is what actually renders the visible line (CodeMirror
+ * sizes this element's own width/content-box to 0 and relies on the border
+ * for thickness) - box-shadow layers a glow around that border without
+ * touching the mechanism that makes it visible at all. An earlier attempt
+ * swapped this for a filled background/width and went fully invisible,
+ * because there was no width for a background to fill once the border was
+ * removed.
+ *
+ * Escape hatch: a companion plugin (or any snippet) that draws its own
+ * caret can add a `wayfinder-caret-hidden` class to <body> to have the theme
+ * step out of the way entirely, rather than needing to out-specificity or
+ * JS-force-override these !important declarations. This keeps !important
+ * here (still needed to survive Obsidian's own base editor CSS) while giving
+ * external code one explicit, guaranteed-to-work opt-out instead of fighting
+ * the cascade.
+ *
+ * The pulse is a separate ::after layer animating only `opacity`, not a
+ * `filter`/`box-shadow` animation on the cursor itself. `opacity` is one of
+ * the few properties the browser can animate on the compositor thread (pure
+ * GPU layer blending); animating `filter` or `box-shadow` instead forces a
+ * full repaint of the glow every frame, forever, for as long as any note is
+ * open in edit mode - a continuous, low-grade drag on the whole app rather
+ * than a one-off cost.
+ */
+body:not(.wayfinder-caret-hidden) .cm-editor .cm-cursor,
+body:not(.wayfinder-caret-hidden) .cm-editor .cm-cursor-primary,
+body:not(.wayfinder-caret-hidden) .cm-editor .cm-dropCursor {
+	border-left-color: var(--atlas-rune-bright) !important;
+	border-left-width: 3px !important;
+	box-shadow:
+		0 0 4px rgba(var(--atlas-rune-rgb), 0.55),
+		0 0 10px rgba(var(--atlas-aether-rgb), 0.32),
+		0 0 20px rgba(var(--atlas-aether-rgb), 0.14);
 }
-.cm-editor .cm-content,
-.cm-editor .cm-line,
+
+body:not(.wayfinder-caret-hidden) .cm-editor .cm-cursor::after,
+body:not(.wayfinder-caret-hidden) .cm-editor .cm-cursor-primary::after,
+body:not(.wayfinder-caret-hidden) .cm-editor .cm-dropCursor::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	box-shadow:
+		0 0 4px rgba(var(--atlas-rune-rgb), 0.7),
+		0 0 10px rgba(var(--atlas-aether-rgb), 0.45),
+		0 0 20px rgba(var(--atlas-aether-rgb), 0.2);
+	opacity: 0;
+	pointer-events: none;
+	will-change: opacity;
+	animation: wayfinder-caret-pulse 1.35s ease-in-out infinite alternate;
+}
+
+body.wayfinder-caret-hidden .cm-editor .cm-cursor,
+body.wayfinder-caret-hidden .cm-editor .cm-cursor-primary,
+body.wayfinder-caret-hidden .cm-editor .cm-dropCursor {
+	border-left: none !important;
+	box-shadow: none !important;
+}
+
+body.wayfinder-caret-hidden .cm-editor .cm-cursor::after,
+body.wayfinder-caret-hidden .cm-editor .cm-cursor-primary::after,
+body.wayfinder-caret-hidden .cm-editor .cm-dropCursor::after {
+	animation: none !important;
+	opacity: 0 !important;
+}
+
+@keyframes wayfinder-caret-pulse {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.cm-editor .cm-cursor::after,
+	.cm-editor .cm-cursor-primary::after,
+	.cm-editor .cm-dropCursor::after {
+		animation: none;
+		opacity: 0;
+	}
+}
+
+body:not(.wayfinder-caret-hidden) .cm-editor .cm-content,
+body:not(.wayfinder-caret-hidden) .cm-editor .cm-line,
 .inline-title,
 .metadata-input,
 textarea,
@@ -27,6 +106,11 @@ input[type="text"],
 input[type="search"],
 [contenteditable="true"] {
 	caret-color: var(--atlas-aether) !important;
+}
+
+body.wayfinder-caret-hidden .cm-editor .cm-content,
+body.wayfinder-caret-hidden .cm-editor .cm-line {
+	caret-color: transparent !important;
 }
 .markdown-source-view {
 	color: var(--text-normal);

@@ -29,8 +29,12 @@
 	--link-color: #594494;
 	--link-color-hover: #39246f;
 	--link-unresolved-color: #694f2d;
-	--wayfinder-magic-purple: #452273;
+	--wayfinder-magic-purple: #3a1660;
 	--wayfinder-magic-blue: #9bddeb;
+	/* Note links: oxidized copper-green ink at rest, an awakened gold spark on hover. */
+	--wayfinder-verdigris: #184a3c;
+	--wayfinder-verdigris-deep: #0a1f19;
+	--wayfinder-spark: #eeb24c;
 	--wayfinder-completed-task-color: #62451f;
 	--wayfinder-checked-task-color: #245a36;
 	--wayfinder-canceled-task-color: #782d27;
@@ -83,15 +87,14 @@
 }
 
 /*
- * Ink weight: a hair-thin stroke adds density to every glyph on parchment
- * without touching font-weight, so headings/links/muted text keep their
- * existing weight relationships relative to one another (unlike bumping
- * font-weight, which can push some already-heavy elements past sane values).
+ * Ink weight was previously a hair-thin -webkit-text-stroke on every glyph
+ * on parchment (added density without touching font-weight, so headings/
+ * links/muted text kept their existing weight relationships relative to one
+ * another). Removed for performance: stroking forces a more expensive
+ * glyph-rendering path (outline + fill, not just fill) for every character
+ * in the document, which scales with how much text is on screen - the exact
+ * cost long notes and large Dataview tables pay the most of.
  */
-.theme-dark .markdown-source-view,
-.theme-dark .markdown-reading-view {
-	-webkit-text-stroke: 0.35px currentColor;
-}
 
 .theme-dark .markdown-source-view .inline-title,
 .theme-dark .markdown-reading-view .inline-title,
@@ -307,37 +310,77 @@
 	box-shadow: inset 0 1px rgba(255, 239, 190, 0.035);
 }
 
-/* Links are revealed paths: purple at rest, blue when magically awakened. */
+/* Links are revealed paths: a faintly glowing verdigris rune at rest, a gold spark when magically awakened. */
 .theme-dark .markdown-source-view,
 .theme-dark .markdown-reading-view {
-	--link-color: var(--wayfinder-magic-purple);
-	--link-color-hover: var(--wayfinder-magic-blue);
+	--link-color: var(--wayfinder-verdigris);
+	--link-color-hover: var(--wayfinder-spark);
 	--link-unresolved-color: #694f2d;
 	--link-unresolved-opacity: 0.88;
 }
 
+/*
+ * A flat, unblurred plaque - never a blurred box-shadow here. Live Preview
+ * renders internal-link text as several adjacent CodeMirror spans (hidden-
+ * bracket widgets, per-word spans), and a blurred ring drawn separately
+ * behind each fragment shows as disconnected halos above the letters. A flat
+ * fill has no blur to bleed past a fragment's edge, so it stays seamless
+ * even when split across spans.
+ */
 .theme-dark .markdown-source-view :is(.cm-hmd-internal-link, .cm-link, .cm-url, .cm-string.cm-url, .external-link, .internal-query),
 .theme-dark .markdown-reading-view :is(a, .external-link, .internal-query) {
 	color: var(--link-color) !important;
-	text-decoration-color: rgba(89, 68, 148, 0.6);
+	font-weight: 600;
+	padding: 0.02em 0.32em;
+	margin: 0 -0.32em;
+	border-radius: 4px;
+	background: rgba(24, 74, 60, 0.16);
+	text-decoration-color: rgba(24, 74, 60, 0.7);
 	text-decoration-thickness: 1px;
 	text-underline-offset: 0.16em;
 	transition:
 		color var(--wayfinder-motion-quick) ease,
 		background-color var(--wayfinder-motion-quick) ease,
-		box-shadow var(--wayfinder-motion-calm) ease,
-		text-shadow var(--wayfinder-motion-calm) ease;
+		box-shadow var(--wayfinder-motion-calm) ease;
 }
 
-.theme-dark .markdown-source-view :is(.cm-hmd-internal-link, .cm-link, .cm-url, .cm-string.cm-url, .external-link, .internal-query):hover,
+/* Live Preview hover: flat fill only - no box-shadow ring (see note above). */
+.theme-dark .markdown-source-view :is(.cm-hmd-internal-link, .cm-link, .cm-url, .cm-string.cm-url, .external-link, .internal-query):hover {
+	color: var(--link-color-hover) !important;
+	background: var(--wayfinder-verdigris-deep);
+}
+
+/* Reading View hover: a single <a> element, so a soft glow ring is safe here. */
 .theme-dark .markdown-reading-view :is(a, .external-link, .internal-query):hover {
 	color: var(--link-color-hover) !important;
-	background: var(--wayfinder-magic-purple);
-	border-radius: 3px;
+	background: var(--wayfinder-verdigris-deep);
 	box-shadow:
-		0 0 0 1px rgba(69, 34, 115, 0.28),
-		0 0 9px rgba(88, 169, 196, 0.2);
-	text-shadow: 0 0 7px rgba(155, 221, 235, 0.22);
+		0 0 0 1px rgba(10, 31, 25, 0.45),
+		0 0 9px rgba(238, 178, 76, 0.32);
+}
+
+/*
+ * Dataview/DataviewJS tables are usually mostly links - one per listed note
+ * is typical - so the flat-plaque treatment above (background fill, padding,
+ * negative margin, its own transition) gets paid once per row. For a large
+ * query that's real style/paint cost spent on a purely decorative effect.
+ * Strip it back to plain colored text here; the pill stays intact for links
+ * everywhere else in the note. More specific than the base rule above (adds
+ * the block-language class), so this wins without needing !important.
+ */
+.theme-dark .markdown-source-view :is(.block-language-dataview, .block-language-dataviewjs) :is(.cm-hmd-internal-link, .cm-link, .cm-url, .cm-string.cm-url, .external-link, .internal-query),
+.theme-dark .markdown-reading-view :is(.block-language-dataview, .block-language-dataviewjs) :is(a, .external-link, .internal-query) {
+	padding: 0;
+	margin: 0;
+	border-radius: 0;
+	background: transparent;
+	transition: none;
+}
+
+.theme-dark .markdown-source-view :is(.block-language-dataview, .block-language-dataviewjs) :is(.cm-hmd-internal-link, .cm-link, .cm-url, .cm-string.cm-url, .external-link, .internal-query):hover,
+.theme-dark .markdown-reading-view :is(.block-language-dataview, .block-language-dataviewjs) :is(a, .external-link, .internal-query):hover {
+	background: transparent;
+	box-shadow: none;
 }
 
 /*
@@ -463,7 +506,7 @@
 
 .theme-dark .markdown-source-view table:not(.calendar) th,
 .theme-dark .markdown-reading-view table:not(.calendar) th {
-	color: #f3d99c;
+	color: var(--table-header-color);
 	text-shadow: 0 1px rgba(0, 0, 0, 0.42);
 }
 
@@ -576,8 +619,8 @@
 .theme-dark .markdown-reading-view :is(.dataview.task-list-item, .dataview.task-list-basic-item) {
 	--text-normal: #382616;
 	--text-muted: #503920;
-	--link-color: var(--wayfinder-magic-purple);
-	--link-color-hover: var(--wayfinder-magic-blue);
+	--link-color: var(--wayfinder-verdigris);
+	--link-color-hover: var(--wayfinder-spark);
 	color: var(--text-normal);
 }
 
@@ -593,17 +636,21 @@
 
 .theme-dark .markdown-source-view :is(.dataview.task-list-item, .dataview.task-list-basic-item) :is(a, .internal-link, .external-link),
 .theme-dark .markdown-reading-view :is(.dataview.task-list-item, .dataview.task-list-basic-item) :is(a, .internal-link, .external-link) {
-	color: var(--wayfinder-magic-purple) !important;
-	-webkit-text-fill-color: var(--wayfinder-magic-purple) !important;
+	color: var(--wayfinder-verdigris) !important;
+	-webkit-text-fill-color: var(--wayfinder-verdigris) !important;
 }
 
+/*
+ * Flat fill only, no box-shadow ring: this selector covers both Live Preview
+ * and Reading View at once, and a blurred ring would reproduce the seam
+ * artifact described on the main link hover rule above.
+ */
 .theme-dark .markdown-source-view :is(.dataview.task-list-item, .dataview.task-list-basic-item) :is(a, .internal-link, .external-link):hover,
 .theme-dark .markdown-reading-view :is(.dataview.task-list-item, .dataview.task-list-basic-item) :is(a, .internal-link, .external-link):hover {
-	color: var(--wayfinder-magic-blue) !important;
-	-webkit-text-fill-color: var(--wayfinder-magic-blue) !important;
-	background: var(--wayfinder-magic-purple);
+	color: var(--wayfinder-spark) !important;
+	-webkit-text-fill-color: var(--wayfinder-spark) !important;
+	background: var(--wayfinder-verdigris-deep);
 	border-radius: 3px;
-	box-shadow: 0 0 9px rgba(88, 169, 196, 0.2);
 }
 
 /*
@@ -718,6 +765,45 @@
 	stroke: #ffffff !important;
 }
 
+/*
+ * Timeline diagrams aren't covered by the flowchart/sequence fix above: they
+ * carry their own per-section rainbow (Mermaid cycles hsl hues 0-330 across
+ * `.section-0` .. `.section-N`) and a plain title <text> with no explicit
+ * fill, tuned for a white page. Run through the same invert/hue-rotate/
+ * saturate filter, the rainbow comes out the other side as a *different*,
+ * equally clashing rainbow, and the title (near-black by default) inverts
+ * to near-white - invisible against the parchment page behind the
+ * (filter-exempt) SVG background.
+ *
+ * `!important` is required here: Mermaid's colors are set by an inline
+ * `<style>` scoped to the diagram's own id, which beats any external class
+ * selector on specificity alone. Each hex value below is solved so that,
+ * after Obsidian's exact `invert(100%) hue-rotate(180deg) saturate(1.25)`,
+ * the on-screen result lands on the theme's ink/plate palette instead of
+ * whatever Mermaid's light-mode defaults happen to invert to.
+ */
+.theme-dark .markdown-source-view .mermaid > svg > text,
+.theme-dark .markdown-reading-view .mermaid > svg > text {
+	fill: #e4dcd3 !important;
+}
+
+.theme-dark .markdown-source-view .mermaid :is(.section--1, .section-0, .section-1, .section-2, .section-3, .section-4, .section-5, .section-6, .section-7, .section-8, .section-9, .section-10, .section-root) :is(rect, path, circle),
+.theme-dark .markdown-reading-view .mermaid :is(.section--1, .section-0, .section-1, .section-2, .section-3, .section-4, .section-5, .section-6, .section-7, .section-8, .section-9, .section-10, .section-root) :is(rect, path, circle) {
+	fill: #efe9e3 !important;
+}
+
+.theme-dark .markdown-source-view .mermaid :is(.section--1, .section-0, .section-1, .section-2, .section-3, .section-4, .section-5, .section-6, .section-7, .section-8, .section-9, .section-10, .section-root) text,
+.theme-dark .markdown-reading-view .mermaid :is(.section--1, .section-0, .section-1, .section-2, .section-3, .section-4, .section-5, .section-6, .section-7, .section-8, .section-9, .section-10, .section-root) text {
+	fill: #272823 !important;
+}
+
+.theme-dark .markdown-source-view .mermaid :is(.section--1, .section-0, .section-1, .section-2, .section-3, .section-4, .section-5, .section-6, .section-7, .section-8, .section-9, .section-10, .section-root) line,
+.theme-dark .markdown-reading-view .mermaid :is(.section--1, .section-0, .section-1, .section-2, .section-3, .section-4, .section-5, .section-6, .section-7, .section-8, .section-9, .section-10, .section-root) line,
+.theme-dark .markdown-source-view .mermaid :is([class*="section-edge-"], .lineWrapper line),
+.theme-dark .markdown-reading-view .mermaid :is([class*="section-edge-"], .lineWrapper line) {
+	stroke: #a47d41 !important;
+}
+
 .theme-dark .markdown-source-view .internal-embed.is-loaded:not(.image-embed),
 .theme-dark .markdown-reading-view .internal-embed.is-loaded:not(.image-embed) {
 	padding: var(--size-4-3);
@@ -781,7 +867,9 @@
 
 .theme-dark .markdown-reading-view .callout-title,
 .theme-dark .markdown-preview-view .callout-title {
-	color: rgb(var(--callout-color)) !important;
+	/* Same blend ratio as the base .callout-title rule in artifacts.scss, kept in sync so reading view doesn't reintroduce the low-contrast raw accent. */
+	color: color-mix(in srgb, rgb(var(--callout-color)) 60%, #f0e6cc 40%) !important;
+	text-shadow: 0 1px 2px rgba(12, 9, 6, 0.5) !important;
 	background-color: rgba(12, 9, 6, 0.16) !important;
 	background-image:
 		linear-gradient(90deg, rgba(var(--callout-color), 0.2), transparent 72%) !important;

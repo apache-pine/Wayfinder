@@ -91,6 +91,16 @@ body {
 	--wayfinder-bg-table: #090705;
 	--wayfinder-parchment-overlay: rgba(246, 220, 160, 0.035);
 
+	/*
+	 * List indent guides default to a near-invisible grey border color that
+	 * disappears against parchment. Aether (purple) reads clearly at rest;
+	 * rune (blue) brightens the guide nearest the cursor so the active
+	 * nesting level still pops without every guide competing for attention.
+	 */
+	--indentation-guide-color: var(--atlas-aether);
+	--indentation-guide-color-active: var(--atlas-rune);
+	--indentation-guide-width-active: 2px;
+
 	/* Inherited Minimal internals */
 	--bg1: var(--atlas-reading-surface);
 	--bg2: var(--atlas-leather);
@@ -194,6 +204,9 @@ body {
 	--atlas-aether: #635a91;
 	--wayfinder-bg-table: #2d2116;
 	--wayfinder-parchment-overlay: rgba(255, 247, 219, 0.08);
+	--indentation-guide-color: var(--atlas-aether);
+	--indentation-guide-color-active: var(--atlas-rune);
+	--indentation-guide-width-active: 2px;
 	--bg1: var(--atlas-reading-surface);
 	--bg2: var(--atlas-parchment-aged);
 	--bg3: rgba(89, 62, 28, 0.1);

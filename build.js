@@ -6,6 +6,7 @@
 //
 // Usage:
 //   node build.js          one-off build
+//   node build.js --production  compressed production build
 //   node build.js --watch  rebuild on changes
 
 const fs = require('node:fs');
@@ -20,6 +21,7 @@ const LICENSE = path.join(FRAGMENTS_DIR, 'license.css');
 const CHECKBOXES = path.join(FRAGMENTS_DIR, 'checkboxes.css');
 const PLUGIN_COMPAT = path.join(FRAGMENTS_DIR, 'plugin-compatibility.css');
 const STYLE_SETTINGS = path.join(FRAGMENTS_DIR, 'style-settings.css');
+const PRODUCTION = process.argv.includes('--production');
 
 function loadEnv() {
 	try {
@@ -43,7 +45,13 @@ function build() {
 	const t0 = Date.now();
 	const parchmentTexture = fs.readFileSync(PARCHMENT_TEXTURE).toString('base64');
 	const parchmentDataUri = `data:image/webp;base64,${parchmentTexture}`;
-	const compiled = sass.compile(SCSS_ENTRY, { style: 'expanded' }).css
+	const compiled = sass.compile(SCSS_ENTRY, {
+		style: PRODUCTION ? 'compressed' : 'expanded',
+	}).css
+		// Sass preserves the entry file's BOM. Once the license is prepended it
+		// is no longer at byte zero, where CSS parsers recognize it as encoding
+		// metadata, so remove it before concatenating the output.
+		.replace(/^\uFEFF/, '')
 		.replaceAll('__WAYFINDER_PARCHMENT_TEXTURE__', parchmentDataUri);
 
 	const license = fs.readFileSync(LICENSE, 'utf8');
@@ -65,7 +73,7 @@ function build() {
 		}
 	}
 
-	console.log(`Built in ${Date.now() - t0}ms`);
+	console.log(`Built ${PRODUCTION ? 'production' : 'development'} CSS in ${Date.now() - t0}ms`);
 }
 
 function safeBuild() {

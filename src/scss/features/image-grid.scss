@@ -35,7 +35,12 @@ body {
   }
 
   .markdown-preview-section {
-    > div:has(img) {
+    > div:has(
+      > img,
+      > .image-embed,
+      > p > img,
+      > p > .image-embed
+    ) {
       p:empty,
       img ~ br,
       .image-embed ~ br {
@@ -58,7 +63,7 @@ body {
         align-self: center;
       }
     }
-    > div:has(img) > p {
+    > div:has(> p > img, > p > .image-embed) > p {
       display: grid;
       margin-block-start: var(--img-grid-gap);
       margin-block-end: var(--img-grid-gap);

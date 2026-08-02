@@ -91,27 +91,11 @@
 @use 'plugins/style-settings';
 @use 'plugins/zoom';
 
-/* Color schemes */
-@use 'color-schemes/atom';
-@use 'color-schemes/ayu';
-@use 'color-schemes/catppuccin';
-@use 'color-schemes/dracula';
-@use 'color-schemes/eink';
-@use 'color-schemes/everforest';
-@use 'color-schemes/flexoki';
-@use 'color-schemes/gruvbox';
-@use 'color-schemes/macos';
-@use 'color-schemes/nord';
-@use 'color-schemes/sky';
-@use 'color-schemes/rose-pine';
-@use 'color-schemes/solarized';
-@use 'color-schemes/things';
-
 /*
  * Canonical Wayfinder identity
  *
- * Keep these last. They intentionally supersede inherited palettes and map
- * the Atlas design tokens onto Obsidian's semantic variables.
+ * Keep these last. They map the Atlas design tokens onto Obsidian's semantic
+ * variables and intentionally supersede earlier component defaults.
  */
 @use 'wayfinder/foundation';
 @use 'wayfinder/materials';

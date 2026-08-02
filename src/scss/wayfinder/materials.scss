@@ -23,6 +23,10 @@
  * repeats meet dark-edge-to-dark-edge at each seam. The repeating-linear-
  * gradient layer below lays a soft highlight across that boundary so it
  * reads as a page transition rather than a double-dark stripe.
+ *
+ * Flat fallback fill only here - just the solid base color and a uniform
+ * tint, both cheap regardless of how they're painted. The tiled texture and
+ * seam gradient live separately, on the content sizer (see below), not here.
  */
 .markdown-source-view .cm-scroller,
 .markdown-reading-view .markdown-preview-view {
@@ -31,6 +35,31 @@
 			var(--wayfinder-parchment-overlay),
 			var(--wayfinder-parchment-overlay)
 		),
+		var(--background-primary);
+}
+
+/*
+ * The tile + seam-gradient live on the content sizer (`.cm-sizer` /
+ * `.markdown-preview-sizer`) - the element that actually grows to the note's
+ * full height - rather than on the scroll viewport above with
+ * `background-attachment: local`. `local` is the usual way to make a
+ * background scroll with content, but it works by having the browser
+ * repaint the background in step with every scroll frame; with a raster
+ * image tile plus a repeating gradient sized via `calc()`, that repaint is
+ * too expensive to run on every scroll tick. Painting the same layers on the
+ * sizer instead means they're just ordinary content: painted once, then
+ * scrolled by the compositor like the text above them, with no per-frame
+ * repaint at all.
+ *
+ * The `>` here is deliberate: embedded notes nest their own
+ * `.markdown-preview-sizer` several levels inside this one (see the
+ * `.markdown-embed .markdown-preview-view` reset below), and a plain
+ * descendant selector would paint - and decode - a second full-size copy of
+ * the texture inside every embed on the page.
+ */
+.markdown-source-view.mod-cm6 .cm-sizer,
+.markdown-reading-view .markdown-preview-view > .markdown-preview-sizer {
+	background:
 		repeating-linear-gradient(
 			to bottom,
 			rgba(255, 241, 214, 0.18) 0,
@@ -40,16 +69,57 @@
 			rgba(255, 241, 214, 0.18) calc(var(--wayfinder-parchment-tile-height) - var(--wayfinder-parchment-seam-plateau)),
 			rgba(255, 241, 214, 0.18) var(--wayfinder-parchment-tile-height)
 		),
-		var(--wayfinder-parchment-texture),
-		var(--background-primary);
-	background-attachment: local, local, local, local;
-	background-position: top center, top center, top center, top center;
-	background-repeat: no-repeat, repeat-y, repeat-y, no-repeat;
+		var(--wayfinder-parchment-texture);
+	background-position: top center, top center;
+	background-repeat: repeat-y, repeat-y;
 	background-size:
-		auto,
 		min(100%, var(--wayfinder-parchment-width)) var(--wayfinder-parchment-tile-height),
-		min(100%, var(--wayfinder-parchment-width)) var(--wayfinder-parchment-tile-height),
-		auto;
+		min(100%, var(--wayfinder-parchment-width)) var(--wayfinder-parchment-tile-height);
+}
+
+/*
+ * Reading View puts every block of a note in the DOM up front and has no
+ * built-in virtualization of its own (unlike Live Preview, where CodeMirror
+ * already keeps off-screen lines out of the DOM entirely). For a long note,
+ * or one with a large Dataview/DataviewJS table, that means the browser does
+ * full style/layout/paint work for content that isn't even on screen yet
+ * before the tab is interactive.
+ *
+ * `content-visibility: auto` tells the browser to skip that work for blocks
+ * that aren't near the viewport, then render them on demand as they scroll
+ * into view - or the moment something like a heading jump, backlink, or
+ * in-note search focuses an element inside one, which forces an on-demand
+ * render of just that block. `contain-intrinsic-size: auto 300px` reserves a
+ * placeholder height before a block has ever been measured, and the `auto`
+ * keyword makes it reuse each block's real height after that, so the
+ * scrollbar doesn't jump around once everything has been seen once.
+ */
+.markdown-reading-view .markdown-preview-section > div {
+	content-visibility: auto;
+	contain-intrinsic-size: auto 300px;
+}
+
+/*
+ * Dataview/DataviewJS blocks opt back out. Gating their visibility doesn't
+ * remove their rendering cost, it just relocates it - from a delay before
+ * the note becomes interactive, to a stutter the instant the block crosses
+ * the containment boundary while scrolling. For something already this
+ * expensive to lay out (both plugins build their output element-by-element,
+ * often hundreds of rows), that trade makes things worse, not better: the
+ * hitch now lands mid-scroll instead of before you start interacting.
+ *
+ * `contain: layout style` keeps the isolation benefit without the
+ * visibility gate - Dataview/DataviewJS's internal DOM churn as they build
+ * their output still can't force a reflow of the rest of the note - so the
+ * cost is still lower than doing nothing, it's just always paid up front
+ * rather than deferred to a scroll event. (`paint` containment is
+ * deliberately left out: it clips overflow at the block boundary, which
+ * risks cutting off anything Dataview renders that's meant to overflow it,
+ * like a sort-column dropdown.)
+ */
+.markdown-reading-view .markdown-preview-section > div:has(> :is(.block-language-dataview, .block-language-dataviewjs)) {
+	content-visibility: visible;
+	contain: layout style;
 }
 
 .workspace-split.mod-root > .workspace-leaf-resize-handle,

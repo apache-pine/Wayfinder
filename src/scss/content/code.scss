@@ -1,6 +1,6 @@
 .wayfinder-code-scroll {
 	--code-white-space: pre;
-	
+
 	.HyperMD-codeblock.HyperMD-codeblock-bg {
 		overflow-y: scroll;
 		white-space: pre;
@@ -8,6 +8,32 @@
 	.cm-hmd-codeblock {
 		white-space: pre !important;
 	}
+}
+
+/*
+ * Selecting text (mouse-drag or multi-cursor) in a codeblock was reading
+ * this theme's ==mark==/find color (--text-highlight-bg), which turned out
+ * not to be the actual culprit: what you see when you select/highlight
+ * text with the cursor is --text-selection, not --text-highlight-bg.
+ * parchment.scss sets --text-selection to a dark brown at 22% opacity
+ * (rgba(92, 57, 23, 0.22)) - tuned to read on the light parchment page, but
+ * nearly invisible over the near-black --code-background plate
+ * (artifacts.scss).
+ *
+ * A near-opaque sky-blue fixed the "can't see the highlight" problem but
+ * created the opposite one: at that lightness, light code text (--code-
+ * normal, --code-keyword, etc.) has almost no contrast against its own
+ * selection background. --atlas-aether (the "magic" violet used for the
+ * caret and glows elsewhere) sits at a mid lightness instead - clearly
+ * lighter than the near-black plate so the selection itself stays visible,
+ * but dark enough that light-colored code text still reads on top of it.
+ */
+.theme-dark .HyperMD-codeblock,
+.theme-dark .cm-inline-code,
+.theme-dark .markdown-rendered pre,
+.theme-dark .markdown-rendered code {
+	--text-selection: rgba(119, 113, 185, 0.85);
+	--text-highlight-bg: rgba(119, 113, 185, 0.85);
 }
 
 @media print {

@@ -324,7 +324,7 @@ body {
 
 	// Tables
 	.cm-table-widget,
-	> div:has(table) {
+	> div:has(> table, > .table-wrapper) {
 		width: var(--container-table-width);
 		max-width:var(--container-table-max-width);
 		margin-inline: var(--container-table-margin) !important;
@@ -337,9 +337,19 @@ body {
 	.table-wrapper {
 		width: var(--table-wrapper-width);
 	}
+	// The `table` requirement used to be checked *inside* the dataview/
+	// dataviewjs block (`:has(> ... table)`), an unrestricted-descendant
+	// search rooted inside a subtree that Dataview/DataviewJS repeatedly
+	// mutates while it streams in rows. Every row/cell insertion could
+	// invalidate that match, forcing a re-check while the query is still
+	// loading - exactly when responsiveness matters most. Checking only
+	// the direct-child relationship to the dataview/dataviewjs block itself
+	// bounds the recheck to when that block is added/replaced, not to
+	// every mutation inside it. Trade-off: list-style (non-table) Dataview
+	// output now gets the wider width too, rather than only table output.
 	> .bases-embed,
-	> div:has(:is(.block-language-base, .bases-embed)),
-	> :has(> :is(.block-language-dataview, .block-language-dataviewjs) table) {
+	> div:has(> :is(.block-language-base, .bases-embed)),
+	> div:has(> :is(.block-language-dataview, .block-language-dataviewjs)) {
 		width: var(--container-dataview-table-width);
 		max-width:var(--container-table-max-width);
 	}
@@ -370,7 +380,7 @@ body {
 		padding-bottom: 0.25rem;
 	}
 	> .image-embed,
-	> div:has(.image-embed) {
+	> div:has(> .image-embed, > p > .image-embed) {
 		width: var(--container-img-width);
 		max-width:var(--container-img-max-width);
 
@@ -386,7 +396,7 @@ body {
 	}
 
 	// Charts
-	div:has(>.block-language-dataviewjs canvas, >.block-language-chart) {
+	> div:has(> .block-language-dataviewjs canvas, > .block-language-chart) {
 		width: var(--container-chart-width);
 		max-width:var(--container-chart-max-width);
 
@@ -396,7 +406,10 @@ body {
 	}
 
 	// Maps
-	div:has(.bases-view[data-view-type="map"]) {
+	> div:has(
+		> .bases-view[data-view-type="map"],
+		> .bases-embed > .bases-view[data-view-type="map"]
+	) {
 		width: var(--container-map-width);
 		max-width:var(--container-map-max-width);
 		--bases-header-padding-end: var(--map-header-padding);

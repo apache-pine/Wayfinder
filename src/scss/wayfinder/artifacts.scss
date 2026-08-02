@@ -35,7 +35,16 @@
 	margin: calc(var(--callout-padding) * -1);
 	margin-bottom: var(--size-4-2);
 	padding: var(--size-4-2) var(--size-4-3);
-	color: rgb(var(--callout-color));
+	/*
+	 * Blended toward a warm parchment highlight rather than the raw accent:
+	 * dim hues like the purple/red seals fall below readable contrast on the
+	 * dark card at full saturation, while cyan/orange only just clear it. One
+	 * fixed blend ratio lifts every category by the same amount instead of
+	 * hand-tuning each hue, so a future callout color inherits legibility
+	 * automatically. Border/icon/background keep the pure accent.
+	 */
+	color: color-mix(in srgb, rgb(var(--callout-color)) 60%, #f0e6cc 40%);
+	text-shadow: 0 1px 2px rgba(12, 9, 6, 0.5);
 	background:
 		linear-gradient(90deg, rgba(var(--callout-color), 0.13), transparent 72%);
 	border-bottom: 1px solid rgba(var(--callout-color), 0.22);
@@ -151,6 +160,7 @@
 	border-inline-start: 3px solid var(--atlas-sea);
 	border-radius: 0;
 	box-shadow: none;
+	padding-inline-end: var(--size-4-4);
 }
 
 .theme-dark .HyperMD-codeblock-begin {

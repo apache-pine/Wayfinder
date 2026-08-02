@@ -20,8 +20,10 @@ theme.css
 Obsidian expects for an installed theme. It is generated output even though it
 cannot live in a conventional `dist/` directory.
 
-The build produces expanded CSS. This is intentional for the current private
-development workflow and should not be changed as part of unrelated work.
+`npm run build` produces expanded CSS for development. `npm run build:prod`
+uses Sass's compressed output for the compiled theme while preserving the
+license and Style Settings metadata fragments verbatim. Both commands write
+`theme.css`, the filename Obsidian requires for an installed theme.
 
 ## Sass source groups
 
@@ -33,7 +35,9 @@ development workflow and should not be changed as part of unrelated work.
 - `mobile/` contains mobile-platform adjustments.
 - `plugins-core/` contains Obsidian core-plugin compatibility.
 - `plugins/` contains community-plugin compatibility.
-- `color-schemes/` contains selectable palette implementations.
+- `color-schemes/` contains archived inherited palette implementations. They
+  are retained as reference source but are not compiled because the current
+  Style Settings UI exposes no classes that can activate them.
 - `wayfinder/` contains the canonical Atlas identity and material treatments.
   It is loaded last so inherited palettes cannot override Wayfinder tokens.
 - `dev/` contains inactive development helpers.
@@ -51,8 +55,7 @@ ordering unless a tested change requires otherwise:
 6. Mobile rules
 7. Core plugins
 8. Community plugins
-9. Inherited color schemes
-10. Canonical Wayfinder identity
+9. Canonical Wayfinder identity
 
 CSS cascade order is behavior. Reordering imports is not a cosmetic cleanup and
 must be tested as a functional change.

@@ -9,6 +9,9 @@
 	--table-background: rgba(15, 12, 9, 0.24);
 	--table-header-background: #21180f;
 	--table-header-background-hover: #271c11;
+	/* Brighter, more saturated than --atlas-parchment so header text stays
+	   legible against the near-black header background across monitors. */
+	--table-header-color: #f3d99c;
 	--table-row-alt-background: rgba(184, 134, 51, 0.022);
 	--table-row-alt-background-hover: rgba(var(--atlas-rune-rgb), 0.065);
 	--table-row-background-hover: rgba(var(--atlas-rune-rgb), 0.055);
@@ -61,7 +64,7 @@
 .theme-dark .markdown-rendered table:not(.calendar) th,
 .theme-dark .markdown-source-view.mod-cm6 .cm-table-widget table:not(.calendar) th,
 .theme-dark table.table-view-table th {
-	color: var(--atlas-parchment);
+	color: var(--table-header-color);
 	font-family: var(--wayfinder-font-display);
 	font-size: 0.92em;
 	font-weight: 600;
@@ -69,6 +72,7 @@
 	letter-spacing: 0.045em;
 	border-color: var(--table-header-border-color);
 	border-bottom-width: 1px;
+	text-shadow: 0 1px rgba(0, 0, 0, 0.42);
 }
 
 .theme-dark .markdown-rendered table:not(.calendar) tbody tr:nth-child(even),

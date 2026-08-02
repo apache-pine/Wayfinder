@@ -67,14 +67,14 @@
 
 	.mod-root .workspace-tab-header-container {
 		height: 0px;
-		transition: all var(--focus-animation-duration) linear 0.6s;
+		transition: height var(--focus-animation-duration) linear 0.6s;
 		--tab-outline-width: 0px;
 
 		.workspace-tab-header-container-inner,
 		.workspace-tab-header-new-tab,
 		.workspace-tab-header-tab-list {
 			opacity: 0;
-			transition: all var(--focus-animation-duration) linear 0.6s;
+			transition: opacity var(--focus-animation-duration) linear 0.6s;
 		}
 
 		.workspace-tab-header-spacer:before {
@@ -99,14 +99,14 @@
 		&:hover {
 			height: var(--header-height);
 			--tab-outline-width: 1px;
-			transition: all var(--focus-animation-duration) linear 0.05s;
+			transition: height var(--focus-animation-duration) linear 0.05s;
 
 			.sidebar-toggle-button.mod-right,
 			.workspace-tab-header-container-inner,
 			.workspace-tab-header-new-tab,
 			.workspace-tab-header-tab-list {
 				opacity: 1;
-				transition: all var(--focus-animation-duration) linear 0.05s;
+				transition: opacity var(--focus-animation-duration) linear 0.05s;
 			}
 			.workspace-tab-header-container-inner {
 				.workspace-tab-header.is-active,
@@ -134,7 +134,7 @@ body.wayfinder-focus-mode.show-view-header {
 	}
 	.mod-root .workspace-leaf .view-header {
 		height: 0em;
-		transition: all var(--focus-animation-duration) linear 0.5s;
+		transition: height var(--focus-animation-duration) linear 0.5s;
 	}
 	.view-header::after {
 		width: 100%;
@@ -149,13 +149,13 @@ body.wayfinder-focus-mode.show-view-header {
 	.view-header-title-container,
 	.view-actions {
 		opacity: 0;
-		transition: all var(--focus-animation-duration) linear 0.5s;
+		transition: opacity var(--focus-animation-duration) linear 0.5s;
 	}
 	.mod-root .workspace-tab-header-container:hover ~ .workspace-tab-container .view-header,
 	.mod-root .workspace-leaf .view-header:hover,
 	.mod-root .workspace-leaf .view-header:focus-within {
 		height: calc(var(--header-height) + 2px);
-		transition: all var(--focus-animation-duration) linear 0.1s;
+		transition: height var(--focus-animation-duration) linear 0.1s;
 	}
 	.mod-root .workspace-tab-header-container:hover ~ .workspace-tab-container .view-header,
 	.view-header:hover,
@@ -164,7 +164,7 @@ body.wayfinder-focus-mode.show-view-header {
 		.view-actions,
 		.view-header-title-container {
 			opacity: 1;
-			transition: all var(--focus-animation-duration) linear 0.1s;
+			transition: opacity var(--focus-animation-duration) linear 0.1s;
 		}
 	}
 	.view-content {
