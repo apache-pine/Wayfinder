@@ -115,6 +115,7 @@
 /* Toolbars are the clearest collection of dormant runes. */
 .theme-dark #cMenuModalBar button,
 .theme-dark #editingToolbarModalBar button,
+.theme-dark #editingToolbarPopoverBar button,
 .theme-dark .editingToolbarModalBar button,
 .theme-dark .editing-toolbar button {
 	transition:
@@ -127,6 +128,7 @@
 
 .theme-dark #cMenuModalBar button:hover,
 .theme-dark #editingToolbarModalBar button:hover,
+.theme-dark #editingToolbarPopoverBar button:hover,
 .theme-dark .editingToolbarModalBar button:hover,
 .theme-dark .editing-toolbar button:hover {
 	color: var(--atlas-rune-bright);
@@ -138,6 +140,7 @@
 
 .theme-dark #cMenuModalBar button:active,
 .theme-dark #editingToolbarModalBar button:active,
+.theme-dark #editingToolbarPopoverBar button:active,
 .theme-dark .editingToolbarModalBar button:active,
 .theme-dark .editing-toolbar button:active {
 	color: #d9f8ff;
