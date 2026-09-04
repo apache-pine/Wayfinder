@@ -152,9 +152,26 @@ body :not(.canvas-node) .markdown-source-view.mod-cm6.is-rtl .cm-gutters {
 	right: 0;
 }
 
-body {
+/*
+ * Line numbers must be scoped to the parchment surface itself, not `body`.
+ * `--text-faint`/`--text-muted` are re-pitched to dark ink-on-paper browns
+ * inside .markdown-source-view (see parchment.scss), but a custom property's
+ * var() references resolve at the element where it's *declared* - so setting
+ * these at `body` froze them to the dark shell's pale grey text tones (meant
+ * for near-black sidebar surfaces), leaving gutter numbers nearly invisible
+ * against tan parchment. Declaring them on the source view itself picks up
+ * the correct scoped ink tokens.
+ */
+.markdown-source-view.mod-cm6 {
 	--line-number-color: var(--text-faint);
-	--line-number-color-active: var(--text-muted);
+	/*
+	 * Rune-bright, not an ink token: the current line is "where the Atlas is
+	 * looking right now", the same purposeful-magic language already used for
+	 * the typing caret above. Rune/aether are world-level accent colors (not
+	 * re-pitched per surface like --text-muted), so this stays legible blue on
+	 * parchment without needing a parchment-scoped override.
+	 */
+	--line-number-color-active: var(--atlas-rune-bright);
 }
 
 .empty-state-title {
@@ -164,9 +181,18 @@ body {
 .markdown-source-view.mod-cm6 .cm-gutters {
 	color: var(--line-number-color) !important;
 }
-.markdown-source-view.mod-cm6 .cm-editor .cm-gutterElement.cm-active .cm-heading-marker, 
+/*
+ * Static glow, not animated: unlike the caret pulse above, this repaints
+ * only on cursor line-change (cheap, infrequent), not every frame - so a
+ * layered text-shadow can be used directly without an opacity-only ::after
+ * workaround.
+ */
+.markdown-source-view.mod-cm6 .cm-editor .cm-gutterElement.cm-active .cm-heading-marker,
 .markdown-source-view.mod-cm6 .cm-editor .cm-lineNumbers .cm-gutterElement.cm-active {
 	color: var(--line-number-color-active);
+	text-shadow:
+		0 0 4px rgba(var(--atlas-rune-rgb), 0.65),
+		0 0 10px rgba(var(--atlas-aether-rgb), 0.4);
 }
 
 .cm-editor .cm-lineNumbers {
@@ -189,7 +215,7 @@ body {
 }
 .cm-editor .cm-lineNumbers .cm-gutterElement.cm-active,
 .cm-editor .cm-gutterElement.cm-active .cm-heading-marker {
-	color:var(--text-muted);
+	color: var(--line-number-color-active);
 }
 
 /* Code execution blocks, e.g. Dataview */

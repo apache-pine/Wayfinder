@@ -344,6 +344,39 @@
 		box-shadow var(--wayfinder-motion-calm) ease;
 }
 
+/*
+ * CodeMirror splits a Live Preview link into adjacent syntax spans. Horizontal
+ * padding and negative margins on every span make their translucent fills
+ * overlap, producing dark seams at the brackets and alias boundary. Keep the
+ * same lightweight plaque color, but let the source spans meet edge-to-edge.
+ * Reading View still has one <a>, so it retains the roomier plaque above.
+ */
+.theme-dark .markdown-source-view :is(.cm-hmd-internal-link, .cm-link, .cm-url, .cm-string.cm-url) {
+	padding-inline: 0;
+	margin-inline: 0;
+	border-radius: 0;
+}
+
+/*
+ * In `[key:: [[Note]]]`, CodeMirror ends the wikilink decoration at the
+ * second `]`; the third belongs to the enclosing Dataview field. Carry the
+ * flat fill one bracket-width past the wikilink's closing token so the outer
+ * bracket does not look clipped. This adds no DOM or rendering extension.
+ */
+.theme-dark .markdown-source-view .cm-formatting-link-end {
+	box-shadow: 0.26em 0 0 rgba(24, 74, 60, 0.16);
+}
+
+/*
+ * Dataview's expensive inline-field renderer is not needed just to conceal a
+ * wikilink target. Obsidian already identifies the target and alias separator
+ * in Live Preview; hiding those two source tokens leaves the alias clickable.
+ */
+.markdown-source-view.is-live-preview .cm-hmd-internal-link.cm-link-has-alias,
+.markdown-source-view.is-live-preview .cm-link-alias-pipe {
+	display: none;
+}
+
 /* Live Preview hover: flat fill only - no box-shadow ring (see note above). */
 .theme-dark .markdown-source-view :is(.cm-hmd-internal-link, .cm-link, .cm-url, .cm-string.cm-url, .external-link, .internal-query):hover {
 	color: var(--link-color-hover) !important;

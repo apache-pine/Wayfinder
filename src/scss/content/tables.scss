@@ -80,3 +80,31 @@ body {
 	color: var(--text-faint);
 	font-weight: 400;
 }
+
+/* Horizontal scrolling for wide tables
+ * ------------------------------------
+ * Obsidian wraps native and editable tables in a scroll container, but tables
+ * emitted by plugins as a bare <table> inside a code-block wrapper have none:
+ * Advanced Tables' TSV/CSV render (.block-language-tsv / .block-language-csv),
+ * Dataview's DataviewJS output, and similar. A table wider than the note then
+ * spills past the page with no way to reach the hidden columns.
+ *
+ * Make the immediate block wrapper scroll horizontally whenever it holds a
+ * table directly, regardless of which plugin produced it. Both reading view
+ * and Live Preview code-block embeds carry `.markdown-rendered`, so a single
+ * rule covers both. `overflow-y: hidden` keeps a stray vertical scrollbar from
+ * appearing when the browser promotes `overflow-y` to `auto`. */
+.markdown-rendered .block-language-tsv,
+.markdown-rendered .block-language-csv {
+	max-width: 100%;
+	overflow-x: auto;
+	overflow-y: hidden;
+}
+
+/* Kept in its own rule: a browser without `:has()` support would otherwise
+ * drop the TSV/CSV fallback above along with this selector. */
+.markdown-rendered [class*="block-language-"]:has(> table) {
+	max-width: 100%;
+	overflow-x: auto;
+	overflow-y: hidden;
+}

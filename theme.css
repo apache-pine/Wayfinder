@@ -800,9 +800,26 @@ body :not(.canvas-node) .markdown-source-view.mod-cm6.is-rtl .cm-gutters {
   right: 0;
 }
 
-body {
+/*
+ * Line numbers must be scoped to the parchment surface itself, not `body`.
+ * `--text-faint`/`--text-muted` are re-pitched to dark ink-on-paper browns
+ * inside .markdown-source-view (see parchment.scss), but a custom property's
+ * var() references resolve at the element where it's *declared* - so setting
+ * these at `body` froze them to the dark shell's pale grey text tones (meant
+ * for near-black sidebar surfaces), leaving gutter numbers nearly invisible
+ * against tan parchment. Declaring them on the source view itself picks up
+ * the correct scoped ink tokens.
+ */
+.markdown-source-view.mod-cm6 {
   --line-number-color: var(--text-faint);
-  --line-number-color-active: var(--text-muted);
+  /*
+   * Rune-bright, not an ink token: the current line is "where the Atlas is
+   * looking right now", the same purposeful-magic language already used for
+   * the typing caret above. Rune/aether are world-level accent colors (not
+   * re-pitched per surface like --text-muted), so this stays legible blue on
+   * parchment without needing a parchment-scoped override.
+   */
+  --line-number-color-active: var(--atlas-rune-bright);
 }
 
 .empty-state-title {
@@ -813,9 +830,16 @@ body {
   color: var(--line-number-color) !important;
 }
 
+/*
+ * Static glow, not animated: unlike the caret pulse above, this repaints
+ * only on cursor line-change (cheap, infrequent), not every frame - so a
+ * layered text-shadow can be used directly without an opacity-only ::after
+ * workaround.
+ */
 .markdown-source-view.mod-cm6 .cm-editor .cm-gutterElement.cm-active .cm-heading-marker,
 .markdown-source-view.mod-cm6 .cm-editor .cm-lineNumbers .cm-gutterElement.cm-active {
   color: var(--line-number-color-active);
+  text-shadow: 0 0 4px rgba(var(--atlas-rune-rgb), 0.65), 0 0 10px rgba(var(--atlas-aether-rgb), 0.4);
 }
 
 .cm-editor .cm-lineNumbers {
@@ -840,7 +864,7 @@ body {
 }
 .cm-editor .cm-lineNumbers .cm-gutterElement.cm-active,
 .cm-editor .cm-gutterElement.cm-active .cm-heading-marker {
-  color: var(--text-muted);
+  color: var(--line-number-color-active);
 }
 
 /* Code execution blocks, e.g. Dataview */
@@ -1929,6 +1953,34 @@ body {
 .cm-hmd-table-sep-dummy {
   color: var(--text-faint);
   font-weight: 400;
+}
+
+/* Horizontal scrolling for wide tables
+ * ------------------------------------
+ * Obsidian wraps native and editable tables in a scroll container, but tables
+ * emitted by plugins as a bare <table> inside a code-block wrapper have none:
+ * Advanced Tables' TSV/CSV render (.block-language-tsv / .block-language-csv),
+ * Dataview's DataviewJS output, and similar. A table wider than the note then
+ * spills past the page with no way to reach the hidden columns.
+ *
+ * Make the immediate block wrapper scroll horizontally whenever it holds a
+ * table directly, regardless of which plugin produced it. Both reading view
+ * and Live Preview code-block embeds carry `.markdown-rendered`, so a single
+ * rule covers both. `overflow-y: hidden` keeps a stray vertical scrollbar from
+ * appearing when the browser promotes `overflow-y` to `auto`. */
+.markdown-rendered .block-language-tsv,
+.markdown-rendered .block-language-csv {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+/* Kept in its own rule: a browser without `:has()` support would otherwise
+ * drop the TSV/CSV fallback above along with this selector. */
+.markdown-rendered [class*=block-language-]:has(> table) {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
 }
 
 /* Tags */
@@ -7413,6 +7465,39 @@ body {
   text-decoration-thickness: 1px;
   text-underline-offset: 0.16em;
   transition: color var(--wayfinder-motion-quick) ease, background-color var(--wayfinder-motion-quick) ease, box-shadow var(--wayfinder-motion-calm) ease;
+}
+
+/*
+ * CodeMirror splits a Live Preview link into adjacent syntax spans. Horizontal
+ * padding and negative margins on every span make their translucent fills
+ * overlap, producing dark seams at the brackets and alias boundary. Keep the
+ * same lightweight plaque color, but let the source spans meet edge-to-edge.
+ * Reading View still has one <a>, so it retains the roomier plaque above.
+ */
+.theme-dark .markdown-source-view :is(.cm-hmd-internal-link, .cm-link, .cm-url, .cm-string.cm-url) {
+  padding-inline: 0;
+  margin-inline: 0;
+  border-radius: 0;
+}
+
+/*
+ * In `[key:: [[Note]]]`, CodeMirror ends the wikilink decoration at the
+ * second `]`; the third belongs to the enclosing Dataview field. Carry the
+ * flat fill one bracket-width past the wikilink's closing token so the outer
+ * bracket does not look clipped. This adds no DOM or rendering extension.
+ */
+.theme-dark .markdown-source-view .cm-formatting-link-end {
+  box-shadow: 0.26em 0 0 rgba(24, 74, 60, 0.16);
+}
+
+/*
+ * Dataview's expensive inline-field renderer is not needed just to conceal a
+ * wikilink target. Obsidian already identifies the target and alias separator
+ * in Live Preview; hiding those two source tokens leaves the alias clickable.
+ */
+.markdown-source-view.is-live-preview .cm-hmd-internal-link.cm-link-has-alias,
+.markdown-source-view.is-live-preview .cm-link-alias-pipe {
+  display: none;
 }
 
 /* Live Preview hover: flat fill only - no box-shadow ring (see note above). */
