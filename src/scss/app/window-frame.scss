@@ -34,6 +34,67 @@ body.window-title-off .titlebar-text {
 	}
 }
 
+/*
+ * On Windows/Linux with the native titlebar hidden, the right sidebar's top
+ * tab-header row doubles as the drag strip the caption buttons
+ * (minimize/maximize/close) sit over. Obsidian's own --frame-right-space
+ * reservation on .workspace-tab-header-container runs short of their real
+ * rendered width (confirmed live via getBoundingClientRect(), by ~14px on
+ * Windows 11 maximized), so a fully-scrolled tab strip lands partly under
+ * Minimize - reported live as needing to click the tab's left half to avoid
+ * accidentally minimizing the window.
+ *
+ * Purely visual fixes (padding .workspace-tab-header-container further, or
+ * capping .workspace-tab-header-container-inner's width) close the gap but
+ * don't fix clicking Minimize: confirmed live via elementFromPoint() that
+ * the button is still structurally on top of the reclaimed strip, yet
+ * clicks and hover there do nothing, surviving a full app restart. The
+ * explanation is -webkit-app-region, a separate OS-level hit-test layer
+ * invisible to elementFromPoint(): the tab strip's empty space is normally
+ * a drag handle (so blank tab-bar space moves the window) via
+ * .workspace-tab-header-spacer, and that designation silently follows
+ * whatever width -inner gives up, intercepting input before it reaches
+ * Minimize's click handler underneath.
+ *
+ * Fix has two parts: pull the tab strip's own width back (so tabs stop
+ * rendering under the buttons), and explicitly strip -webkit-app-region
+ * from the reclaimed strip and the spacer so it stops re-claiming that
+ * width as drag territory. The buffer is intentionally a few px wider than
+ * the measured shortfall - exact button width can drift slightly with
+ * DPI/OS/Obsidian version, and this only costs a little of the tab strip's
+ * own scroll room, while a shortfall reopens the overlap outright.
+ */
+.mod-windows.is-hidden-frameless:not(.is-popout-window),
+.mod-linux.is-hidden-frameless:not(.is-popout-window) {
+	.mod-right-split .workspace-tab-header-container {
+		position: relative;
+
+		&::before {
+			content: "";
+			position: absolute;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			width: calc(var(--frame-right-space, 134px) + 24px);
+			-webkit-app-region: no-drag;
+			pointer-events: none;
+		}
+	}
+
+	.mod-right-split .workspace-tab-header-container-inner {
+		max-width: calc(100% - 24px);
+	}
+
+	.mod-right-split .workspace-tab-header-spacer {
+		flex-grow: 0;
+		-webkit-app-region: no-drag;
+	}
+
+	.mod-right-split .workspace-tab-header-tab-list {
+		-webkit-app-region: no-drag;
+	}
+}
+
 body {
 	&.is-focused {
 		--titlebar-background-focused: var(--background-secondary);

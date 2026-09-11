@@ -1281,6 +1281,65 @@ body.window-title-off .titlebar-text {
   padding-right: var(--size-4-2);
 }
 
+/*
+ * On Windows/Linux with the native titlebar hidden, the right sidebar's top
+ * tab-header row doubles as the drag strip the caption buttons
+ * (minimize/maximize/close) sit over. Obsidian's own --frame-right-space
+ * reservation on .workspace-tab-header-container runs short of their real
+ * rendered width (confirmed live via getBoundingClientRect(), by ~14px on
+ * Windows 11 maximized), so a fully-scrolled tab strip lands partly under
+ * Minimize - reported live as needing to click the tab's left half to avoid
+ * accidentally minimizing the window.
+ *
+ * Purely visual fixes (padding .workspace-tab-header-container further, or
+ * capping .workspace-tab-header-container-inner's width) close the gap but
+ * don't fix clicking Minimize: confirmed live via elementFromPoint() that
+ * the button is still structurally on top of the reclaimed strip, yet
+ * clicks and hover there do nothing, surviving a full app restart. The
+ * explanation is -webkit-app-region, a separate OS-level hit-test layer
+ * invisible to elementFromPoint(): the tab strip's empty space is normally
+ * a drag handle (so blank tab-bar space moves the window) via
+ * .workspace-tab-header-spacer, and that designation silently follows
+ * whatever width -inner gives up, intercepting input before it reaches
+ * Minimize's click handler underneath.
+ *
+ * Fix has two parts: pull the tab strip's own width back (so tabs stop
+ * rendering under the buttons), and explicitly strip -webkit-app-region
+ * from the reclaimed strip and the spacer so it stops re-claiming that
+ * width as drag territory. The buffer is intentionally a few px wider than
+ * the measured shortfall - exact button width can drift slightly with
+ * DPI/OS/Obsidian version, and this only costs a little of the tab strip's
+ * own scroll room, while a shortfall reopens the overlap outright.
+ */
+.mod-windows.is-hidden-frameless:not(.is-popout-window) .mod-right-split .workspace-tab-header-container,
+.mod-linux.is-hidden-frameless:not(.is-popout-window) .mod-right-split .workspace-tab-header-container {
+  position: relative;
+}
+.mod-windows.is-hidden-frameless:not(.is-popout-window) .mod-right-split .workspace-tab-header-container::before,
+.mod-linux.is-hidden-frameless:not(.is-popout-window) .mod-right-split .workspace-tab-header-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: calc(var(--frame-right-space, 134px) + 24px);
+  -webkit-app-region: no-drag;
+  pointer-events: none;
+}
+.mod-windows.is-hidden-frameless:not(.is-popout-window) .mod-right-split .workspace-tab-header-container-inner,
+.mod-linux.is-hidden-frameless:not(.is-popout-window) .mod-right-split .workspace-tab-header-container-inner {
+  max-width: calc(100% - 24px);
+}
+.mod-windows.is-hidden-frameless:not(.is-popout-window) .mod-right-split .workspace-tab-header-spacer,
+.mod-linux.is-hidden-frameless:not(.is-popout-window) .mod-right-split .workspace-tab-header-spacer {
+  flex-grow: 0;
+  -webkit-app-region: no-drag;
+}
+.mod-windows.is-hidden-frameless:not(.is-popout-window) .mod-right-split .workspace-tab-header-tab-list,
+.mod-linux.is-hidden-frameless:not(.is-popout-window) .mod-right-split .workspace-tab-header-tab-list {
+  -webkit-app-region: no-drag;
+}
+
 body.is-focused {
   --titlebar-background-focused: var(--background-secondary);
 }
@@ -3831,6 +3890,25 @@ body:not(.sidebar-tabs-underline):not(.sidebar-tabs-index):not(.sidebar-tabs-squ
 }
 
 /* Sidebar tabs ------------ */
+/*
+ * A sidebar's tab-header row shares its top edge with the frameless window's
+ * caption buttons (minimize/maximize/close), which sit outside the DOM and
+ * are cleared with real reserved padding on .workspace-tab-header-container
+ * (correct and necessary - shrinking it would let tabs render, and be
+ * clicked, underneath the buttons). In a sidebar barely wider than that
+ * reservation, the tab icon strip is left with very little room, and has to
+ * share even that with two controls most people never reach for in a
+ * cramped icon-only sidebar: the "new tab" button and the tab-list dropdown.
+ * Dropping the rarely-used one hands its width back to the icon strip that
+ * actually needs it, so fewer tabs sit behind a horizontal scroll. The
+ * tab-list dropdown stays - unlike scrolling blind through icons, it lists
+ * every open tab by name, so it's kept as the more direct way to reach one
+ * that's scrolled out of view.
+ */
+.workspace-split:not(.mod-root) .workspace-tab-header-new-tab {
+  display: none;
+}
+
 .tab-names-on .workspace-split:not(.mod-root) .workspace-tab-header-container-inner {
   --sidebar-tab-text-display: static;
 }

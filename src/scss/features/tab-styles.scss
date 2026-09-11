@@ -155,6 +155,25 @@ body:not(.sidebar-tabs-underline):not(.sidebar-tabs-index):not(.sidebar-tabs-squ
 
 /* Sidebar tabs ------------ */
 
+/*
+ * A sidebar's tab-header row shares its top edge with the frameless window's
+ * caption buttons (minimize/maximize/close), which sit outside the DOM and
+ * are cleared with real reserved padding on .workspace-tab-header-container
+ * (correct and necessary - shrinking it would let tabs render, and be
+ * clicked, underneath the buttons). In a sidebar barely wider than that
+ * reservation, the tab icon strip is left with very little room, and has to
+ * share even that with two controls most people never reach for in a
+ * cramped icon-only sidebar: the "new tab" button and the tab-list dropdown.
+ * Dropping the rarely-used one hands its width back to the icon strip that
+ * actually needs it, so fewer tabs sit behind a horizontal scroll. The
+ * tab-list dropdown stays - unlike scrolling blind through icons, it lists
+ * every open tab by name, so it's kept as the more direct way to reach one
+ * that's scrolled out of view.
+ */
+.workspace-split:not(.mod-root) .workspace-tab-header-new-tab {
+	display: none;
+}
+
 .tab-names-on .workspace-split:not(.mod-root) .workspace-tab-header-container-inner {
 	--sidebar-tab-text-display: static;
 	.workspace-tab-header-inner-title {
