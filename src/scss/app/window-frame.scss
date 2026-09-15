@@ -35,39 +35,71 @@ body.window-title-off .titlebar-text {
 }
 
 /*
- * On Windows/Linux with the native titlebar hidden, the right sidebar's top
- * tab-header row doubles as the drag strip the caption buttons
- * (minimize/maximize/close) sit over. Obsidian's own --frame-right-space
- * reservation on .workspace-tab-header-container runs short of their real
- * rendered width (confirmed live via getBoundingClientRect(), by ~14px on
- * Windows 11 maximized), so a fully-scrolled tab strip lands partly under
- * Minimize - reported live as needing to click the tab's left half to avoid
- * accidentally minimizing the window.
+ * On Windows/Linux with the native titlebar hidden, any tab-header row that
+ * shares its top edge with the window's caption buttons (minimize/maximize/
+ * close) can end up partly underneath them: the right sidebar's top row in
+ * the main window, and a plugin's own tab-header row in a popped-out window
+ * (e.g. ninety-command's To-Do editor). Obsidian's own --frame-right-space
+ * reservation runs short of the buttons' real rendered width - confirmed
+ * live via getBoundingClientRect() at ~14px short in the main window - so a
+ * crowded tab-header row lands partly under Minimize. Reported live as
+ * needing to click a tab's left half to avoid accidentally minimizing the
+ * window, and separately as the tab-list dropdown overlapping Minimize in a
+ * popout.
  *
- * Purely visual fixes (padding .workspace-tab-header-container further, or
- * capping .workspace-tab-header-container-inner's width) close the gap but
- * don't fix clicking Minimize: confirmed live via elementFromPoint() that
- * the button is still structurally on top of the reclaimed strip, yet
- * clicks and hover there do nothing, surviving a full app restart. The
- * explanation is -webkit-app-region, a separate OS-level hit-test layer
- * invisible to elementFromPoint(): the tab strip's empty space is normally
- * a drag handle (so blank tab-bar space moves the window) via
- * .workspace-tab-header-spacer, and that designation silently follows
- * whatever width -inner gives up, intercepting input before it reaches
- * Minimize's click handler underneath.
+ * Three things it takes to actually fix this, each ruled in by a live
+ * failure of the alternative:
  *
- * Fix has two parts: pull the tab strip's own width back (so tabs stop
- * rendering under the buttons), and explicitly strip -webkit-app-region
- * from the reclaimed strip and the spacer so it stops re-claiming that
- * width as drag territory. The buffer is intentionally a few px wider than
- * the measured shortfall - exact button width can drift slightly with
- * DPI/OS/Obsidian version, and this only costs a little of the tab strip's
- * own scroll room, while a shortfall reopens the overlap outright.
+ * 1. Reserve the clearance as real padding-right on the container, not a
+ *    width limit on one child. Padding is a hard box-model constraint no
+ *    child's content can push past, however much of it there is - capping
+ *    .workspace-tab-header-container-inner's own width directly held up in
+ *    the sidebar (a handful of icon tabs) but not in a popout with enough
+ *    named tabs: flex items default to a minimum width of "whatever their
+ *    content needs," so once content exceeded the cap the row overflowed it
+ *    anyway and dragged the tab-list dropdown out past the safe edge with
+ *    it.
+ * 2. min-width: 0 on .workspace-tab-header-container-inner overrides that
+ *    default so it can actually be forced smaller than its content - the
+ *    spacer and tab-list dropdown never have a reason to shrink, so they
+ *    keep their natural size and position regardless of tab count.
+ *    overflow: hidden then clips whatever tab content doesn't fit rather
+ *    than letting it push the row wider - only needed for the popout case,
+ *    where the container has no overflow handling of its own; the
+ *    sidebar's already scrolls natively and that stays untouched.
+ * 3. Strip -webkit-app-region from the reclaimed strip, the spacer, and the
+ *    tab-list dropdown so nothing re-claims that width as drag territory -
+ *    a separate, OS-level hit-test layer invisible to elementFromPoint()
+ *    that otherwise swallows clicks/hover meant for the caption buttons
+ *    even once they're visually clear of any tab content (confirmed live:
+ *    the button was structurally on top the whole time, yet unresponsive,
+ *    until this was added).
+ *
+ * The reserved amount is a fixed 170px, not var(--frame-right-space) plus a
+ * buffer as first tried: that variable disagreed with itself between
+ * windows (~14px short of the real button-cluster width in the main
+ * window's sidebar, ~34px short of it in a popout) even though the actual
+ * buttons measured the same ~148px wide in both, confirmed live via
+ * getBoundingClientRect() in each. A buffer on top of an already
+ * inconsistent number can't reliably cover both; anchoring to the figure
+ * that measured consistently, with real headroom for DPI/OS/Obsidian-
+ * version drift, does - at the cost of a little more of the tab strip's own
+ * room than the bare minimum. Applied to the right sidebar's row in the
+ * main window and, separately, to every tab-header row in a popped-out
+ * window (which has no sidebar of its own to scope to).
  */
-.mod-windows.is-hidden-frameless:not(.is-popout-window),
-.mod-linux.is-hidden-frameless:not(.is-popout-window) {
-	.mod-right-split .workspace-tab-header-container {
+@mixin frame-caption-clearance($clip-inner: false) {
+	.workspace-tab-header-container {
 		position: relative;
+		/*
+		 * !important: confirmed live in a popout window that this property
+		 * still computed to Obsidian's own 134px with this rule's selector
+		 * matching and no higher-specificity stylesheet rule present
+		 * anywhere in the theme - Obsidian evidently sets it via an inline
+		 * style there (likely recalculated on resize), which beats any
+		 * external stylesheet rule regardless of specificity.
+		 */
+		padding-right: 170px !important;
 
 		&::before {
 			content: "";
@@ -75,24 +107,42 @@ body.window-title-off .titlebar-text {
 			top: 0;
 			right: 0;
 			bottom: 0;
-			width: calc(var(--frame-right-space, 134px) + 24px);
+			width: 170px;
 			-webkit-app-region: no-drag;
 			pointer-events: none;
 		}
 	}
 
-	.mod-right-split .workspace-tab-header-container-inner {
-		max-width: calc(100% - 24px);
+	.workspace-tab-header-container-inner {
+		min-width: 0;
+
+		@if $clip-inner {
+			overflow: hidden;
+		}
 	}
 
-	.mod-right-split .workspace-tab-header-spacer {
+	.workspace-tab-header-spacer {
+		flex-shrink: 0;
 		flex-grow: 0;
 		-webkit-app-region: no-drag;
 	}
 
-	.mod-right-split .workspace-tab-header-tab-list {
+	.workspace-tab-header-tab-list {
+		flex-shrink: 0;
 		-webkit-app-region: no-drag;
 	}
+}
+
+.mod-windows.is-hidden-frameless:not(.is-popout-window),
+.mod-linux.is-hidden-frameless:not(.is-popout-window) {
+	.mod-right-split {
+		@include frame-caption-clearance;
+	}
+}
+
+.mod-windows.is-hidden-frameless.is-popout-window,
+.mod-linux.is-hidden-frameless.is-popout-window {
+	@include frame-caption-clearance($clip-inner: true);
 }
 
 body {
